@@ -1,0 +1,50 @@
+import type { Metadata } from "next";
+import Analytics from "./Analytics";
+import CookieConsent from "./CookieConsent";
+import "./globals.css";
+
+const siteUrl = "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site";
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Contrate TV | Parceiro autorizado SKY",
+    template: "%s | Contrate TV",
+  },
+  description: "Consulte planos SKY, cobertura e condições de instalação com atendimento de parceiro autorizado.",
+  alternates: { canonical: "/" },
+  applicationName: "Contrate TV",
+  category: "telecommunications",
+  creator: "Contrate TV",
+  icons: {
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
+  manifest: "/manifest.webmanifest",
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: siteUrl,
+    siteName: "Contrate TV",
+    title: "Contrate TV | Parceiro autorizado SKY",
+    description: "Planos SKY, cobertura e instalação com atendimento de parceiro autorizado.",
+    images: [{ url: "/img/og-sky-home.jpg", width: 1200, height: 630, alt: "Contrate TV — parceiro autorizado SKY" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contrate TV | Parceiro autorizado SKY",
+    description: "Consulte planos SKY e condições para o seu endereço.",
+    images: ["/img/og-sky-home.jpg"],
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
+  },
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="pt-BR"><body>{children}<Analytics /><CookieConsent /></body></html>;
+}
