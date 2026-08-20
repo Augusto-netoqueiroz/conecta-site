@@ -1,0 +1,5 @@
+User-Agent: *
+Allow: /
+
+Host: https://contratetv.com.br
+Sitemap: https://contratetv.com.br/sitemap.xml

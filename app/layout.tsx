@@ -3,7 +3,7 @@ import Analytics from "./Analytics";
 import CookieConsent from "./CookieConsent";
 import "./globals.css";
 
-const siteUrl = "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site";
+const siteUrl = "https://contratetv.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

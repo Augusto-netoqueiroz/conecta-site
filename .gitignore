@@ -15,7 +15,7 @@
 
 # next.js
 /.next/
-/out/
+# A saída estática é versionada para o deploy do cPanel/HostGator.
 
 # misc
 .DS_Store

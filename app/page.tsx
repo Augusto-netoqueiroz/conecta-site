@@ -24,17 +24,17 @@ const structuredData = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/#organization",
+      "@id": "https://contratetv.com.br/#organization",
       name: "Contrate TV",
-      url: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/",
-      logo: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/img/logomarca.webp",
+      url: "https://contratetv.com.br/",
+      logo: "https://contratetv.com.br/img/logomarca.webp",
       telephone: "+55 61 98195-4746",
       description: "Parceiro autorizado para contratação de planos SKY.",
       areaServed: "BR",
     },
     {
       "@type": "Product",
-      "@id": "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/#planos-sky",
+      "@id": "https://contratetv.com.br/#planos-sky",
       name: "Planos SKY",
       brand: { "@type": "Brand", name: "SKY" },
       category: "TV por assinatura",
@@ -50,7 +50,7 @@ const structuredData = {
     },
     {
       "@type": "BreadcrumbList",
-      itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/" }],
+      itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: "https://contratetv.com.br/" }],
     },
   ],
 };
@@ -159,7 +159,7 @@ export default function Home() {
 
       <section className="closing"><div className="container closing-inner"><div><span>ATENDIMENTO PARA TODO O BRASIL</span><h2>Consulte agora os planos para o seu endereço.</h2></div><a className="main-button light" href={wa("Olá, quero consultar os planos SKY disponíveis no meu endereço.")} target="_blank" rel="noopener noreferrer">Chamar no WhatsApp <span>→</span></a></div></section>
 
-      <footer className="footer"><div className="container footer-main"><div className="footer-brand"><Image src="/img/logomarca.webp" alt="Logotipo SKY e Amazon Prime Video" width={450} height={93} unoptimized /><span>PARCEIRO AUTORIZADO</span></div><p>Contrate TV — atendimento autorizado para contratação de planos SKY.</p><div><a href="#planos">Planos</a><Link href="/politica-de-privacidade">Privacidade</Link><Link href="/termos-de-uso">Termos</Link></div></div><div className="container footer-bottom"><span>© 2026 Contrate TV. Todos os direitos reservados.</span><span>Este é um canal de parceiro autorizado, não o site oficial da SKY.</span></div></footer>
+      <footer className="footer"><div className="container footer-main"><div className="footer-brand"><Image src="/img/logomarca.webp" alt="Logotipo SKY e Amazon Prime Video" width={450} height={93} unoptimized /><span>PARCEIRO AUTORIZADO</span></div><p>Contrate TV — atendimento autorizado para contratação de planos SKY.</p><div><a href="#planos">Planos</a><Link href="/politica-de-privacidade">Política de privacidade</Link><Link href="/termos-de-uso">Termos de uso</Link></div></div><div className="container footer-bottom"><span>© 2026 Contrate TV. Todos os direitos reservados.</span><span>Este é um canal de parceiro autorizado, não o site oficial da SKY.</span></div></footer>
 
       <a className="whatsapp-float" href={wa("Olá, vim pelo site e gostaria de mais informações.")} target="_blank" rel="noopener noreferrer" aria-label="Atendimento pelo WhatsApp"><Image src="/img/whatsapp-icon.webp" alt="" role="presentation" width={100} height={100} unoptimized /><span>Falar no WhatsApp</span></a>
     </main>

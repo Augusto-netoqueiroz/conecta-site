@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 
-const siteUrl = "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site";
+export const dynamic = "force-static";
+
+const siteUrl = "https://contratetv.com.br";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const updated = new Date("2026-08-20T00:00:00-03:00");

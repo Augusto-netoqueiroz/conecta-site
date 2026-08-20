@@ -1,0 +1,9 @@
+1:"$Sreact.fragment"
+2:I[39756,["/_next/static/chunks/0ocsat2tn8_iv.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+3:I[8821,["/_next/static/chunks/0ocsat2tn8_iv.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0bcew6gr6xpzu.js"],"default"]
+4:I[37457,["/_next/static/chunks/0ocsat2tn8_iv.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+5:I[22016,["/_next/static/chunks/0ocsat2tn8_iv.js","/_next/static/chunks/0d3shmwh5_nmn.js"],""]
+6:I[31002,["/_next/static/chunks/0ocsat2tn8_iv.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+7:I[56023,["/_next/static/chunks/0ocsat2tn8_iv.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+:HL["/_next/static/chunks/04tx.~lqlzz22.css","style"]
+0:{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/04tx.~lqlzz22.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/0ocsat2tn8_iv.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true}]],["$","html",null,{"lang":"pt-BR","children":["$","body",null,{"children":[["$","$L2",null,{"parallelRouterKey":"children","error":"$3","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0bcew6gr6xpzu.js","async":true}]],"template":["$","$L4",null,{}],"notFound":[["$","main",null,{"className":"error-page","children":[["$","span",null,{"children":"ERRO 404"}],["$","h1",null,{"children":"Essa página não está disponível."}],["$","p",null,{"children":"O endereço pode ter mudado ou não existir. Volte para conhecer os planos SKY disponíveis."}],["$","$L5",null,{"href":"/","children":"Voltar para o início →"}]]}],[]]}],["$","$L6",null,{}],["$","$L7",null,{}]]}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"KMsFsIlaEdam9LjX515DU"}

@@ -32,7 +32,7 @@ test("renders launch metadata and security headers", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Contrate TV \| Parceiro autorizado SKY<\/title>/i);
-  assert.match(html, /rel="canonical"[^>]+href="https:\/\/portal-de-tv\.augusto-netoqueiroz0\.chatgpt\.site\/"/i);
+  assert.match(html, /rel="canonical"[^>]+href="https:\/\/contratetv\.com\.br\/"/i);
   assert.match(html, /application\/ld\+json/i);
   assert.match(html, /FAQPage/);
   assert.match(html, /Política de privacidade/i);

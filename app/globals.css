@@ -236,8 +236,8 @@ img { display: block; max-width: 100%; }
   .hero-list li { margin: 9px 0; font-size: 13px; line-height: 1.35; }
   .main-button { width: 100%; min-height: 52px; }
   .microcopy { text-align: center; }
-  .hero-campaign { min-height: 520px; margin-inline: -16px; }
-  .hero-campaign > picture > img { object-position: center top; }
+  .hero-campaign { min-height: 0; aspect-ratio: 3 / 5; margin-inline: -16px; }
+  .hero-campaign > picture > img { object-position: 62% top; }
   .hero-product { left: -12px; right: -12px; bottom: -10px; }
   .install-stamp { right: 16px; bottom: 16px; min-width: 154px; padding: 13px; border-top-width: 4px; }
   .install-stamp strong { font-size: 20px; }
@@ -293,7 +293,7 @@ img { display: block; max-width: 100%; }
   .container { width: calc(100% - 24px); }
   .brand-lockup { width: 145px; }
   .brand-lockup img { width: 126px; }
-  .hero-campaign { margin-inline: -12px; min-height: 485px; }
+  .hero-campaign { margin-inline: -12px; min-height: 0; }
   .hero h1 { font-size: 40px; }
   .cookie-actions { flex-direction: column; }
 }
