@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   category: "telecommunications",
   creator: "Contrate TV",
   icons: {
-    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
-    shortcut: "/favicon.svg",
-    apple: "/favicon.svg",
+    icon: [{ url: "/img/campaign/logo-sky.png", type: "image/png" }],
+    shortcut: "/img/campaign/logo-sky.png",
+    apple: "/img/campaign/logo-sky.png",
   },
   manifest: "/manifest.webmanifest",
   openGraph: {

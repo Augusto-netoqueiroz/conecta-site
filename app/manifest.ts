@@ -12,6 +12,6 @@ export default function manifest(): MetadataRoute.Manifest {
     background_color: "#ffffff",
     theme_color: "#ed0016",
     lang: "pt-BR",
-    icons: [{ src: "/favicon.svg", sizes: "any", type: "image/svg+xml" }],
+    icons: [{ src: "/img/campaign/logo-sky.png", sizes: "1436x922", type: "image/png" }],
   };
 }

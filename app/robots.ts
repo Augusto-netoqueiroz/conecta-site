@@ -7,8 +7,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/_next/", "/_vinext/"],
     },
-    sitemap: "https://contratetv.com.br/sitemap.xml",
-    host: "https://contratetv.com.br",
+    sitemap: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/sitemap.xml",
+    host: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site",
   };
 }
