@@ -1,5 +1,7 @@
 User-Agent: *
 Allow: /
+Disallow: /_next/
+Disallow: /_vinext/
 
-Host: https://contratetv.com.br
-Sitemap: https://contratetv.com.br/sitemap.xml
+Host: https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site
+Sitemap: https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/sitemap.xml

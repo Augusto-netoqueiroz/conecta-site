@@ -2,56 +2,42 @@ import Image from "next/image";
 import Link from "next/link";
 
 const phone = "5561981954746";
-
-const wa = (message: string) =>
-  `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+const wa = (message: string) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
 const plans = [
-  { name: "Top I", complement: "Amazon Prime + Premiere", image: "/img/Top.webp", equipment: "1 equipamento HD", icons: ["amazon-prime-circle.webp", "premiere-circle.webp", "espn-circle.webp"] },
-  { name: "Top Connect II", complement: "Amazon Prime incluso", image: "/img/Top2.webp", equipment: "2 equipamentos HD", icons: ["amazon-prime-circle.webp", "gloob-circle.webp", "globo-novelas-circle.webp"] },
-  { name: "Sky Connect", complement: "Conteúdo para a família toda", image: "/img/Sky-Connect.webp", equipment: "Até 4 equipamentos", icons: ["amazon-prime-circle.webp", "disneymais-circle.webp", "hbo-circle.webp"] },
+  { name: "Top I", tag: "FUTEBOL + ENTRETENIMENTO", complement: "Amazon Prime e Premiere em destaque", image: "/img/Top.webp", features: ["1 equipamento HD", "Acesso ao SKY+", "Programação para toda a família"] },
+  { name: "Top Connect II", tag: "MAIS PONTOS DE TV", complement: "Uma opção completa para a casa toda", image: "/img/Top2.webp", features: ["2 equipamentos HD", "Amazon Prime incluso*", "Acesso ao SKY+"] },
+  { name: "SKY Connect", tag: "EXPERIÊNCIA COMPLETA", complement: "Mais conteúdo, mais telas e mais diversão", image: "/img/Sky-Connect.webp", features: ["Opções com até 4 pontos", "Filmes, séries e esportes", "Acesso ao SKY+"] },
+];
+
+const channels = [
+  { src: "/img/campaign/logo-premiere.png", alt: "Premiere" },
+  { src: "/img/campaign/canal-globo.jpg", alt: "TV Globo" },
+  { src: "/img/campaign/canal-sportv2.jpg", alt: "SporTV 2" },
+  { src: "/img/campaign/canal-ge-tv.png", alt: "GE TV" },
+  { src: "/img/campaign/canal-xsports.png", alt: "X Sports" },
+  { src: "/img/campaign/canal-discovery.png", alt: "Discovery" },
+  { src: "/img/campaign/canal-home-health.png", alt: "Discovery Home & Health" },
+  { src: "/img/campaign/canal-warner.png", alt: "Warner TV" },
+  { src: "/img/campaign/canal-tnt.png", alt: "TNT" },
+  { src: "/img/campaign/canal-discovery-kids.png", alt: "Discovery Kids HD" },
 ];
 
 const faqItems = [
-  { question: "A instalação é grátis?", answer: "A gratuidade está sujeita às condições da oferta e à disponibilidade no endereço. A equipe confirma antes da contratação." },
-  { question: "Como consultar os planos da minha região?", answer: "Envie o CEP pelo WhatsApp. Você receberá somente as opções disponíveis para o seu endereço." },
-  { question: "É possível instalar em mais de uma TV?", answer: "Sim. Há planos com equipamentos adicionais. Informe quantos pontos precisa durante o atendimento." },
-  { question: "Quais documentos são necessários?", answer: "O especialista informa os dados necessários conforme o plano escolhido e conduz a contratação com você." },
+  { question: "A instalação é grátis?", answer: "A gratuidade depende da oferta vigente e da disponibilidade no endereço. A condição é confirmada pelo consultor antes da contratação." },
+  { question: "Como descubro os planos disponíveis no meu CEP?", answer: "Chame no WhatsApp e informe seu CEP. A equipe consulta as opções, equipamentos e condições válidas para a sua região." },
+  { question: "Posso ter SKY em mais de uma TV?", answer: "Sim. Existem opções com pontos adicionais. Informe quantas TVs deseja conectar para receber a recomendação adequada." },
+  { question: "O SKY+ está incluído?", answer: "O acesso ao SKY+ varia conforme o plano e a oferta contratada. O consultor confirma o benefício e as regras antes de concluir o pedido." },
+  { question: "Este é o site oficial da SKY?", answer: "Não. Este é um canal de vendas de parceiro autorizado SKY, com atendimento para contratação de planos da operadora." },
 ];
 
 const structuredData = {
   "@context": "https://schema.org",
   "@graph": [
-    {
-      "@type": "Organization",
-      "@id": "https://contratetv.com.br/#organization",
-      name: "Contrate TV",
-      url: "https://contratetv.com.br/",
-      logo: "https://contratetv.com.br/img/logomarca.webp",
-      telephone: "+55 61 98195-4746",
-      description: "Parceiro autorizado para contratação de planos SKY.",
-      areaServed: "BR",
-    },
-    {
-      "@type": "Product",
-      "@id": "https://contratetv.com.br/#planos-sky",
-      name: "Planos SKY",
-      brand: { "@type": "Brand", name: "SKY" },
-      category: "TV por assinatura",
-      description: "Planos de TV por assinatura SKY com equipamentos e instalação conforme disponibilidade regional.",
-    },
-    {
-      "@type": "FAQPage",
-      mainEntity: faqItems.map((item) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: { "@type": "Answer", text: item.answer },
-      })),
-    },
-    {
-      "@type": "BreadcrumbList",
-      itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: "https://contratetv.com.br/" }],
-    },
+    { "@type": "Organization", "@id": "https://contratetv.com.br/#organization", name: "Contrate TV", url: "https://contratetv.com.br/", logo: "https://contratetv.com.br/img/campaign/logo-sky.png", telephone: "+55 61 98195-4746", description: "Canal de parceiro autorizado para contratação de planos SKY.", areaServed: "BR" },
+    { "@type": "Product", "@id": "https://contratetv.com.br/#planos-sky", name: "Planos SKY", brand: { "@type": "Brand", name: "SKY" }, category: "TV por assinatura", description: "Planos SKY com equipamentos, benefícios e instalação conforme disponibilidade regional." },
+    { "@type": "FAQPage", mainEntity: faqItems.map((item) => ({ "@type": "Question", name: item.question, acceptedAnswer: { "@type": "Answer", text: item.answer } })) },
+    { "@type": "BreadcrumbList", itemListElement: [{ "@type": "ListItem", position: 1, name: "Início", item: "https://contratetv.com.br/" }] },
   ],
 };
 
@@ -59,109 +45,49 @@ export default function Home() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
-      <div className="promo-bar"><div className="container promo-inner"><span>Parceiro autorizado SKY</span><span>Contratação segura para todo o Brasil</span><span>Instalação grátis*</span></div></div>
 
-      <header className="header">
+      <div className="trust-bar"><div className="container trust-bar-inner"><span><b>✓</b> Parceiro autorizado SKY</span><span>Atendimento para todo o Brasil</span><span>Consulte ofertas pelo seu CEP</span></div></div>
+
+      <header className="site-header">
         <div className="container header-inner">
-          <a href="#inicio" className="brand-lockup" aria-label="Contrate TV — parceiro autorizado SKY"><Image src="/img/logomarca.webp" alt="Logotipo SKY e Amazon Prime Video" width={450} height={93} priority unoptimized /><span>PARCEIRO AUTORIZADO</span></a>
-          <nav aria-label="Menu principal"><a href="#planos">Planos</a><a href="#vantagens">Por que assinar</a><a href="#duvidas">Dúvidas</a></nav>
-          <a className="header-contact" href={wa("Olá, vim pelo site e quero conhecer os planos disponíveis.")} target="_blank" rel="noopener noreferrer"><Image src="/img/whatsapp-icon.webp" alt="" role="presentation" width={100} height={100} unoptimized /><span><small>Atendimento rápido</small>Falar no WhatsApp</span></a>
+          <a className="sky-brand" href="#inicio" aria-label="Contrate TV — parceiro autorizado SKY"><Image src="/img/campaign/logo-sky.png" alt="SKY" width={320} height={205} priority unoptimized /><span>PARCEIRO AUTORIZADO</span></a>
+          <nav aria-label="Menu principal"><a href="#planos">Planos</a><a href="#programacao">Programação</a><a href="#sky-plus">SKY+</a><a href="#duvidas">Dúvidas</a></nav>
+          <a className="header-cta" href={wa("Olá, vim pelo site e quero consultar os planos SKY para o meu CEP.")} target="_blank" rel="noopener noreferrer"><span>Falar com um consultor</span><b>→</b></a>
         </div>
       </header>
 
-      <section className="hero" id="inicio">
-        <div className="container hero-layout">
-          <div className="hero-copy">
-            <span className="partner-label"><b>✓</b> PARCEIRO AUTORIZADO SKY</span>
-            <h1>SKY na sua casa.<br /><em>Do seu jeito.</em></h1>
-            <p className="hero-subtitle">Escolha seu plano com atendimento especializado e receba antena, receptor HD e instalação no seu endereço.</p>
-            <ul className="hero-list"><li><b>✓</b> Filmes, séries, esportes e canais infantis</li><li><b>✓</b> Instalação feita por técnico credenciado</li><li><b>✓</b> Planos com Amazon Prime e SKY+</li></ul>
-            <a className="main-button" href={wa("Olá, quero assinar SKY. Pode me mostrar os planos para o meu endereço?")} target="_blank" rel="noopener noreferrer">Ver ofertas para meu CEP <span>→</span></a>
-            <p className="microcopy">Envie seu CEP e consulte as ofertas disponíveis na sua região.</p>
-          </div>
-          <div className="hero-campaign">
-            <picture>
-              <source media="(max-width: 680px)" srcSet="/img/Banner_SKY_Inst-mobile.webp" />
-              <Image src="/img/banner_SKY_inst.webp" alt="Programação esportiva SKY" width={1600} height={937} priority unoptimized sizes="(max-width: 980px) 100vw, 53vw" />
-            </picture>
-            <div className="hero-product"><Image src="/img/aparelhotv.webp" alt="Antena, receptor HD e controle remoto SKY" width={1200} height={699} priority unoptimized sizes="(max-width: 980px) 100vw, 55vw" /></div>
-            <div className="install-stamp"><small>CONDIÇÃO PARA NOVOS CLIENTES</small><strong>Instalação<br />grátis*</strong><span>Consulte disponibilidade</span></div>
-          </div>
-        </div>
+      <section className="campaign-hero" id="inicio">
+        <picture className="hero-art"><source media="(max-width: 680px)" srcSet="/img/campaign/hero-sky-mobile.png" /><Image src="/img/campaign/hero-sky-desktop.png" alt="Jogador de futebol em campanha SKY" fill priority unoptimized sizes="100vw" /></picture>
+        <div className="container hero-content"><div className="hero-offer"><span className="campaign-kicker">TV, ESPORTE E STREAMING</span><h1>A sua casa<br />no clima da SKY.</h1><p>Planos com canais para toda a família, equipamentos HD e benefícios para assistir onde quiser.</p><div className="hero-actions"><a className="primary-cta" href={wa("Olá, quero conhecer as ofertas SKY disponíveis para o meu endereço.")} target="_blank" rel="noopener noreferrer">Consultar ofertas <span>→</span></a><a className="text-cta" href="#planos">Ver opções de planos</a></div><small>Ofertas, instalação e benefícios sujeitos à disponibilidade no CEP.</small></div></div>
       </section>
 
-      <section className="quick-benefits" id="vantagens">
-        <div className="container quick-grid">
-          <div><span className="benefit-index">01</span><p><strong>Programação SKY</strong><span>Filmes, esporte, notícias e diversão</span></p></div>
-          <div><span className="benefit-index">02</span><p><strong>Instalação credenciada</strong><span>Agendamento após a contratação</span></p></div>
-          <div><span className="benefit-index">03</span><p><strong>Compra acompanhada</strong><span>Da escolha do plano ao agendamento</span></p></div>
-        </div>
-      </section>
+      <section className="proof-strip" aria-label="Vantagens do atendimento"><div className="container proof-grid"><div><b>01</b><p><strong>Atendimento autorizado</strong><span>Compra acompanhada do início ao fim</span></p></div><div><b>02</b><p><strong>Oferta para o seu CEP</strong><span>Você recebe somente opções disponíveis</span></p></div><div><b>03</b><p><strong>Instalação credenciada</strong><span>Agendamento após a contratação</span></p></div><div><b>04</b><p><strong>Suporte na escolha</strong><span>Plano adequado ao seu jeito de assistir</span></p></div></div></section>
 
-      <section className="programming">
-        <div className="container programming-inner">
-          <div className="programming-title"><span>PROGRAMAÇÃO COMPLETA</span><h2>Tem sempre algo bom passando.</h2></div>
-          <picture><Image src="/img/footer-canais.webp" alt="Logotipos de canais disponíveis nos planos SKY" width={1594} height={108} unoptimized sizes="(max-width: 980px) 100vw, 820px" /></picture>
-        </div>
-      </section>
-
-      <section className="authorized">
-        <div className="container authorized-layout">
-          <div className="authorized-mark"><span>✓</span><strong>PARCEIRO<br />AUTORIZADO</strong><small>SKY</small></div>
-          <div className="authorized-copy"><span>CONTRATE TV</span><h2>Atendimento autorizado para você contratar com tranquilidade.</h2></div>
-          <p>Consultamos a disponibilidade no seu CEP, apresentamos as condições vigentes e acompanhamos o pedido até o agendamento da instalação.</p>
-        </div>
-      </section>
-
-      <section className="plans" id="planos">
+      <section className="plans-section" id="planos">
         <div className="container">
-          <div className="section-heading"><div><span>ESCOLHA SUA SKY</span><h2>Planos para cada jeito de assistir.</h2></div><p>Compare os destaques e fale com um consultor para receber os valores e as condições disponíveis no seu endereço.</p></div>
-          <div className="plan-list">
-            {plans.map((plan, index) => (
-              <article className="plan-row" key={plan.name}>
-                <div className="plan-number">0{index + 1}</div>
-                <Image className="plan-image" src={plan.image} alt={`${plan.name} — ${plan.complement}`} width={600} height={337} unoptimized sizes="(max-width: 680px) 100vw, 230px" />
-                <div className="plan-info"><h3>{plan.name}</h3><p>{plan.complement}</p><div className="mini-icons" aria-label="Serviços e canais em destaque">{plan.icons.map(icon => <Image src={`/img/${icon}`} alt="" role="presentation" width={64} height={64} unoptimized key={icon} />)}</div></div>
-                <div className="plan-details"><span>+160 canais</span><span>{plan.equipment}</span><span>Acesso ao SKY+</span></div>
-                <a href={wa(`Olá, quero saber valores e disponibilidade do plano ${plan.name}.`)} target="_blank" rel="noopener noreferrer">Ver condições <b>→</b></a>
-              </article>
-            ))}
-          </div>
-          <p className="conditions">*Consulte condições comerciais, disponibilidade, grade de canais e regras da instalação para o seu endereço.</p>
+          <div className="section-intro plans-intro"><div><span className="eyebrow">ESCOLHA A SUA SKY</span><h2>Um plano para cada casa.</h2></div><p>Os valores e benefícios mudam conforme a região. Escolha uma opção para receber as condições atuais no WhatsApp.</p></div>
+          <div className="plans-catalog">{plans.map((plan, index) => <article className={`plan-card ${index === 0 ? "featured" : ""}`} key={plan.name}><div className="plan-media"><Image src={plan.image} alt={`${plan.name} — ${plan.complement}`} width={600} height={337} unoptimized sizes="(max-width: 760px) 100vw, 32vw" />{index === 0 && <span>MAIS PROCURADO</span>}</div><div className="plan-body"><span className="plan-tag">{plan.tag}</span><h3>{plan.name}</h3><p>{plan.complement}</p><ul>{plan.features.map((feature) => <li key={feature}>{feature}</li>)}</ul><a href={wa(`Olá, quero saber valores e disponibilidade do plano ${plan.name} no meu CEP.`)} target="_blank" rel="noopener noreferrer">Consultar este plano <b>→</b></a></div></article>)}</div>
+          <p className="legal-note">*Grade de canais, equipamentos, serviços inclusos, valores e condições dependem do plano, da campanha e da disponibilidade regional.</p>
         </div>
       </section>
 
-      <section className="installation">
-        <div className="container installation-layout">
-          <div className="installation-image"><Image src="/img/homem-antena-recort.webp" alt="Técnico credenciado instalando antena SKY" width={1460} height={1067} unoptimized sizes="(max-width: 980px) 100vw, 48vw" /></div>
-          <div className="installation-copy">
-            <span>DA CONTRATAÇÃO À INSTALAÇÃO</span><h2>Você escolhe o plano. A gente cuida do resto.</h2>
-            <ol><li><b>1</b><p><strong>Chame no WhatsApp</strong>Informe seu CEP e quantos pontos de TV precisa.</p></li><li><b>2</b><p><strong>Confira as opções</strong>Você recebe os planos válidos para o seu endereço.</p></li><li><b>3</b><p><strong>Agende a instalação</strong>Após contratar, escolha o melhor dia para receber o técnico.</p></li></ol>
-          </div>
-        </div>
-      </section>
+      <section className="channels-section" id="programacao"><div className="container channels-layout"><div className="channels-copy"><span className="eyebrow light">PROGRAMAÇÃO PARA TODOS</span><h2>Do jogo ao desenho. Do filme à notícia.</h2><p>Encontre esportes, entretenimento, variedades e conteúdo infantil em um só lugar.</p><a href={wa("Olá, quero consultar a grade de canais dos planos SKY.")} target="_blank" rel="noopener noreferrer">Consultar grade do meu plano <span>→</span></a></div><div className="channel-grid" aria-label="Canais e conteúdos em destaque">{channels.map((channel) => <div className="channel-logo" key={channel.alt}><Image src={channel.src} alt={channel.alt} width={220} height={160} unoptimized /></div>)}</div></div></section>
 
-      <section className="service">
-        <div className="container service-layout">
-          <div className="service-copy"><span className="service-label">ATENDIMENTO AUTORIZADO</span><h2>Você fala com quem conhece SKY.</h2><p>Informe seu CEP, quantas TVs deseja conectar e o que mais gosta de assistir. A gente compara as opções e explica cada condição antes de você decidir.</p><a href={wa("Olá, preciso de ajuda para escolher um plano SKY.")} target="_blank" rel="noopener noreferrer">Falar com um consultor <span>→</span></a></div>
-          <div className="service-product"><div className="sky-wordmark">SKY<sup>®</sup></div><Image src="/img/aparelhotv.webp" alt="Antena, receptor e controle remoto SKY" width={1200} height={699} unoptimized sizes="(max-width: 980px) 100vw, 55vw" /><p><b>TV por assinatura SKY</b><span>Equipamentos e instalação conforme o plano contratado.</span></p></div>
-        </div>
-      </section>
+      <section className="skyplus-section" id="sky-plus"><div className="container skyplus-layout"><div className="skyplus-visual"><Image className="skyplus-logo" src="/img/campaign/logo-sky-plus.png" alt="SKY+" width={649} height={649} unoptimized /><Image className="devices" src="/img/campaign/sky-plus-devices.webp" alt="SKY+ disponível na TV, notebook e celular" width={626} height={417} unoptimized /></div><div className="skyplus-copy"><span className="eyebrow light">SUA PROGRAMAÇÃO VAI COM VOCÊ</span><h2>Assista à SKY em mais telas.</h2><p>Com o SKY+, planos elegíveis dão acesso a filmes, séries, canais e conteúdos sob demanda no celular, computador e dispositivos compatíveis.</p><ul><li>Conteúdo ao vivo e sob demanda</li><li>Acesso em dispositivos compatíveis</li><li>Benefício disponível em planos selecionados</li></ul><a className="white-cta" href={wa("Olá, quero saber quais planos têm acesso ao SKY+.")} target="_blank" rel="noopener noreferrer">Quero um plano com SKY+ <span>→</span></a></div></div></section>
 
-      <section className="faq" id="duvidas">
-        <div className="container faq-layout">
-          <div className="faq-title"><span>DÚVIDAS FREQUENTES</span><h2>Antes de assinar</h2><p>Se ainda faltar alguma informação, fale com a equipe pelo WhatsApp.</p></div>
-          <div className="faq-items">
-            {faqItems.map((item, index) => <details open={index === 0} key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
-          </div>
-        </div>
-      </section>
+      <section className="extras-section"><div className="container extras-layout"><div className="extras-copy"><span className="eyebrow">CONTEÚDO QUE FAZ DIFERENÇA</span><h2>Mais futebol. Mais filmes. Mais escolhas.</h2><p>Consulte as ofertas que combinam a programação SKY com benefícios como Premiere e Amazon Prime.</p><a href={wa("Olá, quero consultar os planos com Premiere e Amazon Prime.")} target="_blank" rel="noopener noreferrer">Ver ofertas disponíveis <span>→</span></a></div><div className="extras-logos"><div><Image src="/img/campaign/logo-premiere.png" alt="Premiere" width={180} height={165} unoptimized /><p><strong>Premiere</strong><span>Para acompanhar o futebol</span></p></div><div><Image src="/img/campaign/logo-amazon-prime.png" alt="Amazon Prime" width={649} height={649} unoptimized /><p><strong>Amazon Prime</strong><span>Filmes, séries e benefícios</span></p></div></div></div></section>
 
-      <section className="closing"><div className="container closing-inner"><div><span>ATENDIMENTO PARA TODO O BRASIL</span><h2>Consulte agora os planos para o seu endereço.</h2></div><a className="main-button light" href={wa("Olá, quero consultar os planos SKY disponíveis no meu endereço.")} target="_blank" rel="noopener noreferrer">Chamar no WhatsApp <span>→</span></a></div></section>
+      <section className="how-section"><div className="container how-layout"><div className="how-heading"><span className="eyebrow">COMO CONTRATAR</span><h2>Simples, direto e acompanhado.</h2></div><ol><li><b>1</b><div><strong>Envie seu CEP</strong><p>Chame no WhatsApp e conte quantas TVs deseja conectar.</p></div></li><li><b>2</b><div><strong>Compare as opções</strong><p>Receba planos, benefícios e condições válidas para o endereço.</p></div></li><li><b>3</b><div><strong>Finalize e agende</strong><p>Após a contratação, escolha a melhor data de instalação.</p></div></li></ol></div></section>
 
-      <footer className="footer"><div className="container footer-main"><div className="footer-brand"><Image src="/img/logomarca.webp" alt="Logotipo SKY e Amazon Prime Video" width={450} height={93} unoptimized /><span>PARCEIRO AUTORIZADO</span></div><p>Contrate TV — atendimento autorizado para contratação de planos SKY.</p><div><a href="#planos">Planos</a><Link href="/politica-de-privacidade">Política de privacidade</Link><Link href="/termos-de-uso">Termos de uso</Link></div></div><div className="container footer-bottom"><span>© 2026 Contrate TV. Todos os direitos reservados.</span><span>Este é um canal de parceiro autorizado, não o site oficial da SKY.</span></div></footer>
+      <section className="partner-section"><div className="container partner-layout"><div className="partner-seal"><span>✓</span><p><strong>PARCEIRO</strong><b>AUTORIZADO</b><small>SKY</small></p></div><div><span className="eyebrow light">CONTRATE TV</span><h2>Atendimento autorizado para contratar com tranquilidade.</h2></div><p>Consultamos o seu endereço, explicamos as condições vigentes e acompanhamos o pedido até o agendamento. Este é um canal de parceiro autorizado, não o site oficial da SKY.</p></div></section>
 
-      <a className="whatsapp-float" href={wa("Olá, vim pelo site e gostaria de mais informações.")} target="_blank" rel="noopener noreferrer" aria-label="Atendimento pelo WhatsApp"><Image src="/img/whatsapp-icon.webp" alt="" role="presentation" width={100} height={100} unoptimized /><span>Falar no WhatsApp</span></a>
+      <section className="faq-section" id="duvidas"><div className="container faq-layout"><div className="faq-heading"><span className="eyebrow">ANTES DE ASSINAR</span><h2>Dúvidas frequentes</h2><p>Faltou alguma informação? A equipe responde pelo WhatsApp.</p></div><div className="faq-list">{faqItems.map((item, index) => <details open={index === 0} key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
+
+      <section className="final-cta"><div className="container final-cta-inner"><div><span>ATENDIMENTO PARA TODO O BRASIL</span><h2>Descubra agora qual SKY combina com a sua casa.</h2></div><a href={wa("Olá, quero consultar os planos SKY disponíveis no meu endereço.")} target="_blank" rel="noopener noreferrer">Consultar pelo WhatsApp <b>→</b></a></div></section>
+
+      <footer className="site-footer"><div className="container footer-main"><div className="footer-brand"><Image src="/img/campaign/logo-sky.png" alt="SKY" width={320} height={205} unoptimized /><span>PARCEIRO AUTORIZADO</span></div><p>Contrate TV — canal de atendimento autorizado para contratação de planos SKY.</p><div><a href="#planos">Planos</a><Link href="/politica-de-privacidade">Política de privacidade</Link><Link href="/termos-de-uso">Termos de uso</Link></div></div><div className="container footer-bottom"><span>© 2026 Contrate TV. Todos os direitos reservados.</span><span>Este é um canal de parceiro autorizado, não o site oficial da SKY.</span></div></footer>
+
+      <a className="whatsapp-float" href={wa("Olá, vim pelo site e quero consultar os planos SKY.")} target="_blank" rel="noopener noreferrer" aria-label="Atendimento pelo WhatsApp"><Image src="/img/whatsapp-icon.webp" alt="" role="presentation" width={100} height={100} unoptimized /><span>Consultar planos</span></a>
     </main>
   );
 }
