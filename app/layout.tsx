@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     shortcut: "/img/campaign/logo-sky.png",
     apple: "/img/campaign/logo-sky.png",
   },
-  manifest: "/manifest.webmanifest",
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -45,6 +44,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-BR"><body>{children}<Analytics /><CookieConsent /></body></html>;
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html lang="pt-BR">
+      <head>
+        <link rel="manifest" href="/manifest.webmanifest" />
+      </head>
+      <body>{children}</body>
+    </html>
+  );
 }
