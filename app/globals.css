@@ -390,3 +390,8 @@ main { width: 100%; max-width: 100%; overflow-x: hidden; }
 @media (max-width:680px) {
   .hero-banner-whatsapp { left: 4.5%; top: 72%; width: 39%; height: 9%; }
 }
+@media (max-width: 680px) {
+  .reference-plan {
+    order: initial !important;
+  }
+}
