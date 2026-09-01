@@ -7,128 +7,19 @@ const phone = "5561981954746";
 const siteUrl = "https://contratetv.com.br";
 const wa = (message: string) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
+const promo = "Desconto no cartão de crédito do 1º ao 4º mês.";
+const standardLogos = [["nfl-card-logo.webp","NFL"],["prime-card-logo.webp","Amazon Prime"],["sky-card-logo.webp","SKY+"]] as const;
+const popLogos = [["nfl-card-logo.webp","NFL"],["prime-card-logo.webp","Amazon Prime"],["Premiere-card-logo.png","Premiere"],["sky-card-logo.webp","SKY+"]] as const;
+const connectLogos = [["nfl-card-logo.webp","NFL"],["prime-card-logo.webp","Amazon Prime"],["Premiere-card-logo.png","Premiere"],["hbo-card-logo.webp","HBO"],["telecine-card-logo.webp","Telecine"],["paramount-card-logo.png","Paramount+"],["disney-card-logo.webp","Disney+"],["espn-card-logo.png","ESPN"],["sky-card-logo.webp","SKY+"]] as const;
+const standardBenefits = (channels: number) => [`Mais de ${channels} canais de TV por Assinatura e TV Aberta!`,"Programação em HD","Inclui Amazon Prime","Inclui NFL","Inclui SKY+"];
+
 const plans = [
-  {
-    name: "POP HD",
-    complement: "+ Premiere + NFL",
-    logos: [
-      ["nfl-card-logo.webp", "NFL"],
-      ["prime-card-logo.webp", "Amazon Prime"],
-      ["Premiere-card-logo.png", "Premiere"],
-      ["sky-card-logo.webp", "SKY+"],
-    ],
-    benefits: [
-      "Mais de 50 canais de TV por Assinatura e TV Aberta!",
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui Premiere e NFL",
-      "Inclui SKY+",
-    ],
-    oldPrice: "99,90",
-    price: "69,90",
-    promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
-  },
-  {
-    name: "SUPER HD",
-    complement: "+ NFL",
-    logos: [
-      ["nfl-card-logo.webp", "NFL"],
-      ["prime-card-logo.webp", "Amazon Prime"],
-      ["sky-card-logo.webp", "SKY+"],
-    ],
-    benefits: [
-      "Mais de 100 canais de TV por Assinatura e TV Aberta!",
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-    ],
-    oldPrice: "89,90",
-    price: "59,90",
-    promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
-  },
-  {
-    name: "SUPER HD II",
-    complement: "+ NFL",
-    logos: [
-      ["nfl-card-logo.webp", "NFL"],
-      ["prime-card-logo.webp", "Amazon Prime"],
-      ["sky-card-logo.webp", "SKY+"],
-    ],
-    benefits: [
-      "Mais de 100 canais de TV por Assinatura e TV Aberta!",
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-    ],
-    oldPrice: "109,90",
-    price: "79,90",
-    promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
-  },
-  {
-    name: "TOP HD",
-    complement: "+ NFL",
-    logos: [
-      ["nfl-card-logo.webp", "NFL"],
-      ["prime-card-logo.webp", "Amazon Prime"],
-      ["sky-card-logo.webp", "SKY+"],
-    ],
-    benefits: [
-      "Mais de 170 canais de TV por Assinatura e TV Aberta!",
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-    ],
-    oldPrice: "129,90",
-    price: "99,90",
-    promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
-  },
-  {
-    name: "TOP HD II",
-    complement: "+ NFL",
-    logos: [
-      ["nfl-card-logo.webp", "NFL"],
-      ["prime-card-logo.webp", "Amazon Prime"],
-      ["sky-card-logo.webp", "SKY+"],
-    ],
-    benefits: [
-      "Mais de 170 canais de TV por Assinatura e TV Aberta!",
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-    ],
-    oldPrice: "149,90",
-    price: "119,90",
-    promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
-  },
-  {
-    name: "SKY CONNECT",
-    complement: "TOTAL EXPERIENCE + NFL",
-    logos: [
-      ["nfl-card-logo.webp", "NFL"],
-      ["prime-card-logo.webp", "Amazon Prime"],
-      ["Premiere-card-logo.png", "Premiere"],
-      ["hbo-card-logo.webp", "HBO"],
-      ["telecine-card-logo.webp", "Telecine"],
-      ["paramount-card-logo.png", "Paramount+"],
-      ["disney-card-logo.webp", "Disney+"],
-      ["espn-card-logo.png", "ESPN"],
-      ["sky-card-logo.webp", "SKY+"],
-    ],
-    benefits: [
-      "Inclui Amazon Prime",
-      "Inclui Premiere, HBO e Telecine",
-      "Inclui Paramount+ e Disney+",
-      "Inclui ESPN",
-      "Inclui NFL e SKY+",
-    ],
-    oldPrice: "399,90",
-    price: "369,90",
-    promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
-  },
+  { name:"POP HD", highlight:"+50 CANAIS", summary:["Canais locais em HD","+ Futebol ao vivo"], logos:popLogos, benefits:["Mais de 50 canais de TV por Assinatura e TV Aberta!","Programação em HD","Inclui Amazon Prime","Inclui Premiere e NFL","Inclui SKY+"], oldPrice:"99,90", price:"69,90", promo },
+  { name:"SUPER HD", highlight:"+100 CANAIS", summary:["Filmes • Séries • Esportes"], logos:standardLogos, benefits:standardBenefits(100), oldPrice:"89,90", price:"59,90", promo },
+  { name:"SUPER HD II", highlight:"+100 CANAIS", summary:["Filmes • Séries • Esportes"], badge:"2 PONTOS INCLUSOS", logos:standardLogos, benefits:standardBenefits(100), oldPrice:"109,90", price:"79,90", promo },
+  { name:"TOP HD", highlight:"+170 CANAIS", summary:["Filmes • Séries • Esportes"], logos:standardLogos, benefits:standardBenefits(170), oldPrice:"129,90", price:"99,90", promo },
+  { name:"TOP HD II", highlight:"+170 CANAIS", summary:["Filmes • Séries • Esportes"], badge:"2 PONTOS INCLUSOS", logos:standardLogos, benefits:standardBenefits(170), oldPrice:"149,90", price:"119,90", promo },
+  { name:"SKY CONNECT", highlight:"PACOTE COMPLETO", summary:["TV • Streaming • Esportes"], badge:"EXPERIÊNCIA COMPLETA", logos:connectLogos, benefits:["Inclui Amazon Prime","Inclui Premiere, HBO e Telecine","Inclui Paramount+ e Disney+","Inclui ESPN","Inclui NFL e SKY+"], oldPrice:"399,90", price:"369,90", promo },
 ];
 
 const channelLogos = [
@@ -152,10 +43,7 @@ const faqItems = [
   { question: "Este é o site oficial da SKY?", answer: "Não. Este é um canal de parceiro autorizado para comercialização de planos SKY." },
 ];
 
-type SitePageProps = {
-  cityName?: string;
-  citySlug?: string;
-};
+type SitePageProps = { cityName?: string; citySlug?: string };
 
 function createStructuredData(cityName?: string, citySlug?: string) {
   const pageUrl = citySlug ? `${siteUrl}/cidade/${citySlug}` : `${siteUrl}/`;
@@ -229,33 +117,83 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
 
       <header className="commercial-header">
-        <div className="container header-row">
-          <a className="commercial-brand" href="#inicio" aria-label="SKY — parceiro autorizado"><Image src="/img/campaign/logo-sky.png" alt="SKY" width={320} height={205} priority unoptimized /><span>PARCEIRO AUTORIZADO</span></a>
-          <nav aria-label="Menu principal"><a href="#inicio">SKY TV</a><a href="#planos">SKY PÓS-PAGO</a><a href="#sky-plus">SKY+</a><a href="#programacao">PROGRAMAÇÃO</a><a href="#duvidas">DÚVIDAS</a></nav>
-          <div className="header-actions">
-            <TrackedLink
-              className="call-header-cta"
-              href={`tel:+${phone}`}
-              eventName="click_phone"
-              eventData={{ placement: "header", city: cityName || "geral" }}
-            >
-              <span>☎</span>
-              <span>Ligue</span>
-            </TrackedLink>
-            <TrackedLink
-              className="green-header-cta"
-              href={wa(`Olá, quero assinar SKY e consultar as ofertas${cityName ? citySuffix : " do meu CEP"}.`)}
-              target="_blank"
-              rel="noopener noreferrer"
-              eventName="click_whatsapp"
-              eventData={{ placement: "header", city: cityName || "geral" }}
-            >
-              <Image src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
-              <span>WhatsApp</span>
-            </TrackedLink>
-          </div>
-        </div>
-      </header>
+  <div className="container header-row">
+    <a
+      className="commercial-brand"
+      href="#inicio"
+      aria-label="SKY — parceiro autorizado"
+    >
+      <Image
+        src="/img/campaign/logo-sky.png"
+        alt="SKY"
+        width={320}
+        height={205}
+        unoptimized
+      />
+      <span>PARCEIRO AUTORIZADO</span>
+    </a>
+
+    <nav className="desktop-nav" aria-label="Menu principal">
+      <a href="#inicio">SKY TV</a>
+      <a href="#planos">SKY PÓS-PAGO</a>
+      <a href="#sky-plus">SKY+</a>
+      <a href="#programacao">PROGRAMAÇÃO</a>
+      <a href="#duvidas">DÚVIDAS</a>
+    </nav>
+
+    <div className="header-actions">
+      <TrackedLink
+        className="call-header-cta"
+        href={`tel:+${phone}`}
+        eventName="click_phone"
+        eventData={{
+          placement: "header",
+          city: cityName || "geral",
+        }}
+      >
+        <span>☎</span>
+        <span>Ligue</span>
+      </TrackedLink>
+
+      <TrackedLink
+        className="green-header-cta"
+        href={wa(`Olá, quero assinar SKY${citySuffix}.`)}
+        target="_blank"
+        rel="noopener noreferrer"
+        eventName="click_whatsapp"
+        eventData={{
+          placement: "header",
+          city: cityName || "geral",
+        }}
+      >
+        <Image
+          src="/img/whatsapp-icon.webp"
+          alt=""
+          width={18}
+          height={18}
+          unoptimized
+        />
+        <span>WhatsApp</span>
+      </TrackedLink>
+    </div>
+
+    <details className="mobile-menu">
+      <summary aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </summary>
+
+      <div className="mobile-menu-panel">
+        <a href="#inicio">SKY TV</a>
+        <a href="#planos">SKY PÓS-PAGO</a>
+        <a href="#sky-plus">SKY+</a>
+        <a href="#programacao">PROGRAMAÇÃO</a>
+        <a href="#duvidas">DÚVIDAS</a>
+      </div>
+    </details>
+  </div>
+</header>
       <section className="offer-hero" id="inicio">
         <picture>
   <source
@@ -292,7 +230,8 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
               <article className={`reference-plan ${index === 1 ? "recommended" : ""}`} key={plan.name}>
                 {index === 1 && <div className="recommended-label">OFERTA EM DESTAQUE</div>}
                 <div className="plan-red-top">
-                  <div className="plan-name"><span>SKY PÓS-PAGO</span><strong>{plan.name}</strong><p>{plan.complement}</p></div>
+                  <div className="plan-name"><span>SKY PÓS-PAGO</span><strong>{plan.name}</strong><b className="plan-highlight">{plan.highlight}</b>{plan.summary.map((line) => <p className="plan-summary" key={line}>{line}</p>)}</div>
+                  {plan.badge && <span className="plan-top-badge">{plan.badge}</span>}
                 </div>
                 <div className="plan-white-body">
                   <h3>O que vem em seu plano:</h3>
