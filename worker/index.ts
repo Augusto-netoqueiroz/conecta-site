@@ -53,7 +53,7 @@ const worker = {
 
       secured.headers.set(
         "Content-Security-Policy",
-        "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; manifest-src 'self' https://contratetv.com.br; form-action 'self' https://wa.me; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com;"
+        "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; manifest-src 'self' https://contratetv.com.br; form-action 'self' https://wa.me; img-src 'self' data: https:; font-src 'self' data:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://connect.facebook.net; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://www.facebook.com;"
       );
 
       secured.headers.set(

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Analytics from "./Analytics";
 import CookieConsent from "./CookieConsent";
+import MetaPixel from "./MetaPixel";
 import "./globals.css";
 
 const siteUrl = "https://contratetv.com.br";
@@ -54,7 +55,19 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.webmanifest" />
       </head>
-      <body>{children}</body>
+      <body>
+        <MetaPixel />
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: "none" }}
+            src="https://www.facebook.com/tr?id=780550814582822&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
+        {children}
+      </body>
     </html>
   );
 }
