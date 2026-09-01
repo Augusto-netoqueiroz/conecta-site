@@ -17,6 +17,13 @@ const plans = [
       ["Premiere-card-logo.png", "Premiere"],
       ["sky-card-logo.webp", "SKY+"],
     ],
+    benefits: [
+      "Mais de 50 canais de TV por Assinatura e TV Aberta!",
+      "Programação em HD",
+      "Inclui Amazon Prime",
+      "Inclui Premiere e NFL",
+      "Inclui SKY+",
+    ],
     oldPrice: "99,90",
     price: "69,90",
     promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
@@ -28,6 +35,13 @@ const plans = [
       ["nfl-card-logo.webp", "NFL"],
       ["prime-card-logo.webp", "Amazon Prime"],
       ["sky-card-logo.webp", "SKY+"],
+    ],
+    benefits: [
+      "Mais de 100 canais de TV por Assinatura e TV Aberta!",
+      "Programação em HD",
+      "Inclui Amazon Prime",
+      "Inclui NFL",
+      "Inclui SKY+",
     ],
     oldPrice: "89,90",
     price: "59,90",
@@ -41,6 +55,13 @@ const plans = [
       ["prime-card-logo.webp", "Amazon Prime"],
       ["sky-card-logo.webp", "SKY+"],
     ],
+    benefits: [
+      "Mais de 100 canais de TV por Assinatura e TV Aberta!",
+      "Programação em HD",
+      "Inclui Amazon Prime",
+      "Inclui NFL",
+      "Inclui SKY+",
+    ],
     oldPrice: "109,90",
     price: "79,90",
     promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
@@ -53,6 +74,13 @@ const plans = [
       ["prime-card-logo.webp", "Amazon Prime"],
       ["sky-card-logo.webp", "SKY+"],
     ],
+    benefits: [
+      "Mais de 170 canais de TV por Assinatura e TV Aberta!",
+      "Programação em HD",
+      "Inclui Amazon Prime",
+      "Inclui NFL",
+      "Inclui SKY+",
+    ],
     oldPrice: "129,90",
     price: "99,90",
     promo: "Desconto no cartão de crédito do 1º ao 4º mês.",
@@ -64,6 +92,13 @@ const plans = [
       ["nfl-card-logo.webp", "NFL"],
       ["prime-card-logo.webp", "Amazon Prime"],
       ["sky-card-logo.webp", "SKY+"],
+    ],
+    benefits: [
+      "Mais de 170 canais de TV por Assinatura e TV Aberta!",
+      "Programação em HD",
+      "Inclui Amazon Prime",
+      "Inclui NFL",
+      "Inclui SKY+",
     ],
     oldPrice: "149,90",
     price: "119,90",
@@ -82,6 +117,13 @@ const plans = [
       ["disney-card-logo.webp", "Disney+"],
       ["espn-card-logo.png", "ESPN"],
       ["sky-card-logo.webp", "SKY+"],
+    ],
+    benefits: [
+      "Inclui Amazon Prime",
+      "Inclui Premiere, HBO e Telecine",
+      "Inclui Paramount+ e Disney+",
+      "Inclui ESPN",
+      "Inclui NFL e SKY+",
     ],
     oldPrice: "399,90",
     price: "369,90",
@@ -268,6 +310,11 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
     </div>
   ))}
 </div>
+<ul className="plan-benefits">
+  {plan.benefits.map((benefit) => (
+    <li key={benefit}>{benefit}</li>
+  ))}
+</ul>
                   <div className="consult-price">
   <span>
     De <s>R$ {plan.oldPrice}</s> por
