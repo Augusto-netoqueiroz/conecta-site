@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 
-const PIXEL_ID = "780550814582822";
+const PIXEL_ID = "1382311347429828";
 
 declare global {
   interface Window {
