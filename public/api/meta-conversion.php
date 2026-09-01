@@ -9,7 +9,7 @@ const MAX_BODY_BYTES = 16384;
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 
-function respond(int $status, array $body): never
+function respond(int $status, array $body): void
 {
     http_response_code($status);
     echo json_encode($body, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
@@ -40,7 +40,7 @@ function allowedHost(?string $url): bool
     return in_array($host, ['contratetv.com.br', 'www.contratetv.com.br'], true);
 }
 
-function scalarCustomData(mixed $value): array
+function scalarCustomData($value): array
 {
     if (!is_array($value)) return [];
 
