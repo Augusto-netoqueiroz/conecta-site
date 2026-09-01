@@ -11,12 +11,11 @@ const plans = [
   {
     name: "POP HD",
     complement: "+ Premiere + NFL",
-    benefits: [
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui Premiere",
-      "Inclui NFL",
-      "Inclui SKY+",
+    logos: [
+      ["nfl-card-logo.webp", "NFL"],
+      ["prime-card-logo.webp", "Amazon Prime"],
+      ["Premiere-card-logo.png", "Premiere"],
+      ["sky-card-logo.webp", "SKY+"],
     ],
     oldPrice: "99,90",
     price: "69,90",
@@ -25,12 +24,10 @@ const plans = [
   {
     name: "SUPER HD",
     complement: "+ NFL",
-    benefits: [
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-      "Mais de 100 canais!",
+    logos: [
+      ["nfl-card-logo.webp", "NFL"],
+      ["prime-card-logo.webp", "Amazon Prime"],
+      ["sky-card-logo.webp", "SKY+"],
     ],
     oldPrice: "89,90",
     price: "59,90",
@@ -39,12 +36,10 @@ const plans = [
   {
     name: "SUPER HD II",
     complement: "+ NFL",
-    benefits: [
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-      "Mais de 100 canais!",
+    logos: [
+      ["nfl-card-logo.webp", "NFL"],
+      ["prime-card-logo.webp", "Amazon Prime"],
+      ["sky-card-logo.webp", "SKY+"],
     ],
     oldPrice: "109,90",
     price: "79,90",
@@ -53,12 +48,10 @@ const plans = [
   {
     name: "TOP HD",
     complement: "+ NFL",
-    benefits: [
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-      "Mais de 170 canais!",
+    logos: [
+      ["nfl-card-logo.webp", "NFL"],
+      ["prime-card-logo.webp", "Amazon Prime"],
+      ["sky-card-logo.webp", "SKY+"],
     ],
     oldPrice: "129,90",
     price: "99,90",
@@ -67,12 +60,10 @@ const plans = [
   {
     name: "TOP HD II",
     complement: "+ NFL",
-    benefits: [
-      "Programação em HD",
-      "Inclui Amazon Prime",
-      "Inclui NFL",
-      "Inclui SKY+",
-      "Mais de 170 canais!",
+    logos: [
+      ["nfl-card-logo.webp", "NFL"],
+      ["prime-card-logo.webp", "Amazon Prime"],
+      ["sky-card-logo.webp", "SKY+"],
     ],
     oldPrice: "149,90",
     price: "119,90",
@@ -81,12 +72,16 @@ const plans = [
   {
     name: "SKY CONNECT",
     complement: "TOTAL EXPERIENCE + NFL",
-    benefits: [
-      "SKY Connect Total Experience",
-      "Inclui Amazon Prime",
-      "Inclui Premiere",
-      "Inclui NFL",
-      "Inclui Disney+, Paramount+, Telecine, HBO, ESPN...",
+    logos: [
+      ["nfl-card-logo.webp", "NFL"],
+      ["prime-card-logo.webp", "Amazon Prime"],
+      ["Premiere-card-logo.png", "Premiere"],
+      ["hbo-card-logo.webp", "HBO"],
+      ["telecine-card-logo.webp", "Telecine"],
+      ["paramount-card-logo.png", "Paramount+"],
+      ["disney-card-logo.webp", "Disney+"],
+      ["espn-card-logo.png", "ESPN"],
+      ["sky-card-logo.webp", "SKY+"],
     ],
     oldPrice: "399,90",
     price: "369,90",
@@ -221,9 +216,21 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
       </header>
       <section className="offer-hero" id="inicio">
         <picture>
-          <source media="(max-width: 680px)" srcSet="/img/campaign/hero-sky-mobile-v2.png" />
-          <Image src="/img/campaign/hero-sky-desktop-v2.png" alt="Oferta SKY com Amazon Prime e Premiere" fill priority unoptimized sizes="100vw" />
-        </picture>
+  <source
+    media="(max-width: 680px)"
+    srcSet="/img/campaign/hero-sky-mobile-v2.webp"
+  />
+
+  <img
+    src="/img/campaign/hero-sky-desktop-v2.webp"
+    alt="Oferta SKY com Amazon Prime e Premiere"
+    width="1600"
+    height="533"
+    loading="eager"
+    fetchPriority="high"
+    decoding="async"
+  />
+</picture>
         <TrackedLink
           className="hero-banner-whatsapp"
           href={wa(`Olá, quero assinar SKY${citySuffix}.`)}
@@ -246,8 +253,21 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
                   <div className="plan-name"><span>SKY PÓS-PAGO</span><strong>{plan.name}</strong><p>{plan.complement}</p></div>
                 </div>
                 <div className="plan-white-body">
-                  <h3>O que tem de legal</h3>
-                  <ul>{plan.benefits.map((benefit) => <li key={benefit}>{benefit}</li>)}</ul>
+                  <h3>O que vem em seu plano:</h3>
+
+<div className="plan-logo-grid">
+  {plan.logos.map(([src, alt]) => (
+    <div className="plan-logo-item" key={src}>
+      <Image
+        src={`/img/campaign/${src}`}
+        alt={alt}
+        width={160}
+        height={90}
+        unoptimized
+      />
+    </div>
+  ))}
+</div>
                   <div className="consult-price">
   <span>
     De <s>R$ {plan.oldPrice}</s> por
@@ -301,7 +321,7 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
             >
               QUERO SKY+ <b>→</b>
             </TrackedLink></div>
-          <div className="streaming-visual"><Image src="/img/campaign/sky-plus-devices-v2.png" alt="SKY+ na televisão, notebook e celular" width={626} height={417} unoptimized /></div>
+          <div className="streaming-visual"><Image src="/img/campaign/sky-plus-devices-v2.webp" alt="SKY+ na televisão, notebook e celular" width={626} height={417} unoptimized /></div>
         </div>
       </section>
 
