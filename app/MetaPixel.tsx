@@ -1,47 +1,32 @@
 "use client";
 
 import { useEffect } from "react";
-
-const PIXEL_ID = "1382311347429828";
-
-declare global {
-  interface Window {
-    _fbq?: Fbq;
-    fbq?: Fbq;
-  }
-}
-
-type Fbq = ((...args: unknown[]) => void) & {
-  callMethod?: (...args: unknown[]) => void;
-  loaded?: boolean;
-  push?: Fbq;
-  queue?: unknown[][];
-  version?: string;
-};
+import {
+  initializeMetaPixel,
+  META_CONSENT_KEY,
+  revokeMetaConsent,
+} from "./metaTracking";
 
 export default function MetaPixel() {
   useEffect(() => {
-    if (window.fbq) return;
+    initializeMetaPixel();
 
-    const fbq = ((...args: unknown[]) => {
-      if (fbq.callMethod) fbq.callMethod(...args);
-      else fbq.queue?.push(args);
-    }) as Fbq;
+    const onConsent = (event: Event) => {
+      const value = (event as CustomEvent<"accepted" | "rejected">)
+        .detail;
 
-    window.fbq = fbq;
-    window._fbq = fbq;
-    fbq.push = fbq;
-    fbq.loaded = true;
-    fbq.version = "2.0";
-    fbq.queue = [];
+      if (
+        value === "accepted" ||
+        window.localStorage.getItem(META_CONSENT_KEY) === "accepted"
+      ) {
+        initializeMetaPixel();
+      } else {
+        revokeMetaConsent();
+      }
+    };
 
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://connect.facebook.net/en_US/fbevents.js";
-    document.head.appendChild(script);
-
-    fbq("init", PIXEL_ID);
-    fbq("track", "PageView");
+    window.addEventListener("cookie-consent", onConsent);
+    return () => window.removeEventListener("cookie-consent", onConsent);
   }, []);
 
   return null;

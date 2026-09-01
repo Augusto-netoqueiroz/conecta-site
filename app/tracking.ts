@@ -1,3 +1,5 @@
+import { trackMetaContact } from "./metaTracking";
+
 type TrackingData = Record<
   string,
   string | number | boolean | undefined
@@ -18,9 +20,16 @@ export function trackEvent(
   const trackingWindow = window as TrackingWindow;
 
   trackingWindow.dataLayer = trackingWindow.dataLayer || [];
-
   trackingWindow.dataLayer.push({
     event: eventName,
     ...data,
   });
+
+  if (eventName === "click_phone") {
+    trackMetaContact({ ...data, channel: "phone" });
+  }
+
+  if (eventName === "click_whatsapp" || eventName === "click_plan") {
+    trackMetaContact({ ...data, channel: "whatsapp" });
+  }
 }

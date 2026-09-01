@@ -57,16 +57,9 @@ export default function RootLayout({
       </head>
       <body>
         <MetaPixel />
-        <noscript>
-          <img
-            height="1"
-            width="1"
-            style={{ display: "none" }}
-            src="https://www.facebook.com/tr?id=1382311347429828&ev=PageView&noscript=1"
-            alt=""
-          />
-        </noscript>
+        <Analytics />
         {children}
+        <CookieConsent />
       </body>
     </html>
   );
