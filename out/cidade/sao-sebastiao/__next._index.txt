@@ -1,4 +1,5 @@
 1:"$Sreact.fragment"
+<<<<<<< HEAD
 2:I[57262,["/_next/static/chunks/0apove1wz2n5q.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 3:I[31002,["/_next/static/chunks/0apove1wz2n5q.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 4:I[39756,["/_next/static/chunks/0apove1wz2n5q.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
@@ -8,3 +9,11 @@
 8:I[56023,["/_next/static/chunks/0apove1wz2n5q.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 :HL["/_next/static/chunks/08g6txlwb-3f-.css","style"]
 0:{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08g6txlwb-3f-.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/0apove1wz2n5q.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true}]],["$","html",null,{"lang":"pt-BR","children":[["$","head",null,{"children":["$","link",null,{"rel":"manifest","href":"/manifest.webmanifest"}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$5","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0bcew6gr6xpzu.js","async":true}]],"template":["$","$L6",null,{}],"notFound":[["$","main",null,{"className":"error-page","children":[["$","span",null,{"children":"ERRO 404"}],["$","h1",null,{"children":"Essa página não está disponível."}],["$","p",null,{"children":"O endereço pode ter mudado ou não existir. Volte para conhecer os planos SKY disponíveis."}],["$","$L7",null,{"href":"/","children":"Voltar para o início →"}]]}],[]]}],["$","$L8",null,{}]]}]]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"-NSaOWzSUkKl7q8lxVL8r"}
+=======
+2:I[39756,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+3:I[8821,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0d65ntpx5sjmk.js"],"default"]
+4:I[37457,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
+5:I[22016,["/_next/static/chunks/01xlw8hd842-c.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/17th-62__1q~w.js"],""]
+:HL["/_next/static/chunks/08g6txlwb-3f-.css","style"]
+0:{"rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/08g6txlwb-3f-.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/01xlw8hd842-c.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/0d3shmwh5_nmn.js","async":true}]],["$","html",null,{"lang":"pt-BR","children":[["$","head",null,{"children":["$","link",null,{"rel":"manifest","href":"/manifest.webmanifest"}]}],["$","body",null,{"children":["$","$L2",null,{"parallelRouterKey":"children","error":"$3","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0d65ntpx5sjmk.js","async":true}]],"template":["$","$L4",null,{}],"notFound":[["$","main",null,{"className":"error-page","children":[["$","span",null,{"children":"ERRO 404"}],["$","h1",null,{"children":"Essa página não está disponível."}],["$","p",null,{"children":"O endereço pode ter mudado ou não existir. Volte para conhecer os planos SKY disponíveis."}],["$","$L5",null,{"href":"/","children":"Voltar para o início →"}]]}],[]]}]}]]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"c5Rtyx7XutDdOe1Zo2q-C"}
+>>>>>>> cc9c212 (mais canais)
