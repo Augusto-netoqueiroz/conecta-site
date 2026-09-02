@@ -1,6 +1,2 @@
-:HL["/_next/static/chunks/08g6txlwb-3f-.css","style"]
-<<<<<<< HEAD
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"politica-de-privacidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"-NSaOWzSUkKl7q8lxVL8r"}
-=======
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"politica-de-privacidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"c5Rtyx7XutDdOe1Zo2q-C"}
->>>>>>> cc9c212 (mais canais)
+:HL["/_next/static/chunks/02k6bg8k.rhe-.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"politica-de-privacidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}},"staleTime":300,"buildId":"UixHzEkt6grtXkib68Kqe"}

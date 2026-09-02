@@ -2,5 +2,6 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home2/timmas40/public_html
+    - if /usr/bin/grep -R -q -E '^(<<<<<<<|=======|>>>>>>>)' out; then /bin/echo "Deploy bloqueado - conflitos Git encontrados em out"; /bin/false; fi
     - /usr/bin/find "$DEPLOYPATH" -mindepth 1 -maxdepth 1 ! -name '.well-known' -exec /bin/rm -rf -- {} +
     - /bin/cp -R out/. "$DEPLOYPATH"/

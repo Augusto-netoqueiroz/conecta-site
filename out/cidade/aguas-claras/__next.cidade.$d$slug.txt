@@ -2,8 +2,4 @@
 2:I[39756,["/_next/static/chunks/0apove1wz2n5q.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 3:I[37457,["/_next/static/chunks/0apove1wz2n5q.js","/_next/static/chunks/0d3shmwh5_nmn.js"],"default"]
 4:[]
-<<<<<<< HEAD:out/cidade/aguas-claras/__next.cidade.$d$slug.txt
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"-NSaOWzSUkKl7q8lxVL8r"}
-=======
-0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"c5Rtyx7XutDdOe1Zo2q-C"}
->>>>>>> cc9c212 (mais canais):out/cidade/brasilia-plano-piloto/__next.cidade/$d$slug.txt
+0:{"rsc":["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","template":["$","$L3",null,{}]}]]}],"isPartial":false,"staleTime":300,"varyParams":"$W4","buildId":"UixHzEkt6grtXkib68Kqe"}
