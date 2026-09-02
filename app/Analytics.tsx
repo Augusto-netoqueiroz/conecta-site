@@ -1,8 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-
-const CONSENT_KEY = "contrate-tv-cookie-consent";
+import { META_CONSENT_KEY } from "./metaTracking";
 const GA_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const GTM_ID = process.env.NEXT_PUBLIC_GTM_ID;
 
@@ -18,7 +17,7 @@ export default function Analytics() {
     let loaded = false;
 
     const load = () => {
-      if (loaded || localStorage.getItem(CONSENT_KEY) !== "accepted") return;
+      if (loaded || localStorage.getItem(META_CONSENT_KEY) !== "accepted") return;
       loaded = true;
       window.dataLayer = window.dataLayer || [];
 

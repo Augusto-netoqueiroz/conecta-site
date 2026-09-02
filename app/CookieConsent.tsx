@@ -2,19 +2,18 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-
-const CONSENT_KEY = "contrate-tv-cookie-consent";
+import { META_CONSENT_KEY } from "./metaTracking";
 
 export default function CookieConsent() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(!localStorage.getItem(CONSENT_KEY)), 0);
+    const timer = window.setTimeout(() => setVisible(!localStorage.getItem(META_CONSENT_KEY)), 0);
     return () => window.clearTimeout(timer);
   }, []);
 
   const choose = (value: "accepted" | "rejected") => {
-    localStorage.setItem(CONSENT_KEY, value);
+    localStorage.setItem(META_CONSENT_KEY, value);
     window.dispatchEvent(new CustomEvent("cookie-consent", { detail: value }));
     setVisible(false);
   };

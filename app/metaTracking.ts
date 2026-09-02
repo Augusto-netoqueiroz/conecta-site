@@ -1,5 +1,5 @@
 export const META_PIXEL_ID = "1382311347429828";
-export const META_CONSENT_KEY = "contrate-tv-cookie-consent";
+export const META_CONSENT_KEY = "contrate-tv-cookie-consent-20260901";
 
 type MetaEventData = Record<
   string,
