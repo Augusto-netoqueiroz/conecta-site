@@ -29,7 +29,10 @@ export function trackEvent(
     trackMetaContact({ ...data, channel: "phone" });
   }
 
-  if (eventName === "click_whatsapp" || eventName === "click_plan") {
+  // Os CTAs dos cards de planos (click_plan) são rastreados por regras
+  // nativas do Pixel, configuradas pelo texto dos botões. Mantemos aqui
+  // apenas os demais links de WhatsApp para evitar dupla contagem.
+  if (eventName === "click_whatsapp") {
     trackMetaContact({ ...data, channel: "whatsapp" });
   }
 }
