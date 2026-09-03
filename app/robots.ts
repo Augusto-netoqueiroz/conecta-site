@@ -7,7 +7,6 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
-      disallow: ["/_next/", "/_vinext/"],
     },
     sitemap: "https://planostvsky.com.br/sitemap.xml",
     host: "https://planostvsky.com.br",

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { cities } from "./cities";
 
 export const dynamic = "force-static";
 
@@ -9,6 +10,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: `${siteUrl}/`, lastModified: updated, changeFrequency: "weekly", priority: 1 },
+    ...cities.map((city) => ({
+      url: `${siteUrl}/cidade/${city.slug}`,
+      lastModified: updated,
+      changeFrequency: "weekly" as const,
+      priority: 0.8,
+    })),
     { url: `${siteUrl}/politica-de-privacidade`, lastModified: updated, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteUrl}/termos-de-uso`, lastModified: updated, changeFrequency: "yearly", priority: 0.3 },
   ];
