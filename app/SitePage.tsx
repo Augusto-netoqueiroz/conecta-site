@@ -5,7 +5,7 @@ import TrackedLink from "./TrackedLink";
 import ChannelsModal from "./ChannelsModal";
 import { popMainChannels, superMainChannels, topMainChannels } from "./channelData";
 const phone = "5561981954746";
-const siteUrl = "https://contratetv.com.br";
+const siteUrl = "https://planostvsky.com.br";
 const wa = (message: string) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 const promo = "Desconto no cartão de crédito do 1º ao 4º mês.";
 const standardLogos = [["nfl-card-logo.webp","NFL"],["prime-card-logo.webp","Amazon Prime"],["sky-card-logo.webp","SKY+"]] as const;
@@ -62,7 +62,7 @@ function createStructuredData(cityName?: string, citySlug?: string) {
       {
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
-        name: "Contrate TV",
+        name: "Planos TV SKY",
         url: `${siteUrl}/`,
         logo: `${siteUrl}/img/campaign/logo-sky.png`,
         telephone: "+55 61 98195-4746",

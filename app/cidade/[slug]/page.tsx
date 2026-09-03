@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import SitePage from "../../SitePage";
 import { cities } from "../../cities";
 
-const siteUrl = "https://contratetv.com.br";
+const siteUrl = "https://planostvsky.com.br";
 
 export function generateStaticParams() {
   return cities.map((city) => ({
@@ -36,12 +36,12 @@ export function generateMetadata({
       title,
       description,
       url,
-      siteName: "Contrate TV",
+      siteName: "Planos TV SKY",
       locale: "pt_BR",
       type: "website",
       images: [
         {
-          url: `${siteUrl}/img/campaign/hero-sky-desktop.png`,
+          url: `${siteUrl}/img/campaign/hero-sky-desktop-v2.webp`,
           alt: `Planos SKY em ${city.name}`,
         },
       ],

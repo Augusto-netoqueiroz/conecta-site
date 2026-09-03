@@ -9,7 +9,7 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/_next/", "/_vinext/"],
     },
-    sitemap: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/sitemap.xml",
-    host: "https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site",
+    sitemap: "https://planostvsky.com.br/sitemap.xml",
+    host: "https://planostvsky.com.br",
   };
 }
