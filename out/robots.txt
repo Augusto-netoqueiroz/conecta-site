@@ -1,7 +1,5 @@
 User-Agent: *
 Allow: /
-Disallow: /_next/
-Disallow: /_vinext/
 
 Host: https://planostvsky.com.br
 Sitemap: https://planostvsky.com.br/sitemap.xml
