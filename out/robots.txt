@@ -3,5 +3,5 @@ Allow: /
 Disallow: /_next/
 Disallow: /_vinext/
 
-Host: https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site
-Sitemap: https://portal-de-tv.augusto-netoqueiroz0.chatgpt.site/sitemap.xml
+Host: https://planostvsky.com.br
+Sitemap: https://planostvsky.com.br/sitemap.xml

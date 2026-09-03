@@ -4,19 +4,33 @@ import CookieConsent from "./CookieConsent";
 import MetaPixel from "./MetaPixel";
 import "./globals.css";
 
-const siteUrl = "https://contratetv.com.br";
+const siteUrl = "https://planostvsky.com.br";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: {
-    default: "Contrate TV | Parceiro autorizado SKY",
-    template: "%s | Contrate TV",
-  },
-  description: "Consulte planos SKY, cobertura e condições de instalação com atendimento de parceiro autorizado.",
+  title: "Planos SKY TV por Assinatura | Consulte Ofertas e Grade de Canais",
+  description: "Confira os planos SKY Pós-Pago e SKY+ com canais em HD, futebol ao vivo, filmes e séries. Consulte cobertura para o seu CEP e assine pelo WhatsApp.",
+  keywords: [
+    "SKY TV",
+    "planos SKY",
+    "TV por assinatura",
+    "TV a cabo",
+    "SKY pós-pago",
+    "SKY com Premiere",
+    "assinar SKY",
+  ],
   alternates: { canonical: "/" },
-  applicationName: "Contrate TV",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  applicationName: "Planos TV SKY",
   category: "telecommunications",
-  creator: "Contrate TV",
+  creator: "Planos TV SKY",
   icons: {
     icon: [{ url: "/img/campaign/logo-sky.png", type: "image/png" }],
     shortcut: "/img/campaign/logo-sky.png",
@@ -25,17 +39,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: siteUrl,
-    siteName: "Contrate TV",
-    title: "Contrate TV | Parceiro autorizado SKY",
-    description: "Planos SKY, cobertura e instalação com atendimento de parceiro autorizado.",
-    images: [{ url: "/img/og-sky-home.jpg", width: 1200, height: 630, alt: "Contrate TV — parceiro autorizado SKY" }],
+    url: `${siteUrl}/`,
+    siteName: "Planos TV SKY",
+    title: "Planos SKY TV por Assinatura | Ofertas Exclusivas",
+    description: "Mais de 100 canais em HD, esportes ao vivo, Premiere e filmes. Consulte valores para sua cidade e assine direto pelo WhatsApp.",
+    images: [{ url: "/img/campaign/hero-sky-desktop-v2.webp", width: 1600, height: 533, alt: "Planos SKY TV" }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contrate TV | Parceiro autorizado SKY",
-    description: "Consulte planos SKY e condições para o seu endereço.",
-    images: ["/img/og-sky-home.jpg"],
+    title: "Planos SKY TV por Assinatura | Ofertas Exclusivas",
+    description: "Canais em HD, futebol ao vivo e filmes com SKY+ incluso. Consulte seu CEP.",
+    images: ["/img/campaign/hero-sky-desktop-v2.webp"],
   },
   verification: {
     google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
