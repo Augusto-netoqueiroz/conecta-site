@@ -277,3 +277,10 @@ main{width:100%;max-width:100%;overflow-x:hidden}
 .channels-modal-item span{display:block;overflow:hidden;color:var(--sky-text);font-size:10px;font-weight:700;line-height:1.25;text-overflow:ellipsis}
 @media (max-width:680px){.channels-modal{width:calc(100% - 20px);max-height:86vh}.channels-modal-box{max-height:86vh}.channels-modal-header{padding:17px 18px 12px}.channels-modal-header h2{font-size:18px}.channels-modal-content{padding:16px 18px 22px}.channels-modal-grid{grid-template-columns:repeat(3,1fr);gap:20px 10px}.channels-modal-item>div{width:58px;height:58px}.channels-modal-item img{width:42px;height:34px}}
 .channels-modal-section+.channels-modal-section{margin-top:32px}
+.footer-social{margin-top:10px}
+.footer-social>span{display:block;margin-bottom:7px;color:#fff;font-size:10px;font-weight:800}
+.footer-social>div{display:flex;align-items:center;gap:10px}
+.footer-social a{width:38px;height:38px;display:grid;place-items:center;overflow:visible;border-radius:50%}
+.footer-social img{width:36px;height:36px;object-fit:contain}
+.footer-social .instagram-icon{transform:scale(1.68)}
+.footer-social a:hover{transform:translateY(-2px)}

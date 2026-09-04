@@ -340,7 +340,19 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
         eventData={{ placement: "footer", city: cityName || "geral" }}
       >
         WhatsApp: (61) 98195-4746
-      </TrackedLink><span>Atendimento para todo o Brasil</span></div></div><div className="container footer-legal"><span>© 2026 Contrate TV. Todos os direitos reservados.</span><span>Canal de parceiro autorizado. Este não é o site oficial da SKY.</span></div></footer>
+      </TrackedLink><span>Atendimento para todo o Brasil</span>
+      <div className="footer-social">
+  <span>Siga-nos</span>
+  <div>
+    <a href="https://www.instagram.com/skystar_telecom/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+      <Image className="instagram-icon" src="/img/instagram-icon-96.webp" alt="" width={36} height={36} unoptimized />
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61577597452297" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+      <Image className="facebook-icon" src="/img/facebook-icon-96.webp" alt="" width={36} height={36} unoptimized />
+    </a>
+  </div>
+</div>
+      </div></div><div className="container footer-legal"><span>© 2026 Contrate TV. Todos os direitos reservados.</span><span>Canal de parceiro autorizado. Este não é o site oficial da SKY.</span></div></footer>
       <TrackedLink
         className="whatsapp-float"
         href={wa(`Olá, vim pelo site e quero assinar SKY${citySuffix}.`)}
