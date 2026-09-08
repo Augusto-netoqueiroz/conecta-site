@@ -5,36 +5,30 @@ import { cities } from "../../cities";
 
 const siteUrl = "https://planostvsky.com.br";
 
+type CityPageProps = {
+  params: Promise<{ slug: string }>;
+};
+
 export function generateStaticParams() {
-  return cities.map((city) => ({
-    slug: city.slug,
-  }));
+  return cities.map((city) => ({ slug: city.slug }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { slug: string };
-}): Metadata {
-  const city = cities.find((item) => item.slug === params.slug);
+export async function generateMetadata({ params }: CityPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const city = cities.find((item) => item.slug === slug);
 
-  if (!city) {
-    return {};
-  }
+  if (!city) return {};
 
   const url = `${siteUrl}/cidade/${city.slug}`;
-  const title = `SKY em ${city.name} | Planos SKY`;
-  const description = `Conheça os planos SKY, programação e formas de contratação em ${city.name}. Consulte as condições disponíveis para o seu CEP.`;
 
   return {
-    title,
-    description,
-    alternates: {
-      canonical: url,
-    },
+    title: city.seoTitle,
+    description: city.seoDescription,
+    alternates: { canonical: url },
+    robots: { index: true, follow: true },
     openGraph: {
-      title,
-      description,
+      title: city.seoTitle,
+      description: city.seoDescription,
       url,
       siteName: "Planos TV SKY",
       locale: "pt_BR",
@@ -42,23 +36,26 @@ export function generateMetadata({
       images: [
         {
           url: `${siteUrl}/img/campaign/hero-sky-desktop-v2.webp`,
+          width: 1600,
+          height: 533,
           alt: `Planos SKY em ${city.name}`,
         },
       ],
     },
+    twitter: {
+      card: "summary_large_image",
+      title: city.seoTitle,
+      description: city.seoDescription,
+      images: [`${siteUrl}/img/campaign/hero-sky-desktop-v2.webp`],
+    },
   };
 }
 
-export default function CityPage({
-  params,
-}: {
-  params: { slug: string };
-}) {
-  const city = cities.find((item) => item.slug === params.slug);
+export default async function CityPage({ params }: CityPageProps) {
+  const { slug } = await params;
+  const city = cities.find((item) => item.slug === slug);
 
-  if (!city) {
-    notFound();
-  }
+  if (!city) notFound();
 
-  return <SitePage cityName={city.name} citySlug={city.slug} />;
+  return <SitePage cityName={city.name} citySlug={city.slug} cityData={city} />;
 }

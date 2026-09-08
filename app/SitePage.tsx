@@ -3,7 +3,9 @@ import Link from "next/link";
 import CitySelector from "./CitySelector";
 import TrackedLink from "./TrackedLink";
 import ChannelsModal from "./ChannelsModal";
+import LocationSuggestion from "./LocationSuggestion";
 import { popMainChannels, superMainChannels, topMainChannels } from "./channelData";
+import type { City } from "./cities";
 const phone = "5561981954746";
 const siteUrl = "https://planostvsky.com.br";
 const wa = (message: string) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -39,9 +41,10 @@ const faqItems = [
   { question: "O SKY+ está incluso?", answer: "O benefício varia de acordo com o plano contratado. A equipe confirma os acessos incluídos na oferta escolhida." },
   { question: "Este é o site oficial da SKY?", answer: "Não. Este é um canal de parceiro autorizado para comercialização de planos SKY." },
 ];
-type SitePageProps = { cityName?: string; citySlug?: string };
-function createStructuredData(cityName?: string, citySlug?: string) {
+type SitePageProps = { cityName?: string; citySlug?: string; cityData?: City };
+function createStructuredData(cityName?: string, citySlug?: string, cityData?: City) {
   const pageUrl = citySlug ? `${siteUrl}/cidade/${citySlug}` : `${siteUrl}/`;
+  const pageFaq = cityData ? [...cityData.faqs, ...faqItems] : faqItems;
   const areaServed = cityName
     ? { "@type": "AdministrativeArea", name: cityName }
     : { "@type": "Country", name: "Brasil" };
@@ -70,6 +73,15 @@ function createStructuredData(cityName?: string, citySlug?: string) {
         areaServed,
       },
       {
+        "@type": "WebPage",
+        "@id": `${pageUrl}#webpage`,
+        url: pageUrl,
+        name: cityData?.seoTitle || "Planos SKY",
+        description: cityData?.seoDescription || "Compare planos SKY e consulte disponibilidade para o seu endereço.",
+        inLanguage: "pt-BR",
+        about: cityName ? { "@type": "Place", name: cityName } : { "@type": "Country", name: "Brasil" },
+      },
+      {
         "@type": "Service",
         "@id": `${pageUrl}#planos-sky`,
         name: cityName ? `Planos SKY em ${cityName}` : "Planos SKY",
@@ -77,14 +89,14 @@ function createStructuredData(cityName?: string, citySlug?: string) {
         provider: { "@id": `${siteUrl}/#organization` },
         areaServed,
         serviceType: "TV por assinatura",
-        description: cityName
+        description: cityData?.seoDescription || (cityName
           ? `Consulta de planos SKY, programação e formas de contratação em ${cityName}, conforme disponibilidade no CEP.`
-          : "Consulta de planos SKY, programação e formas de contratação, conforme disponibilidade no CEP.",
+          : "Consulta de planos SKY, programação e formas de contratação, conforme disponibilidade no CEP."),
       },
       {
         "@type": "FAQPage",
         "@id": `${pageUrl}#faq`,
-        mainEntity: faqItems.map((item) => ({
+        mainEntity: pageFaq.map((item) => ({
           "@type": "Question",
           name: item.question,
           acceptedAnswer: { "@type": "Answer", text: item.answer },
@@ -98,8 +110,9 @@ function createStructuredData(cityName?: string, citySlug?: string) {
     ],
   };
 }
-export default function SitePage({ cityName, citySlug }: SitePageProps) {
-  const structuredData = createStructuredData(cityName, citySlug);
+export default function SitePage({ cityName, citySlug, cityData }: SitePageProps) {
+  const pageFaq = cityData ? [...cityData.faqs, ...faqItems] : faqItems;
+  const structuredData = createStructuredData(cityName, citySlug, cityData);
   const citySuffix = cityName ? ` em ${cityName}` : "";
   const cepContext = cityName ? ` em ${cityName}` : " para o meu CEP";
   return (
@@ -204,9 +217,36 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
           eventData={{ placement: "hero_banner", city: cityName || "geral" }}
         />
       </section>
+      {!cityData && <LocationSuggestion />}
+      {cityData && (
+        <section className="city-local-intro" aria-labelledby="city-local-title">
+          <div className="container city-local-card">
+            <div className="city-local-copy">
+              <span>PLANOS SKY EM {cityData.name.toUpperCase()}</span>
+              <h1 id="city-local-title">{cityData.heading}</h1>
+              <p>{cityData.intro}</p>
+              <div className="city-local-actions">
+                <a href="#planos">VER PLANOS</a>
+                <TrackedLink
+                  href={wa(`Olá, quero consultar os planos SKY em ${cityData.name} para o meu CEP.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  eventName="click_whatsapp"
+                  eventData={{ placement: "city_intro", city: cityData.name }}
+                >
+                  CONSULTAR NO WHATSAPP
+                </TrackedLink>
+              </div>
+            </div>
+            <ul className="city-local-highlights">
+              {cityData.highlights.map((item) => <li key={item}>{item}</li>)}
+            </ul>
+          </div>
+        </section>
+      )}
       <section className="reference-plans" id="planos">
         <div className="container">
-          <div className="center-heading"><span>PLANOS SKY PÓS-PAGO</span><h2>A SKY certa para todos os momentos</h2><p>{cityName ? `Compare os destaques e consulte as condições comerciais disponíveis em ${cityName}.` : "Compare os destaques e consulte as condições comerciais disponíveis para o seu endereço."}</p></div>
+          <div className="center-heading"><span>PLANOS SKY PÓS-PAGO</span><h2>{cityData?.plansHeading || "A SKY certa para todos os momentos"}</h2><p>{cityName ? `Compare os destaques e consulte as condições comerciais disponíveis em ${cityName}.` : "Compare os destaques e consulte as condições comerciais disponíveis para o seu endereço."}</p></div>
           <div className="reference-plan-grid">
             {plans.map((plan, index) => (
               <article className={`reference-plan ${index === 1 ? "recommended" : ""}`} key={plan.name}>
@@ -322,8 +362,26 @@ export default function SitePage({ cityName, citySlug }: SitePageProps) {
       </section>
       <section className="contract-steps"><div className="container"><div className="center-heading light"><span>COMO CONTRATAR</span><h2>Assine SKY sem complicação</h2></div><ol><li><b>01</b><strong>Escolha o plano</strong><p>Veja qual opção combina com a sua casa.</p></li><li><b>02</b><strong>Informe seu CEP</strong><p>Receba somente as condições da sua região.</p></li><li><b>03</b><strong>Finalize o cadastro</strong><p>A equipe acompanha a contratação com você.</p></li><li><b>04</b><strong>Agende a instalação</strong><p>Escolha a melhor data para receber o técnico.</p></li></ol></div></section>
       <CitySelector currentCityName={cityName} />
-      <section className="reference-faq" id="duvidas"><div className="container faq-layout"><div><span>DÚVIDAS FREQUENTES</span><h2>Antes de assinar</h2><p>Se precisar de ajuda, fale diretamente com nosso atendimento autorizado.</p></div><div className="faq-list">{faqItems.map((item, index) => <details open={index === 0} key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
-      <section className="sales-closing"><div className="container sales-closing-row"><div><span>PARCEIRO AUTORIZADO SKY</span><h2>{cityName ? `Consulte agora a melhor opção SKY em ${cityName}.` : "Consulte agora a melhor opção para sua casa."}</h2></div><TrackedLink
+      {cityData && (
+        <section className="city-local-info" aria-labelledby="city-info-title">
+          <div className="container city-local-info-grid">
+            <div>
+              <span>CONHEÇA A REGIÃO</span>
+              <h2 id="city-info-title">{cityData.localTitle}</h2>
+            </div>
+            <div className="city-local-details">
+              <div className="city-local-paragraphs">
+                {cityData.localParagraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              </div>
+              <ul className="city-local-facts">
+                {cityData.localFacts.map((fact) => <li key={fact}>{fact}</li>)}
+              </ul>
+            </div>
+          </div>
+        </section>
+      )}
+      <section className="reference-faq" id="duvidas"><div className="container faq-layout"><div><span>DÚVIDAS FREQUENTES</span><h2>Antes de assinar</h2><p>Se precisar de ajuda, fale diretamente com nosso atendimento autorizado.</p></div><div className="faq-list">{pageFaq.map((item, index) => <details open={index === 0} key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
+      <section className="sales-closing"><div className="container sales-closing-row"><div><span>PARCEIRO AUTORIZADO SKY</span><h2>{cityData?.closingTitle || (cityName ? `Consulte agora a melhor opção SKY em ${cityName}.` : "Consulte agora a melhor opção para sua casa.")}</h2></div><TrackedLink
         href={wa(`Olá, quero assinar SKY${citySuffix}. Pode consultar os planos disponíveis para mim?`)}
         target="_blank"
         rel="noopener noreferrer"
