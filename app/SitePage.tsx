@@ -6,6 +6,7 @@ import ChannelsModal from "./ChannelsModal";
 import LocationSuggestion from "./LocationSuggestion";
 import { popMainChannels, superMainChannels, topMainChannels } from "./channelData";
 import type { City } from "./cities";
+import { seoPages } from "./seoPages";
 const phone = "5561981954746";
 const siteUrl = "https://planostvsky.com.br";
 const wa = (message: string) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
@@ -66,6 +67,8 @@ function createStructuredData(cityName?: string, citySlug?: string, cityData?: C
         "@type": "Organization",
         "@id": `${siteUrl}/#organization`,
         name: "Planos TV SKY",
+        legalName: "STARTELECOM TELECOMUNICACOES LTDA",
+        taxID: "10.863.171/0001-06",
         url: `${siteUrl}/`,
         logo: `${siteUrl}/img/campaign/logo-sky.png`,
         telephone: "+55 61 98195-4746",
@@ -390,7 +393,8 @@ export default function SitePage({ cityName, citySlug, cityData }: SitePageProps
       >
         ASSINAR PELO WHATSAPP <b>→</b>
       </TrackedLink></div></section>
-      <footer className="commercial-footer"><div className="container footer-grid"><div className="footer-logo"><Image src="/img/campaign/logo-sky.png" alt="SKY" width={320} height={205} unoptimized /><span>PARCEIRO AUTORIZADO</span></div><div><strong>PLANOS DA SKY</strong><a href="#planos">Pós-pago</a><a href="#sky-plus">SKY+</a><a href="#programacao">Programação</a></div><div><strong>INFORMAÇÕES</strong><Link href="/politica-de-privacidade">Política de privacidade</Link><Link href="/termos-de-uso">Termos de uso</Link><a href="#duvidas">Dúvidas frequentes</a></div><div><strong>ATENDIMENTO</strong><TrackedLink
+      <section className="seo-home-links" aria-labelledby="seo-home-links-title"><div className="container"><span>GUIAS PARA ESCOLHER</span><h2 id="seo-home-links-title">Tudo o que você precisa saber antes de assinar SKY</h2><div>{seoPages.map((page) => <Link href={`/${page.slug}/`} key={page.slug}><strong>{page.navLabel}</strong><small>{page.description}</small><b aria-hidden="true">→</b></Link>)}</div></div></section>
+      <footer className="commercial-footer"><div className="container footer-grid"><div className="footer-logo"><Image src="/img/campaign/logo-sky.png" alt="SKY" width={320} height={205} unoptimized /><span>PARCEIRO AUTORIZADO</span></div><div><strong>PLANOS DA SKY</strong><Link href="/planos-sky-tv/">Planos SKY TV</Link><Link href="/precos-planos-sky/">Preços dos planos</Link><Link href="/promocao-sky/">Promoções SKY</Link></div><div><strong>INFORMAÇÕES</strong><Link href="/canais-sky/">Canais SKY</Link><Link href="/sky-no-boleto/">SKY no boleto</Link><Link href="/instalacao-sky/">Instalação SKY</Link><Link href="/sky-futebol/">SKY Futebol</Link><Link href="/politica-de-privacidade">Política de privacidade</Link><Link href="/termos-de-uso">Termos de uso</Link></div><div><strong>ATENDIMENTO</strong><TrackedLink
         href={wa(`Olá, quero mais informações sobre os planos SKY${citySuffix}.`)}
         target="_blank"
         rel="noopener noreferrer"
