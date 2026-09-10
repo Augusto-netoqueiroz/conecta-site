@@ -14,6 +14,17 @@
 - O visitante deve enviar o CEP pelo WhatsApp para receber as opções disponíveis na região.
 - A instalação grátis depende das condições comerciais aplicáveis ao endereço e ao plano.
 
+## Guias de contratação
+
+- Planos SKY TV: https://planostvsky.com.br/planos-sky-tv/
+- Como assinar SKY: https://planostvsky.com.br/assinar-sky/
+- Preços dos planos SKY: https://planostvsky.com.br/precos-planos-sky/
+- Promoções SKY: https://planostvsky.com.br/promocao-sky/
+- Canais SKY: https://planostvsky.com.br/canais-sky/
+- SKY no boleto: https://planostvsky.com.br/sky-no-boleto/
+- Instalação SKY: https://planostvsky.com.br/instalacao-sky/
+- SKY Futebol: https://planostvsky.com.br/sky-futebol/
+
 ## Políticas
 
 - Privacidade: https://planostvsky.com.br/politica-de-privacidade/

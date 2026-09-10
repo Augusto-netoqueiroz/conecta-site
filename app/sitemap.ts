@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
 import { cities } from "./cities";
+import { seoPages } from "./seoPages";
 
 export const dynamic = "force-static";
 
 const siteUrl = "https://planostvsky.com.br";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const updated = new Date("2026-09-08T00:00:00-03:00");
+  const updated = new Date("2026-09-10T00:00:00-03:00");
 
   return [
     { url: `${siteUrl}/`, lastModified: updated, changeFrequency: "weekly", priority: 1 },
@@ -15,6 +16,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: updated,
       changeFrequency: "weekly" as const,
       priority: 0.8,
+    })),
+    ...seoPages.map((page) => ({
+      url: `${siteUrl}/${page.slug}/`,
+      lastModified: updated,
+      changeFrequency: "weekly" as const,
+      priority: 0.85,
     })),
     { url: `${siteUrl}/politica-de-privacidade`, lastModified: updated, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteUrl}/termos-de-uso`, lastModified: updated, changeFrequency: "yearly", priority: 0.3 },
