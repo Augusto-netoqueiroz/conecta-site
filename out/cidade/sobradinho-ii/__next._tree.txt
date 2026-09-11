@@ -1,2 +1,2 @@
-:HL["/_next/static/chunks/15-~f2rziy22d.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sobradinho-ii","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"z7yYvMGdPdJjC7nP1LYBB"}
+:HL["/_next/static/chunks/00tdnoim3e5i1.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sobradinho-ii","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"bKj2VYoC4fraYGRTE2ldg"}

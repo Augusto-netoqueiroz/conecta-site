@@ -24,9 +24,14 @@ export default function TrackedLink({
   ...props
 }: TrackedLinkProps) {
   function handleClick(event: MouseEvent<HTMLAnchorElement>) {
+  try {
     trackEvent(eventName, eventData);
-    onClick?.(event);
+  } catch {
+    // O rastreamento não impede a navegação.
   }
+
+  onClick?.(event);
+}
 
   return (
     <a {...props} onClick={handleClick}>
