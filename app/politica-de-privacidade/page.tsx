@@ -17,7 +17,7 @@ export default function PrivacyPage() {
         <p className="legal-date">Última atualização: 20 de agosto de 2026.</p>
         <p>A Contrate TV respeita sua privacidade. Esta política explica quais dados podem ser tratados quando você navega no site ou inicia um atendimento pelo WhatsApp.</p>
         <h2>1. Dados tratados</h2>
-        <p>O site pode registrar informações técnicas básicas de navegação, como endereço IP, tipo de dispositivo, navegador, páginas acessadas e eventos de desempenho. Quando você chama no WhatsApp, os dados enviados por você passam a ser tratados no próprio canal de atendimento.</p>
+        <p>O site pode registrar informações técnicas básicas de navegação, como endereço IP, tipo de dispositivo, navegador, páginas acessadas e eventos de desempenho. Ao preencher o formulário, nome, telefone, CEP e plano de interesse são usados para preparar sua solicitação de atendimento. Os dados somente seguem para o WhatsApp quando você confirma o envio da mensagem nesse canal.</p>
         <h2>2. Finalidades</h2>
         <p>Os dados são usados para manter o site seguro, medir seu funcionamento quando houver consentimento, responder solicitações, consultar disponibilidade regional e auxiliar na contratação do serviço solicitado.</p>
         <h2>3. Cookies e consentimento</h2>

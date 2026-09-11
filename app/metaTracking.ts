@@ -97,3 +97,15 @@ export function trackMetaContact(data: MetaEventData = {}) {
 
   fbq("track", "Contact", customData, { eventID: eventId });
 }
+
+export function trackMetaLead(data: MetaEventData = {}) {
+  if (!hasConsent()) return;
+
+  const fbq = loadPixel();
+  const eventId = createEventId();
+  const customData = Object.fromEntries(
+    Object.entries(data).filter(([, value]) => value !== undefined)
+  );
+
+  fbq("track", "Lead", customData, { eventID: eventId });
+}
