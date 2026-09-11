@@ -110,6 +110,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible,t
 .lead-field{display:grid;gap:7px}.lead-field-wide{grid-column:1/-1}
 .lead-field label{color:var(--sky-ink);font-size:14px;font-weight:800}
 .lead-field input,.lead-field select{width:100%;min-height:50px;padding:0 15px;border-radius:13px;font-size:16px}
+.lead-plan-note{color:var(--sky-muted);font-size:12px;line-height:1.5}
 .lead-privacy{display:flex;align-items:flex-start;gap:10px;color:var(--sky-muted);font-size:13px;line-height:1.45;cursor:pointer}
 .lead-privacy input{width:18px;height:18px;min-height:18px;margin:1px 0 0;accent-color:var(--sky-red-light)}
 .lead-privacy a{color:var(--sky-red-light);font-weight:800;text-decoration:underline}
