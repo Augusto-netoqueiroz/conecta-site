@@ -5,7 +5,15 @@ import Link from "next/link";
 import { trackMetaLead } from "./metaTracking";
 
 const phone = "5561981954746";
-const plans = ["Ainda não escolhi", "POP HD", "SUPER HD", "SUPER HD II", "TOP HD", "TOP HD II", "SKY CONNECT"];
+const plans = [
+  { value: "Ainda não escolhi", label: "Ainda não escolhi" },
+  { value: "POP HD", label: "POP HD — R$ 69,90/mês" },
+  { value: "SUPER HD", label: "SUPER HD — R$ 59,90/mês" },
+  { value: "SUPER HD II", label: "SUPER HD II — R$ 79,90/mês" },
+  { value: "TOP HD", label: "TOP HD — R$ 99,90/mês" },
+  { value: "TOP HD II", label: "TOP HD II — R$ 119,90/mês" },
+  { value: "SKY CONNECT", label: "SKY CONNECT — R$ 369,90/mês" },
+];
 
 function onlyDigits(value: string) {
   return value.replace(/\D/g, "");
@@ -33,13 +41,14 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
     const form = new FormData(event.currentTarget);
     const name = String(form.get("name") || "").trim();
     const plan = String(form.get("plan") || "Ainda não escolhi");
+    const planLabel = plans.find((item) => item.value === plan)?.label || plan;
     const city = cityName || "Não informada";
     const message = [
       "Olá, preenchi o formulário do site e quero consultar uma oferta SKY.",
       `Nome: ${name}`,
       `Telefone: ${phoneValue}`,
       `CEP: ${cepValue}`,
-      `Plano de interesse: ${plan}`,
+      `Plano de interesse: ${planLabel}`,
       `Cidade: ${city}`,
     ].join("\n");
 
@@ -77,8 +86,9 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
           <div className="lead-field lead-field-wide">
             <label htmlFor="lead-plan">Plano de interesse</label>
             <select id="lead-plan" name="plan" defaultValue="Ainda não escolhi">
-              {plans.map((plan) => <option value={plan} key={plan}>{plan}</option>)}
+              {plans.map((plan) => <option value={plan.value} key={plan.value}>{plan.label}</option>)}
             </select>
+            <small className="lead-plan-note">Valores promocionais do 1º ao 4º mês. Consulte as condições disponíveis para o seu CEP.</small>
           </div>
           <label className="lead-privacy lead-field-wide">
             <input type="checkbox" required />
