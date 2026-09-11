@@ -17,13 +17,13 @@ export default function PrivacyPage() {
         <p className="legal-date">Última atualização: 20 de agosto de 2026.</p>
         <p>A Contrate TV respeita sua privacidade. Esta política explica quais dados podem ser tratados quando você navega no site ou inicia um atendimento pelo WhatsApp.</p>
         <h2>1. Dados tratados</h2>
-        <p>O site pode registrar informações técnicas básicas de navegação, como endereço IP, tipo de dispositivo, navegador, páginas acessadas e eventos de desempenho. Ao preencher o formulário, nome, telefone, CEP e plano de interesse são usados para preparar sua solicitação de atendimento. Os dados somente seguem para o WhatsApp quando você confirma o envio da mensagem nesse canal.</p>
+        <p>O site pode registrar informações técnicas básicas de navegação, como endereço IP, tipo de dispositivo, navegador, páginas acessadas e eventos de desempenho. Ao enviar o formulário, nome, telefone, CEP, plano de interesse e identificadores da campanha são registrados em uma planilha de atendimento com acesso controlado. O WhatsApp é aberto em seguida para você confirmar a mensagem.</p>
         <h2>2. Finalidades</h2>
         <p>Os dados são usados para manter o site seguro, medir seu funcionamento quando houver consentimento, responder solicitações, consultar disponibilidade regional e auxiliar na contratação do serviço solicitado.</p>
         <h2>3. Cookies e consentimento</h2>
         <p>Cookies necessários podem ser utilizados para memorizar suas preferências. Cookies de medição somente são ativados após sua autorização no banner de privacidade. Você pode recusar os cookies opcionais sem impedir o acesso ao conteúdo.</p>
         <h2>4. Compartilhamento</h2>
-        <p>Dados podem ser compartilhados com prestadores de infraestrutura e com os responsáveis pela oferta e instalação apenas quando necessário para atender sua solicitação, cumprir obrigações legais ou proteger o site contra abuso.</p>
+        <p>Dados podem ser processados por prestadores de infraestrutura, incluindo Google para armazenamento da planilha, e pelos responsáveis pela oferta e instalação apenas quando necessário para atender sua solicitação, cumprir obrigações legais ou proteger o site contra abuso.</p>
         <h2>5. Seus direitos</h2>
         <p>Nos termos da LGPD, você pode solicitar confirmação de tratamento, acesso, correção, exclusão quando aplicável, informação sobre compartilhamento e revogação do consentimento.</p>
         <h2>6. Contato</h2>
