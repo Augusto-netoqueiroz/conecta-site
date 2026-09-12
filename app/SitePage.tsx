@@ -213,7 +213,6 @@ export default function SitePage({ cityName, citySlug, cityData }: SitePageProps
           eventData={{ placement: "hero_banner", city: cityName || "geral" }}
         />
       </section>
-      {!cityData && <LeadForm cityName={cityName} />}
       {!cityData && <LocationSuggestion />}
       {cityData && (
         <section className="city-local-intro" aria-labelledby="city-local-title">
@@ -325,6 +324,7 @@ export default function SitePage({ cityName, citySlug, cityData }: SitePageProps
           <p className="offer-disclaimer">Ofertas sujeitas à disponibilidade, análise e alterações comerciais. Confirme valores, grade, equipamentos e condições no atendimento.</p>
         </div>
       </section>
+      {!cityData && <LeadForm cityName={cityName} />}
       <ChannelsModal />
 <section className="included-strip"><div className="container included-row"><div><strong>Instalação credenciada</strong><span>Agendamento após a contratação</span></div><div><strong>Equipamento HD</strong><span>Conforme o plano escolhido</span></div><div><strong>Atendimento autorizado</strong><span>Acompanhamento do pedido</span></div></div></section>
       <section className="streaming-feature" id="sky-plus">
