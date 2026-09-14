@@ -7,7 +7,7 @@ import LocationSuggestion from "./LocationSuggestion";
 import LeadForm from "./LeadForm";
 import { popMainChannels, superMainChannels, topMainChannels } from "./channelData";
 import { plans } from "./planData";
-import type { City } from "./cities";
+import { cities, type City } from "./cities";
 import { seoPages } from "./seoPages";
 
 const phone = "5561981954746";
@@ -359,6 +359,23 @@ export default function SitePage({ cityName, citySlug, cityData }: SitePageProps
       </section>
       <section className="contract-steps"><div className="container"><div className="center-heading light"><span>COMO CONTRATAR</span><h2>Assine SKY sem complicação</h2></div><ol><li><b>01</b><strong>Escolha o plano</strong><p>Veja qual opção combina com a sua casa.</p></li><li><b>02</b><strong>Informe seu CEP</strong><p>Receba somente as condições da sua região.</p></li><li><b>03</b><strong>Finalize o cadastro</strong><p>A equipe acompanha a contratação com você.</p></li><li><b>04</b><strong>Agende a instalação</strong><p>Escolha a melhor data para receber o técnico.</p></li></ol></div></section>
       <CitySelector currentCityName={cityName} />
+      {!cityData && (
+        <nav className="seo-home-links" aria-labelledby="city-index-title">
+          <div className="container">
+            <span>ATENDIMENTO NO DISTRITO FEDERAL</span>
+            <h2 id="city-index-title">Encontre planos SKY na sua cidade</h2>
+            <div>
+              {cities.map((city) => (
+                <Link href={`/cidade/${city.slug}/`} key={city.slug}>
+                  <strong>Planos SKY em {city.name}</strong>
+                  <small>Consulte planos e disponibilidade para sua região.</small>
+                  <b aria-hidden="true">→</b>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </nav>
+      )}
       {cityData && (
         <section className="city-local-info" aria-labelledby="city-info-title">
           <div className="container city-local-info-grid">
