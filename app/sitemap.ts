@@ -11,6 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     { url: `${siteUrl}/`, lastModified: updated, changeFrequency: "weekly", priority: 1 },
+    { url: `${siteUrl}/planos/`, lastModified: new Date("2026-09-15T00:00:00-03:00"), changeFrequency: "weekly", priority: 0.95 },
     ...cities.map((city) => ({
       url: `${siteUrl}/cidade/${city.slug}/`,
       lastModified: updated,

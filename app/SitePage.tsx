@@ -5,6 +5,7 @@ import TrackedLink from "./TrackedLink";
 import ChannelsModal from "./ChannelsModal";
 import LocationSuggestion from "./LocationSuggestion";
 import LeadForm from "./LeadForm";
+import PlanCustomizer from "./PlanCustomizer";
 import { popMainChannels, superMainChannels, topMainChannels } from "./channelData";
 import { plans } from "./planData";
 import { cities, type City } from "./cities";
@@ -35,9 +36,9 @@ const faqItems = [
   { question: "O SKY+ está incluso?", answer: "O benefício varia de acordo com o plano contratado. A equipe confirma os acessos incluídos na oferta escolhida." },
   { question: "Este é o site oficial da SKY?", answer: "Não. Este é um canal de parceiro autorizado para comercialização de planos SKY." },
 ];
-type SitePageProps = { cityName?: string; citySlug?: string; cityData?: City };
-function createStructuredData(cityName?: string, citySlug?: string, cityData?: City) {
-  const pageUrl = citySlug ? `${siteUrl}/cidade/${citySlug}` : `${siteUrl}/`;
+type SitePageProps = { cityName?: string; citySlug?: string; cityData?: City; customizablePlans?: boolean; pagePath?: string };
+function createStructuredData(cityName?: string, citySlug?: string, cityData?: City, pagePath?: string) {
+  const pageUrl = citySlug ? `${siteUrl}/cidade/${citySlug}` : pagePath ? `${siteUrl}${pagePath}` : `${siteUrl}/`;
   const pageFaq = cityData ? [...cityData.faqs, ...faqItems] : faqItems;
   const areaServed = cityName
     ? { "@type": "AdministrativeArea", name: cityName }
@@ -106,9 +107,9 @@ function createStructuredData(cityName?: string, citySlug?: string, cityData?: C
     ],
   };
 }
-export default function SitePage({ cityName, citySlug, cityData }: SitePageProps) {
+export default function SitePage({ cityName, citySlug, cityData, customizablePlans = false, pagePath }: SitePageProps) {
   const pageFaq = cityData ? [...cityData.faqs, ...faqItems] : faqItems;
-  const structuredData = createStructuredData(cityName, citySlug, cityData);
+  const structuredData = createStructuredData(cityName, citySlug, cityData, pagePath);
   const citySuffix = cityName ? ` em ${cityName}` : "";
   const cepContext = cityName ? ` em ${cityName}` : " para o meu CEP";
   return (
@@ -242,17 +243,28 @@ export default function SitePage({ cityName, citySlug, cityData }: SitePageProps
       )}
       <section className="reference-plans" id="planos">
         <div className="container">
-          <div className="center-heading"><span>PLANOS SKY PÓS-PAGO</span><h2>{cityData?.plansHeading || "A SKY certa para todos os momentos"}</h2><p>{cityName ? `Compare os destaques e consulte as condições comerciais disponíveis em ${cityName}.` : "Compare os destaques e consulte as condições comerciais disponíveis para o seu endereço."}</p></div>
-          <div className="reference-plan-grid">
-            {plans.map((plan, index) => (
-              <article className={`reference-plan ${index === 1 ? "recommended" : ""}`} key={plan.name}>
-                {index === 1 && <div className="recommended-label">OFERTA EM DESTAQUE</div>}
-                <div className="plan-red-top">
-                  <div className="plan-name"><span>SKY PÓS-PAGO</span><strong>{plan.name}</strong><b className="plan-highlight">{plan.highlight}</b>{plan.summary.map((line) => <p className="plan-summary" key={line}>{line}</p>)}</div>
-                  {plan.badge && <span className="plan-top-badge">{plan.badge}</span>}
-                </div>
-                <div className="plan-white-body">
-                  <h3>O que vem em seu plano:</h3>
+          <div className="center-heading">
+            <span>PLANOS SKY PÓS-PAGO</span>
+            {cityData ? (
+              <h2>{cityData.plansHeading}</h2>
+            ) : (
+              <h1>Planos SKY TV por assinatura</h1>
+            )}
+            <p>{cityName ? `Compare os destaques e consulte as condições comerciais disponíveis em ${cityName}.` : "Compare os destaques e consulte as condições comerciais disponíveis para o seu endereço."}</p>
+          </div>
+          {customizablePlans ? (
+            <PlanCustomizer />
+          ) : (
+            <div className="reference-plan-grid">
+              {plans.map((plan, index) => (
+                <article className={`reference-plan ${index === 1 ? "recommended" : ""}`} key={plan.name}>
+                  {index === 1 && <div className="recommended-label">OFERTA EM DESTAQUE</div>}
+                  <div className="plan-red-top">
+                    <div className="plan-name"><span>SKY PÓS-PAGO</span><strong>{plan.name}</strong><b className="plan-highlight">{plan.highlight}</b>{plan.summary.map((line) => <p className="plan-summary" key={line}>{line}</p>)}</div>
+                    {plan.badge && <span className="plan-top-badge">{plan.badge}</span>}
+                  </div>
+                  <div className="plan-white-body">
+                    <h3>O que vem em seu plano:</h3>
 <div className="plan-logo-grid">
   {plan.logos.map(([src, alt]) => (
     <div className="plan-logo-item" key={src}>
@@ -297,30 +309,31 @@ export default function SitePage({ cityName, citySlug, cityData }: SitePageProps
   </strong>
   <small>{plan.promo}</small>
 </div>
-                  <TrackedLink
-                    className="plan-main-cta"
-                    href={wa(`Olá, quero consultar a oferta do plano SKY ${plan.name}${cepContext}.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    eventName="click_plan"
-                    eventData={{ plan: plan.name, city: cityName || "geral", placement: "plan_primary" }}
-                  >
-                    CONSULTAR PLANO
-                  </TrackedLink>
-                  <TrackedLink
-                    className="plan-whatsapp"
-                    href={wa(`Olá, tenho interesse no plano SKY ${plan.name}${citySuffix}.`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    eventName="click_plan"
-                    eventData={{ plan: plan.name, city: cityName || "geral", placement: "plan_whatsapp" }}
-                  >
-                    <span>☏</span> ASSINAR POR WHATSAPP
-                  </TrackedLink>
-                </div>
-              </article>
-            ))}
-          </div>
+                    <TrackedLink
+                      className="plan-main-cta"
+                      href={wa(`Olá, quero consultar a oferta do plano SKY ${plan.name}${cepContext}.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      eventName="click_plan"
+                      eventData={{ plan: plan.name, city: cityName || "geral", placement: "plan_primary" }}
+                    >
+                      CONSULTAR PLANO
+                    </TrackedLink>
+                    <TrackedLink
+                      className="plan-whatsapp"
+                      href={wa(`Olá, tenho interesse no plano SKY ${plan.name}${citySuffix}.`)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      eventName="click_plan"
+                      eventData={{ plan: plan.name, city: cityName || "geral", placement: "plan_whatsapp" }}
+                    >
+                      <span>☏</span> ASSINAR POR WHATSAPP
+                    </TrackedLink>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
           <p className="offer-disclaimer">Ofertas sujeitas à disponibilidade, análise e alterações comerciais. Confirme valores, grade, equipamentos e condições no atendimento.</p>
         </div>
       </section>

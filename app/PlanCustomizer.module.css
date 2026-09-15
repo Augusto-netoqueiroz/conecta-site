@@ -1,0 +1,464 @@
+.customGrid {
+  align-items: start;
+  grid-auto-rows: auto;
+}
+
+.customCard {
+  height: auto !important;
+}
+
+.customCard :global(.plan-logo-grid) {
+  grid-template-columns: repeat(2, 1fr) !important;
+  min-height: 150px !important;
+}
+
+.customCard :global(.plan-logo-item) {
+  grid-column: auto !important;
+  grid-row: auto !important;
+}
+
+.connectCard :global(.plan-logo-grid) {
+  grid-template-columns: repeat(3, 1fr) !important;
+  min-height: 190px !important;
+}
+
+.pointsBox {
+  display: grid;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--sky-border);
+}
+
+.pointsBox > div:first-child {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.pointsBox strong {
+  display: block;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--sky-ink);
+}
+
+.pointsBox span {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  color: var(--sky-muted);
+}
+
+.pointButtons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.pointButtons button {
+  min-height: 43px;
+  padding: 7px 10px;
+  border: 1px solid var(--sky-border);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--sky-text);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pointButtons button small {
+  display: block;
+  margin-top: 2px;
+  color: var(--sky-muted);
+  font-size: 8px;
+}
+
+.pointButtons .activePoint {
+  border-color: var(--sky-red-light);
+  background: var(--sky-red-soft);
+  color: var(--sky-red-light);
+  box-shadow: 0 0 0 2px rgba(206, 6, 18, 0.06);
+}
+
+.fixedPoints {
+  align-self: start;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--sky-red-soft);
+  color: var(--sky-red-light);
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+.customizeButton {
+  width: 100%;
+  min-height: 44px;
+  margin: 14px 0 0;
+  padding: 0 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgba(206, 6, 18, 0.24);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--sky-red-light);
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.customizeButton:hover {
+  background: var(--sky-red-soft);
+}
+
+.customizeButton b {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.customizeButtonWithLogos {
+  min-height: 86px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.customizeContent {
+  min-width: 0;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.customizeText {
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.03em;
+}
+
+.previewLogos {
+  width: 100%;
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 7px;
+  margin: 0 !important;
+}
+
+.previewLogo {
+  height: 34px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.previewLogo img {
+  width: 100%;
+  max-width: 64px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.optionalsBox {
+  margin-top: 10px;
+  padding: 13px;
+  border: 1px solid var(--sky-border);
+  border-radius: 15px;
+  background: var(--sky-surface);
+}
+
+.optionalsHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 2px 2px 11px;
+}
+
+.optionalsHeader strong {
+  font-size: 12px;
+  color: var(--sky-ink);
+}
+
+.optionalsHeader span {
+  font-size: 8px;
+  color: var(--sky-muted);
+  text-align: right;
+}
+
+.optionalsList {
+  display: grid;
+  gap: 7px;
+  max-height: 470px;
+  overflow-y: auto;
+  padding-right: 3px;
+}
+
+.optionalItem {
+  width: 100%;
+  min-height: 62px;
+  display: grid;
+  grid-template-columns: 68px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 9px;
+  border: 1px solid var(--sky-border);
+  border-radius: 11px;
+  background: #fff;
+  color: var(--sky-text);
+  cursor: pointer;
+  text-align: left;
+}
+
+.optionalItem:hover {
+  border-color: rgba(206, 6, 18, 0.35);
+  background: #fffafa;
+}
+
+.optionalLogo {
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.optionalLogo img {
+  width: 100%;
+  max-width: 64px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.optionalText {
+  min-width: 0;
+}
+
+.optionalText strong {
+  display: block;
+  font-size: 10px;
+  line-height: 1.25;
+  color: var(--sky-ink);
+}
+
+.optionalText small {
+  display: block;
+  margin-top: 3px;
+  font-size: 7.5px;
+  line-height: 1.3;
+  color: var(--sky-muted);
+}
+
+.optionalPrice {
+  font-size: 10px;
+  font-weight: 900;
+  white-space: nowrap;
+  color: var(--sky-red-light);
+}
+
+.optionalPrice small {
+  font-size: 9px;
+}
+
+.optionalPrice b {
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: #eaf8ef;
+  color: var(--sky-whatsapp-dark);
+  font-size: 8px;
+}
+
+.selectedOptional {
+  border-color: var(--sky-red-light);
+  background: var(--sky-red-soft);
+}
+
+.includedOptional {
+  cursor: default;
+  opacity: 0.84;
+  background: #f8fbf9;
+  border-color: #dcefe3;
+}
+
+.comboNotice {
+  margin-top: 9px;
+  padding: 9px 10px;
+  border-radius: 9px;
+  background: #eaf8ef;
+  color: var(--sky-whatsapp-dark);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.totalBox {
+  margin-top: auto;
+  padding: 16px 0 7px;
+  text-align: center;
+}
+
+.mainTotal > span,
+.regularTotal > span {
+  display: block;
+  color: var(--sky-muted);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.mainTotal strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--sky-red-light);
+  font-size: 28px;
+  line-height: 1;
+}
+
+.mainTotal strong small,
+.regularTotal strong small {
+  margin-left: 3px;
+  font-size: 9px;
+  font-weight: 700;
+  color: var(--sky-muted);
+}
+
+.regularTotal {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--sky-border);
+}
+
+.regularTotal strong {
+  display: block;
+  margin-top: 2px;
+  color: var(--sky-ink);
+  font-size: 17px;
+  line-height: 1.1;
+}
+
+@media (max-width: 680px) {
+  .optionalsList {
+    max-height: none;
+  }
+
+  .optionalItem {
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+  }
+
+  .mainTotal strong {
+    font-size: 27px;
+  }
+
+  .customizeButtonWithLogos {
+    min-height: 82px;
+  }
+
+  .previewLogos {
+    gap: 5px;
+  }
+
+  .previewLogo {
+    height: 32px !important;
+    padding: 2px 4px;
+  }
+
+  .previewLogo img {
+    max-width: 54px;
+    height: 26px;
+  }
+}
+.customCard :global(.plan-red-top) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.customCard :global(.plan-top-badge) {
+  position: static !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  max-width: 100%;
+  margin-top: 10px;
+  padding: 7px 14px;
+  white-space: nowrap;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.customCard :global(.plan-name) {
+  width: 100%;
+}
+
+.customCard :global(.plan-summary) {
+  line-height: 1.2;
+}
+.previewLogo[data-logo="premiere"] img {
+  max-width: 80px;
+  height: 30px;
+}
+
+.previewLogo[data-logo="hbo"] img {
+  max-width: 52px;
+  height: 30px;
+}
+
+.previewLogo[data-logo="telecine"] img {
+  max-width: 65px;
+  height: 30px;
+}
+
+.previewLogo[data-logo="paramount"] img {
+  max-width: 90px;
+  height: 38px;
+}
+
+.previewLogo[data-logo="disney"] img {
+  max-width: 94px;
+  height: 36px;
+}
+.alaCarteIntro {
+  margin: 16px 0 8px;
+  text-align: center;
+}
+
+.alaCarteIntro strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 13px;
+  font-weight: 900;
+  color: var(--sky-ink);
+}
+
+.alaCarteIntro span {
+  display: block;
+  max-width: 320px;
+  margin: auto;
+  font-size: 13px;
+  line-height: 1.45;
+  font-weight: 800;
+  color: var(--sky-ink);
+}
+.alaCarteIntro span {
+  display: block;
+  max-width: 320px;
+  margin: auto;
+  font-size: 11px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: var(--sky-ink);
+}
+
+.alaCarteIntro span b {
+  color: var(--sky-red-light);
+  font-weight: 900;
+}
