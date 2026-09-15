@@ -21,7 +21,7 @@ export default function PrivacyPage() {
         <h2>2. Finalidades</h2>
         <p>Os dados são usados para manter o site seguro, medir seu funcionamento quando houver consentimento, responder solicitações, consultar disponibilidade regional e auxiliar na contratação do serviço solicitado.</p>
         <h2>3. Cookies e consentimento</h2>
-        <p>Cookies necessários podem ser utilizados para memorizar suas preferências. Cookies de medição somente são ativados após sua autorização no banner de privacidade. Você pode recusar os cookies opcionais sem impedir o acesso ao conteúdo.</p>
+        <p>Cookies necessários podem ser utilizados para memorizar suas preferências. Cookies de medição são ativados após sua autorização no banner de privacidade ou após seu consentimento expresso ao enviar um formulário de campanha. Você pode recusar os cookies opcionais sem impedir o acesso ao conteúdo.</p>
         <h2>4. Compartilhamento</h2>
         <p>Dados podem ser processados por prestadores de infraestrutura, incluindo Google para armazenamento da planilha, e pelos responsáveis pela oferta e instalação apenas quando necessário para atender sua solicitação, cumprir obrigações legais ou proteger o site contra abuso.</p>
         <h2>5. Seus direitos</h2>

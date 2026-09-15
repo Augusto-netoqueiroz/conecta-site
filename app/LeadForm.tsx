@@ -47,7 +47,11 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
     const selectedPlan = plans.find((item) => item.value === plan) || plans[0];
     const city = cityName || "Não informada";
     const params = new URLSearchParams(window.location.search);
-    const eventId = trackMetaLead({ content_name: "formulario_planos_sky", content_category: "tv_por_assinatura", city, plan, value: selectedPlan.price, currency: "BRL" });
+    const formConsentGranted = form.get("consent") === "on";
+    const eventId = trackMetaLead(
+      { content_name: "formulario_planos_sky", content_category: "tv_por_assinatura", city, plan, value: selectedPlan.price, currency: "BRL" },
+      { formConsentGranted }
+    );
     const payload = {
       name,
       phone: phoneValue,
@@ -64,7 +68,7 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
       fbclid: params.get("fbclid") || "",
       page_url: window.location.href,
       event_id: eventId || "",
-      consent: form.get("consent") === "on",
+      consent: formConsentGranted,
       website: String(form.get("website") || ""),
     };
     const message = [
@@ -133,7 +137,7 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
           </div>
           <label className="lead-privacy lead-field-wide">
             <input name="consent" type="checkbox" required />
-            <span>Concordo com o uso dos dados para receber atendimento, conforme a <Link href="/politica-de-privacidade">Política de Privacidade</Link>.</span>
+            <span>Concordo com o uso dos dados para receber atendimento e medir o resultado desta campanha, conforme a <Link href="/politica-de-privacidade">Política de Privacidade</Link>.</span>
           </label>
           <button className="lead-submit lead-field-wide" type="submit" disabled={submissionState === "sending"}>RECEBER OFERTA NO WHATSAPP <b aria-hidden="true">→</b></button>
           <p className="lead-status lead-field-wide" aria-live="polite">{statusMessage}</p>
