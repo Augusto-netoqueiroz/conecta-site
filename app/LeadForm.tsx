@@ -3,9 +3,9 @@
 import { FormEvent, useState } from "react";
 import Link from "next/link";
 import { trackMetaLead } from "./metaTracking";
+import { campaignFields, sendSheetRecord } from "./campaignTracking";
 
 const phone = "5561981954746";
-const leadsEndpoint = "https://script.google.com/macros/s/AKfycbwto-bYDfnRrCQgwENBrrcjucmqs9RcJQhmLZA8fMKconYmwlwm2_LogOQSHSVVcRRL/exec";
 const plans = [
   { value: "Ainda não escolhi", label: "Ainda não escolhi", price: 0 },
   { value: "POP HD", label: "POP HD — R$ 69,90/mês", price: 69.9 },
@@ -46,11 +46,11 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
     const plan = String(form.get("plan") || "Ainda não escolhi");
     const selectedPlan = plans.find((item) => item.value === plan) || plans[0];
     const city = cityName || "Não informada";
-    const params = new URLSearchParams(window.location.search);
     const formConsentGranted = form.get("consent") === "on";
+    const attribution = campaignFields();
     const eventId = trackMetaLead(
       { content_name: "formulario_planos_sky", content_category: "tv_por_assinatura", city, plan, value: selectedPlan.price, currency: "BRL" },
-      { formConsentGranted }
+      { formConsentGranted, userData: { name, phone: phoneValue, city, zip: cepValue } }
     );
     const payload = {
       name,
@@ -59,16 +59,21 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
       city,
       plan,
       price: selectedPlan.price,
-      source: params.get("utm_source") || (params.get("fbclid") ? "Meta Ads" : "Site"),
-      utm_source: params.get("utm_source") || "",
-      utm_medium: params.get("utm_medium") || "",
-      utm_campaign: params.get("utm_campaign") || "",
-      utm_content: params.get("utm_content") || "",
-      utm_term: params.get("utm_term") || "",
-      fbclid: params.get("fbclid") || "",
+      source: attribution?.source || "Site",
+      utm_source: attribution?.utm_source || "",
+      utm_medium: attribution?.utm_medium || "",
+      utm_campaign: attribution?.utm_campaign || "",
+      utm_content: attribution?.utm_content || "",
+      utm_term: attribution?.utm_term || "",
+      fbclid: attribution?.fbclid || "",
+      landing_page_url: attribution?.landing_page_url || window.location.href,
+      referrer: attribution?.referrer || document.referrer,
+      visit_id: attribution?.visit_id || "",
       page_url: window.location.href,
       event_id: eventId || "",
       consent: formConsentGranted,
+      status: "LEAD_FORMULARIO",
+      observations: "Formulário preenchido e WhatsApp aberto.",
       website: String(form.get("website") || ""),
     };
     const message = [
@@ -81,13 +86,9 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
     ].join("\n");
 
     setSubmissionState("sending");
-    void fetch(leadsEndpoint, {
-      method: "POST",
-      mode: "no-cors",
-      keepalive: true,
-      headers: { "Content-Type": "text/plain;charset=UTF-8" },
-      body: JSON.stringify(payload),
-    }).then(() => setSubmissionState("sent")).catch(() => setSubmissionState("error"));
+    void sendSheetRecord(payload)
+      .then(() => setSubmissionState("sent"))
+      .catch(() => setSubmissionState("error"));
     window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   }
 

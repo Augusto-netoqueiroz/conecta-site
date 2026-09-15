@@ -144,19 +144,26 @@ function SeoPlanCard({
           <small>{plan.promo}</small>
         </div>
 
-        <a
-  className="plan-main-cta"
-  href={wa(
-    `Olá, quero consultar a oferta do plano SKY ${plan.name} para o meu CEP.`
-  )}
-  aria-label={`Consultar o plano ${plan.name} pelo WhatsApp`}
->
-  CONSULTAR PLANO
-</a>
+        <TrackedLink
+          className="plan-main-cta"
+          href={wa(`Olá, quero consultar a oferta do plano SKY ${plan.name} para o meu CEP.`)}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`Consultar o plano ${plan.name} pelo WhatsApp`}
+          eventName="click_plan"
+          eventData={{ plan: plan.name, placement: "seo_plan_card" }}
+        >
+          CONSULTAR PLANO
+        </TrackedLink>
 {heroOffer && (
-  <Link className="seo-more-plans" href="/#planos">
+  <TrackedLink
+    className="seo-more-plans"
+    href="/#planos"
+    eventName="click_view_plans"
+    eventData={{ placement: "seo_plan_card" }}
+  >
     CONSULTAR MAIS PLANOS
-  </Link>
+  </TrackedLink>
 )}
       </div>
     </article>

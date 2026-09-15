@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Analytics from "./Analytics";
+import CampaignTracker from "./CampaignTracker";
 import CookieConsent from "./CookieConsent";
 import MetaPixel from "./MetaPixel";
 import "./globals.css";
@@ -70,6 +71,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.webmanifest" />
       </head>
       <body>
+        <CampaignTracker />
         <MetaPixel />
         <Analytics />
         {children}

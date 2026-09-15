@@ -191,7 +191,13 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
             <h1>{page.title}</h1>
             <p>{page.intro}</p>
             <div className="seo-hero-actions">
-              <a href={`#${page.anchor}`}>{page.actionLabel}</a>
+              <TrackedLink
+                href={`#${page.anchor}`}
+                eventName="click_view_plans"
+                eventData={{ placement: "seo_hero", page: page.slug }}
+              >
+                {page.actionLabel}
+              </TrackedLink>
               <TrackedLink
                 href={wa(page.whatsappMessage)}
                 target="_blank"

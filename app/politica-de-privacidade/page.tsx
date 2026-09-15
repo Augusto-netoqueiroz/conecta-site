@@ -14,10 +14,10 @@ export default function PrivacyPage() {
       <article className="legal-content">
         <p className="legal-kicker">PRIVACIDADE E LGPD</p>
         <h1>Política de privacidade</h1>
-        <p className="legal-date">Última atualização: 20 de agosto de 2026.</p>
+        <p className="legal-date">Última atualização: 15 de setembro de 2026.</p>
         <p>A Contrate TV respeita sua privacidade. Esta política explica quais dados podem ser tratados quando você navega no site ou inicia um atendimento pelo WhatsApp.</p>
         <h2>1. Dados tratados</h2>
-        <p>O site pode registrar informações técnicas básicas de navegação, como endereço IP, tipo de dispositivo, navegador, páginas acessadas e eventos de desempenho. Ao enviar o formulário, nome, telefone, CEP, plano de interesse e identificadores da campanha são registrados em uma planilha de atendimento com acesso controlado. O WhatsApp é aberto em seguida para você confirmar a mensagem.</p>
+        <p>Quando o acesso vier de um anúncio, o site registra a origem da campanha, a página acessada e interações com os botões de planos, telefone e WhatsApp, mesmo que o formulário não seja preenchido. Nesse registro inicial não são coletados nome, telefone ou CEP. Ao enviar o formulário, nome, telefone, CEP, plano de interesse e identificadores da campanha são registrados em uma planilha de atendimento com acesso controlado. O WhatsApp é aberto em seguida para você confirmar a mensagem.</p>
         <h2>2. Finalidades</h2>
         <p>Os dados são usados para manter o site seguro, medir seu funcionamento quando houver consentimento, responder solicitações, consultar disponibilidade regional e auxiliar na contratação do serviço solicitado.</p>
         <h2>3. Cookies e consentimento</h2>

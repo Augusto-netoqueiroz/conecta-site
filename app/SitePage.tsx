@@ -223,7 +223,13 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
               <h1 id="city-local-title">{cityData.heading}</h1>
               <p>{cityData.intro}</p>
               <div className="city-local-actions">
-                <a href="#planos">VER PLANOS</a>
+                <TrackedLink
+                  href="#planos"
+                  eventName="click_view_plans"
+                  eventData={{ placement: "city_intro", city: cityData.name }}
+                >
+                  VER PLANOS
+                </TrackedLink>
                 <TrackedLink
                   href={wa(`Olá, quero consultar os planos SKY em ${cityData.name} para o meu CEP.`)}
                   target="_blank"

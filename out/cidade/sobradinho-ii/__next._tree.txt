@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/07xbiwwh58.t_.css","style"]
-:HL["/_next/static/chunks/134cfdhc..t98.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sobradinho-ii","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"duOZdp08cyOmHur8R18bM"}
+:HL["/_next/static/chunks/0ihcywbf1h7j0.css","style"]
+:HL["/_next/static/chunks/00akvsljyjcvc.css","style"]
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"sobradinho-ii","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"ZLEqKyKd1DU0NaCglsaUa"}

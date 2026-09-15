@@ -1,4 +1,5 @@
 import { trackMetaContact } from "./metaTracking";
+import { trackCampaignAction } from "./campaignTracking";
 
 type TrackingData = Record<
   string,
@@ -24,6 +25,8 @@ export function trackEvent(
     event: eventName,
     ...data,
   });
+
+  trackCampaignAction(eventName, data);
 
   if (eventName === "click_phone") {
     trackMetaContact({ ...data, channel: "phone" });
