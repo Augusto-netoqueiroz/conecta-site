@@ -163,8 +163,11 @@ if ($response === false || $curlError !== '') {
 $metaResponse = json_decode((string) $response, true);
 if ($status < 200 || $status >= 300) {
     $message = is_array($metaResponse) ? (string) ($metaResponse['error']['message'] ?? 'unknown_meta_error') : 'unknown_meta_error';
-    error_log('[META_CAPI] meta_error status=' . $status . ' message=' . $message);
-    respond(502, ['ok' => false, 'error' => 'meta_api_error']);
+    $code = is_array($metaResponse) ? (int) ($metaResponse['error']['code'] ?? 0) : 0;
+    $subcode = is_array($metaResponse) ? (int) ($metaResponse['error']['error_subcode'] ?? 0) : 0;
+    $traceId = is_array($metaResponse) ? (string) ($metaResponse['error']['fbtrace_id'] ?? '') : '';
+    error_log('[META_CAPI] meta_error event_id=' . $eventId . ' status=' . $status . ' code=' . $code . ' subcode=' . $subcode . ' trace_id=' . $traceId . ' message=' . $message);
+    respond(502, ['ok' => false, 'error' => 'meta_api_error', 'event_id' => $eventId, 'meta_status' => $status, 'meta_code' => $code, 'meta_subcode' => $subcode, 'meta_message' => $message]);
 }
 
 respond(200, [
@@ -172,4 +175,5 @@ respond(200, [
     'event_name' => $eventName,
     'event_id' => $eventId,
     'events_received' => (int) ($metaResponse['events_received'] ?? 0),
+    'test_mode' => $testEventCode !== '',
 ]);
