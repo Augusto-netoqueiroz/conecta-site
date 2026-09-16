@@ -1,4 +1,4 @@
-import { trackMetaContact } from "./metaTracking";
+import { trackMetaContact, trackMetaLead } from "./metaTracking";
 import { trackCampaignAction } from "./campaignTracking";
 
 type TrackingData = Record<
@@ -26,16 +26,20 @@ export function trackEvent(
     ...data,
   });
 
-  trackCampaignAction(eventName, data);
+  let eventId: string | undefined;
 
   if (eventName === "click_phone") {
-    trackMetaContact({ ...data, channel: "phone" });
+    eventId = trackMetaContact({ ...data, channel: "phone" });
   }
 
-  // Os CTAs dos cards de planos (click_plan) são rastreados por regras
-  // nativas do Pixel, configuradas pelo texto dos botões. Mantemos aqui
-  // apenas os demais links de WhatsApp para evitar dupla contagem.
-  if (eventName === "click_whatsapp") {
-    trackMetaContact({ ...data, channel: "whatsapp" });
+  if (eventName === "click_whatsapp" || eventName === "click_plan") {
+    eventId = trackMetaLead({
+      ...data,
+      content_name: "atendimento_whatsapp",
+      content_category: "tv_por_assinatura",
+      conversion_method: "whatsapp",
+    });
   }
+
+  trackCampaignAction(eventName, data, eventId);
 }

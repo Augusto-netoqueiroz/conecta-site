@@ -130,11 +130,12 @@ export function initializeCampaignTracking() {
     ...basePayload(attribution, visitId()),
     status: "VISITA_ANUNCIO",
     observations: "Visitante chegou ao site por anúncio.",
-  }).catch(() => {});
-  sessionStorage.setItem(visitSentKey, "1");
+  })
+    .then(() => sessionStorage.setItem(visitSentKey, "1"))
+    .catch(() => {});
 }
 
-export function trackCampaignAction(eventName: string, data: TrackingData = {}) {
+export function trackCampaignAction(eventName: string, data: TrackingData = {}, eventId = createId()) {
   const attribution = getCampaignAttribution();
   if (!attribution) return;
 
@@ -147,7 +148,7 @@ export function trackCampaignAction(eventName: string, data: TrackingData = {}) 
         : `CLIQUE_${eventName.toUpperCase()}`;
 
   void sendSheetRecord({
-    ...basePayload(attribution, createId()),
+    ...basePayload(attribution, eventId),
     plan: data.plan || "",
     city: data.city || "Não informada",
     status,
