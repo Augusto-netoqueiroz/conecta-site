@@ -38,6 +38,7 @@ export function trackEvent(
       content_name: "atendimento_whatsapp",
       content_category: "tv_por_assinatura",
       conversion_method: "whatsapp",
+      lead_status: "CLIQUE_WHATSAPP",
     });
   }
 

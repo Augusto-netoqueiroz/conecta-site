@@ -1,9 +1,14 @@
-import { META_CONSENT_KEY } from "./metaTracking";
+import {
+  hasMetaConsent,
+  META_CONSENT_KEY,
+  trackMetaLead,
+} from "./metaTracking";
 
 const leadsEndpoint = "https://script.google.com/macros/s/AKfycbxeZvHxK-m1EXI3MwjfsuPhVAyGiAwt6a0_4J_LQs20xjFzTNrvtP-kW1xGPzriDAXt/exec";
 const attributionKey = "planos-sky-campaign-attribution";
 const visitIdKey = "planos-sky-campaign-visit-id";
 const visitSentKey = "planos-sky-campaign-visit-sent";
+const visitMetaSentKey = "planos-sky-campaign-visit-meta-sent";
 
 type CampaignData = {
   source: string;
@@ -79,6 +84,7 @@ export function getCampaignAttribution() {
     if (!stored || changedCampaign) {
       sessionStorage.setItem(visitIdKey, createId());
       sessionStorage.removeItem(visitSentKey);
+      sessionStorage.removeItem(visitMetaSentKey);
     }
     return current;
   }
@@ -124,15 +130,38 @@ function basePayload(attribution: CampaignData, eventId: string) {
 
 export function initializeCampaignTracking() {
   const attribution = getCampaignAttribution();
-  if (!attribution || sessionStorage.getItem(visitSentKey) === "1") return;
+  if (!attribution) return;
 
-  void sendSheetRecord({
-    ...basePayload(attribution, visitId()),
-    status: "VISITA_ANUNCIO",
-    observations: "Visitante chegou ao site por anúncio.",
-  })
-    .then(() => sessionStorage.setItem(visitSentKey, "1"))
-    .catch(() => {});
+  const eventId = visitId();
+
+  if (sessionStorage.getItem(visitSentKey) !== "1") {
+    void sendSheetRecord({
+      ...basePayload(attribution, eventId),
+      status: "VISITA_ANUNCIO",
+      observations: "Visitante chegou ao site por anúncio.",
+    })
+      .then(() => sessionStorage.setItem(visitSentKey, "1"))
+      .catch(() => {});
+  }
+
+  if (hasMetaConsent() && sessionStorage.getItem(visitMetaSentKey) !== "1") {
+    trackMetaLead(
+      {
+        content_name: "visita_anuncio",
+        content_category: "tv_por_assinatura",
+        conversion_method: "campaign_visit",
+        lead_status: "VISITA_ANUNCIO",
+        source: attribution.source,
+        utm_source: attribution.utm_source,
+        utm_medium: attribution.utm_medium,
+        utm_campaign: attribution.utm_campaign,
+        utm_content: attribution.utm_content,
+        utm_term: attribution.utm_term,
+      },
+      { eventId }
+    );
+    sessionStorage.setItem(visitMetaSentKey, "1");
+  }
 }
 
 export function trackCampaignAction(eventName: string, data: TrackingData = {}, eventId = createId()) {

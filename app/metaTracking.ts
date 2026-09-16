@@ -32,7 +32,7 @@ declare global {
 let initialized = false;
 let pageViewSent = false;
 
-function hasConsent() {
+export function hasMetaConsent() {
   return (
     typeof window !== "undefined" &&
     window.localStorage.getItem(META_CONSENT_KEY) === "accepted"
@@ -162,7 +162,7 @@ function loadPixel() {
 }
 
 export function initializeMetaPixel() {
-  if (!hasConsent()) return;
+  if (!hasMetaConsent()) return;
 
   const fbq = loadPixel();
   if (pageViewSent) return;
@@ -179,7 +179,7 @@ export function revokeMetaConsent() {
 
 export function trackMetaContact(data: MetaEventData = {}) {
   const eventId = createEventId();
-  if (!hasConsent()) return eventId;
+  if (!hasMetaConsent()) return eventId;
 
   const fbq = loadPixel();
   const customData = Object.fromEntries(
@@ -193,10 +193,14 @@ export function trackMetaContact(data: MetaEventData = {}) {
 
 export function trackMetaLead(
   data: MetaEventData = {},
-  options: { formConsentGranted?: boolean; userData?: MetaUserData } = {}
+  options: {
+    eventId?: string;
+    formConsentGranted?: boolean;
+    userData?: MetaUserData;
+  } = {}
 ) {
-  const eventId = createEventId();
-  if (!hasConsent() && !options.formConsentGranted) return eventId;
+  const eventId = options.eventId || createEventId();
+  if (!hasMetaConsent() && !options.formConsentGranted) return eventId;
 
   const fbq = loadPixel();
   const customData = Object.fromEntries(
