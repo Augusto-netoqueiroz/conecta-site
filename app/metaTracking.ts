@@ -1,5 +1,6 @@
 export const META_PIXEL_ID = "1382311347429828";
 export const META_CONSENT_KEY = "contrate-tv-cookie-consent-20260901";
+const META_FBC_STORAGE_KEY = "planos-sky-meta-fbc";
 
 type MetaEventData = Record<
   string,
@@ -52,14 +53,44 @@ function getCookie(name: string) {
     .split(";")
     .map((value) => value.trim())
     .find((value) => value.startsWith(prefix));
-  return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : undefined;
+  // _fbp and _fbc must be sent to Meta exactly as stored in the cookie.
+  return cookie ? cookie.slice(prefix.length) : undefined;
 }
 
 function getFbc() {
   const cookie = getCookie("_fbc");
-  if (cookie) return cookie;
   const fbclid = new URLSearchParams(window.location.search).get("fbclid");
-  return fbclid ? `fb.1.${Date.now()}.${fbclid}` : undefined;
+
+  if (!fbclid) return cookie;
+
+  // A new ad click takes precedence over an _fbc left by an older visit.
+  // Reuse the value for the whole visit instead of creating a new timestamp
+  // on every event, which makes Meta consider the fbclid modified.
+  if (cookie?.endsWith(`.${fbclid}`)) return cookie;
+
+  try {
+    const stored = window.sessionStorage.getItem(META_FBC_STORAGE_KEY);
+    if (stored) {
+      const value = JSON.parse(stored) as { fbclid?: string; fbc?: string };
+      if (value.fbclid === fbclid && value.fbc) return value.fbc;
+    }
+  } catch {
+    // Storage may be unavailable in restricted browsing modes.
+  }
+
+  const fbc = `fb.1.${Date.now()}.${fbclid}`;
+
+  try {
+    window.sessionStorage.setItem(
+      META_FBC_STORAGE_KEY,
+      JSON.stringify({ fbclid, fbc })
+    );
+  } catch {
+    // The cookie below still keeps the value stable when storage is blocked.
+  }
+
+  document.cookie = `_fbc=${fbc}; Max-Age=7776000; Path=/; SameSite=Lax; Secure`;
+  return fbc;
 }
 
 function getExternalId() {
