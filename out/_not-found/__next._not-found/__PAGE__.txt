@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+2:I[85127,["/_next/static/chunks/0il9gmeufgfsw.js","/_next/static/chunks/0zh~n5t2al5wp.js"],""]
+3:I[178,["/_next/static/chunks/0il9gmeufgfsw.js","/_next/static/chunks/0zh~n5t2al5wp.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"rsc":["$","$1","c",{"children":[["$","main",null,{"className":"error-page","children":[["$","span",null,{"children":"ERRO 404"}],["$","h1",null,{"children":"Essa página não está disponível."}],["$","p",null,{"children":"O endereço pode ter mudado ou não existir. Volte para conhecer os planos SKY disponíveis."}],["$","$L2",null,{"href":"/","children":"Voltar para o início →"}]]}],null,["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"T5HNtWIwEp90P5SxfRr2p"}
+5:null

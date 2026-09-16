@@ -11,11 +11,7 @@ import { plans } from "./planData";
 import { cities, type City } from "./cities";
 import { seoPages } from "./seoPages";
 
-const phone = "5561981954746";
 const siteUrl = "https://planostvsky.com.br";
-
-const wa = (message: string) =>
-  `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
 const channelLogos = [
   ["/img/campaign/logo-premiere.png", "Premiere"],
@@ -112,6 +108,10 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
   const structuredData = createStructuredData(cityName, citySlug, cityData, pagePath);
   const citySuffix = cityName ? ` em ${cityName}` : "";
   const cepContext = cityName ? ` em ${cityName}` : " para o meu CEP";
+  const whatsappPhone = customizablePlans ? "5561982254730" : "5561981954746";
+  const whatsappDisplay = customizablePlans ? "(61) 98225-4730" : "(61) 98195-4746";
+  const wa = (message: string) =>
+    `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
@@ -141,7 +141,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
     <div className="header-actions">
       <TrackedLink
         className="call-header-cta"
-        href={`tel:+${phone}`}
+        href={`tel:08003631234`}
         eventName="click_phone"
         eventData={{
           placement: "header",
@@ -333,7 +333,8 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
                       eventName="click_plan"
                       eventData={{ plan: plan.name, city: cityName || "geral", placement: "plan_whatsapp" }}
                     >
-                      <span>☏</span> ASSINAR POR WHATSAPP
+                      <Image className="plan-whatsapp-icon" src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
+                      <span>ENVIAR MEU PLANO PELO WHATSAPP</span>
                     </TrackedLink>
                   </div>
                 </article>
@@ -410,7 +411,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
                 {cityData.localFacts.map((fact) => <li key={fact}>{fact}</li>)}
               </ul>
             </div>
-          </div>
+          </div>configura
         </section>
       )}
       <section className="reference-faq" id="duvidas"><div className="container faq-layout"><div><span>DÚVIDAS FREQUENTES</span><h2>Antes de assinar</h2><p>Se precisar de ajuda, fale diretamente com nosso atendimento autorizado.</p></div><div className="faq-list">{pageFaq.map((item, index) => <details open={index === 0} key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
@@ -431,7 +432,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
         eventName="click_whatsapp"
         eventData={{ placement: "footer", city: cityName || "geral" }}
       >
-        WhatsApp: (61) 98195-4746
+        WhatsApp: {whatsappDisplay}
       </TrackedLink><span>Atendimento para todo o Brasil</span>
       <div className="footer-social">
   <span>Siga-nos</span>

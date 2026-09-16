@@ -6,7 +6,7 @@ import TrackedLink from "./TrackedLink";
 import { plans } from "./planData";
 import styles from "./PlanCustomizer.module.css";
 
-const phone="5561981954746";
+const phone="5561982254730";
 const alaCarteBase="/img/CANAIS%20A%20LA%20CARTE";
 
 type OptionalConfig={id:string;name:string;promoPrice:number;regularPrice:number;image:string;detail?:string};
@@ -295,7 +295,14 @@ function CustomPlanCard({plan}:{plan:CustomPlan}){
           eventName="click_plan"
           eventData={{plan:plan.name,placement:"custom_plan_whatsapp",points}}
         >
-          <span>☏</span> ASSINAR CONFIGURAÇÃO NO WHATSAPP
+          <Image
+  src="/img/whatsapp-icon.webp"
+  alt=""
+  width={18}
+  height={18}
+  unoptimized
+/>
+<span>ENVIAR MEU PLANO PELO WHATSAPP</span>
         </TrackedLink>
       </div>
     </article>

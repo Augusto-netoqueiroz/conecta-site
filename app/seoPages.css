@@ -283,3 +283,19 @@
   .seo-pop-offer-wrap .plan-logo-item img{height:58px;max-width:94px}
   .seo-pop-offer-wrap .plan-channel-icons img{height:32px;max-width:54px}
 }
+.seo-detail .seo-hero-actions a:last-child,
+.seo-detail .seo-bottom-contact>a,
+.seo-detail .seo-footer-row a[href*="wa.me"]{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px
+}
+.seo-detail .seo-hero-actions a:last-child img,
+.seo-detail .seo-bottom-contact>a img,
+.seo-detail .seo-footer-row a[href*="wa.me"] img{
+  width:18px;
+  height:18px;
+  flex:0 0 18px;
+  object-fit:contain
+}
