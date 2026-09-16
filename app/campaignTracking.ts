@@ -1,6 +1,6 @@
 import { META_CONSENT_KEY } from "./metaTracking";
 
-const leadsEndpoint = "https://script.google.com/macros/s/AKfycbwto-bYDfnRrCQgwENBrrcjucmqs9RcJQhmLZA8fMKconYmwlwm2_LogOQSHSVVcRRL/exec";
+const leadsEndpoint = "https://script.google.com/macros/s/AKfycbxeZvHxK-m1EXI3MwjfsuPhVAyGiAwt6a0_4J_LQs20xjFzTNrvtP-kW1xGPzriDAXt/exec";
 const attributionKey = "planos-sky-campaign-attribution";
 const visitIdKey = "planos-sky-campaign-visit-id";
 const visitSentKey = "planos-sky-campaign-visit-sent";
