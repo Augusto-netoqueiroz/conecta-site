@@ -15,7 +15,7 @@ img{display:block;max-width:100%}
 .consult-price small{color:#85878d;font-size:8px}
 .plan-main-cta{min-height:45px;display:grid;place-items:center;border-radius:4px;background:var(--red);color:#fff;font-size:10px;font-weight:900}
 .plan-main-cta:hover{background:var(--red-dark)}
-.plan-whatsapp span{font-size:16px}
+.plan-whatsapp-icon{width:18px;height:18px;object-fit:contain;flex:0 0 auto}
 .offer-disclaimer{margin:17px 0 0;color:#8a8d93;font-size:9px;text-align:center}
 .included-row>div:last-child{border-right:0}
 .streaming-layout{display:grid;grid-template-columns:43% 57%;align-items:center;gap:65px}

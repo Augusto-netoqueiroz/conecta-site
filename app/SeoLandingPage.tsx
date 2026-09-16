@@ -140,7 +140,7 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
           <div className="header-actions">
             <TrackedLink
               className="call-header-cta"
-              href={`tel:+${phone}`}
+              href={`tel:08003631234`}
               eventName="click_phone"
               eventData={{
                 placement: "seo_header",
@@ -208,7 +208,8 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
                   page: page.slug,
                 }}
               >
-                Consultar com um atendente
+                <Image src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
+                <span>Consultar com um atendente</span>
               </TrackedLink>
             </div>
             <ul className="seo-highlights">
@@ -247,7 +248,8 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
             page: page.slug,
           }}
         >
-          Continuar pelo WhatsApp
+          <Image src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
+          <span>Continuar pelo WhatsApp</span>
         </TrackedLink>
       </section>
 
@@ -316,7 +318,8 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
                 page: page.slug,
               }}
             >
-              WhatsApp: (61) 98195-4746
+              <Image src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
+              <span>WhatsApp: (61) 98195-4746</span>
             </TrackedLink>
           </div>
 
