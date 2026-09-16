@@ -49,7 +49,7 @@ export default function LeadForm({ cityName }: { cityName?: string }) {
     const formConsentGranted = form.get("consent") === "on";
     const attribution = campaignFields();
     const eventId = trackMetaLead(
-      { content_name: "formulario_planos_sky", content_category: "tv_por_assinatura", city, plan, value: selectedPlan.price, currency: "BRL" },
+      { content_name: "formulario_planos_sky", content_category: "tv_por_assinatura", conversion_method: "form", lead_status: "LEAD_FORMULARIO", city, plan, value: selectedPlan.price, currency: "BRL" },
       { formConsentGranted, userData: { name, phone: phoneValue, city, zip: cepValue } }
     );
     const payload = {
