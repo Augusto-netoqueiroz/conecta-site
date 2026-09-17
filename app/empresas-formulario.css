@@ -1,0 +1,41 @@
+.empresas-card-actions{margin-top:auto;display:flex;flex-direction:column;gap:9px}
+.empresas-card-actions .empresas-build-plan-button,.empresas-card-actions>a{width:100%}
+.empresas-card-actions>a{min-height:44px;display:flex;align-items:center;justify-content:center;gap:8px;padding:0 14px;border:1px solid #0b6b38;border-radius:999px;background:#fff;color:#08582f;font-size:9px;font-weight:900}
+.empresas-card-actions>a:hover{background:#0b6b38;color:#fff;transform:translateY(-1px)}
+.empresas-card-actions>a img{width:18px;height:18px;object-fit:contain}
+.empresas-build-plan-button{min-height:44px;border:0;border-radius:999px;background:var(--sky-gradient);color:#fff;font:inherit;font-size:9px;font-weight:900;cursor:pointer;box-shadow:0 8px 20px rgba(176,5,13,.16);transition:transform 180ms ease,background 180ms ease}
+.empresas-build-plan-button:hover{transform:translateY(-1px);background:var(--sky-red-dark)}
+.empresas-form-overlay{position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(18,20,24,.72);overflow:auto;overscroll-behavior:contain}
+.empresas-form-modal{position:relative;width:min(720px,calc(100vw - 48px));max-height:calc(100dvh - 48px);overflow-y:auto;overscroll-behavior:contain;border:1px solid rgba(206,6,18,.12);border-radius:26px;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.28)}
+.empresas-form-close{position:absolute;top:16px;right:16px;z-index:2;width:38px;height:38px;display:grid;place-items:center;border:1px solid var(--sky-border);border-radius:50%;background:#fff;color:var(--sky-ink);font-size:24px;line-height:1;cursor:pointer}
+.empresas-form-close:hover{border-color:rgba(206,6,18,.3);color:var(--sky-red)}
+.empresas-form-brand{display:flex;align-items:center;gap:10px;padding:25px 28px 0}
+.empresas-form-brand img{width:62px;height:auto;object-fit:contain}
+.empresas-form-brand span{padding:5px 9px;border-radius:999px;background:var(--sky-gradient-soft);color:var(--sky-red-light);font-size:9px;font-weight:900;letter-spacing:.12em}
+.empresas-form-heading{padding:18px 28px 0}
+.empresas-form-heading>span{color:var(--sky-red-light);font-size:9px;font-weight:900;letter-spacing:.15em}
+.empresas-form-heading h2{margin:8px 0;font-size:30px;line-height:1.08;letter-spacing:-.04em}
+.empresas-form-heading p{margin:0;color:var(--sky-muted);font-size:12px;line-height:1.6}
+.empresas-lead-form{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:24px 28px 30px}
+.empresas-lead-form label{display:flex;flex-direction:column;gap:6px}
+.empresas-lead-form label>span{font-size:10px;font-weight:800;color:var(--sky-ink)}
+.empresas-lead-form input,.empresas-lead-form select{box-sizing:border-box;width:100%;min-height:48px;padding:0 14px;border:1px solid #d9dce2;border-radius:12px;background:#fff;color:var(--sky-ink);font:inherit;font-size:13px;outline:none;transition:border-color 160ms ease,box-shadow 160ms ease}
+.empresas-lead-form input:focus,.empresas-lead-form select:focus{border-color:rgba(206,6,18,.55);box-shadow:0 0 0 3px rgba(206,6,18,.08)}
+.empresas-lead-form input[readonly]{background:#f6f7f8;color:#5d636c}
+.empresas-form-full{grid-column:1/-1}
+.empresas-form-submit{grid-column:1/-1;min-height:52px;margin-top:4px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:999px;background:#0b6b38;color:#fff;font:inherit;font-size:10px;font-weight:900;cursor:pointer;box-shadow:0 9px 22px rgba(11,107,56,.2);transition:transform 180ms ease,background 180ms ease}
+.empresas-form-submit:hover{transform:translateY(-1px);background:#08582f}
+.empresas-form-submit img{width:20px;height:20px;object-fit:contain}
+@media(max-width:680px){
+  .empresas-build-plan-button,.empresas-card-actions>a{min-height:46px}
+  .empresas-form-overlay{align-items:flex-end;padding:0}
+  .empresas-form-modal{width:100%;max-width:none;max-height:94dvh;border-radius:24px 24px 0 0;border-bottom:0}
+  .empresas-form-close{top:14px;right:14px}
+  .empresas-form-brand{padding:22px 20px 0}
+  .empresas-form-heading{padding:16px 20px 0}
+  .empresas-form-heading h2{padding-right:34px;font-size:27px}
+  .empresas-lead-form{grid-template-columns:1fr;gap:12px;padding:20px 20px 28px}
+  .empresas-form-full,.empresas-form-submit{grid-column:1}
+  .empresas-lead-form input,.empresas-lead-form select{min-height:50px;font-size:14px}
+  .empresas-form-submit{min-height:54px}
+}
