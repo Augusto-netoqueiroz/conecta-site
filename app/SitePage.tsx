@@ -32,7 +32,15 @@ const faqItems = [
   { question: "O SKY+ está incluso?", answer: "O benefício varia de acordo com o plano contratado. A equipe confirma os acessos incluídos na oferta escolhida." },
   { question: "Este é o site oficial da SKY?", answer: "Não. Este é um canal de parceiro autorizado para comercialização de planos SKY." },
 ];
-type SitePageProps = { cityName?: string; citySlug?: string; cityData?: City; customizablePlans?: boolean; pagePath?: string };
+type SitePageProps = {
+  cityName?: string;
+  citySlug?: string;
+  cityData?: City;
+  customizablePlans?: boolean;
+  pagePath?: string;
+  whatsappPhone?: string;
+  whatsappDisplay?: string;
+};
 function createStructuredData(cityName?: string, citySlug?: string, cityData?: City, pagePath?: string) {
   const pageUrl = citySlug ? `${siteUrl}/cidade/${citySlug}` : pagePath ? `${siteUrl}${pagePath}` : `${siteUrl}/`;
   const pageFaq = cityData ? [...cityData.faqs, ...faqItems] : faqItems;
@@ -103,15 +111,25 @@ function createStructuredData(cityName?: string, citySlug?: string, cityData?: C
     ],
   };
 }
-export default function SitePage({ cityName, citySlug, cityData, customizablePlans = false, pagePath }: SitePageProps) {
+export default function SitePage({
+  cityName,
+  citySlug,
+  cityData,
+  customizablePlans = false,
+  pagePath,
+  whatsappPhone,
+  whatsappDisplay,
+}: SitePageProps) {
   const pageFaq = cityData ? [...cityData.faqs, ...faqItems] : faqItems;
   const structuredData = createStructuredData(cityName, citySlug, cityData, pagePath);
   const citySuffix = cityName ? ` em ${cityName}` : "";
   const cepContext = cityName ? ` em ${cityName}` : " para o meu CEP";
-  const whatsappPhone = customizablePlans ? "5561982254730" : "5561981954746";
-  const whatsappDisplay = customizablePlans ? "(61) 98225-4730" : "(61) 98195-4746";
+  const resolvedWhatsappPhone =
+    whatsappPhone ?? (customizablePlans ? "5561982254730" : "5561981954746");
+  const resolvedWhatsappDisplay =
+    whatsappDisplay ?? (customizablePlans ? "(61) 98225-4730" : "(61) 98195-4746");
   const wa = (message: string) =>
-    `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
+    `https://wa.me/${resolvedWhatsappPhone}?text=${encodeURIComponent(message)}`;
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
@@ -214,7 +232,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
           eventData={{ placement: "hero_banner", city: cityName || "geral" }}
         />
       </section>
-      {!cityData && <LocationSuggestion />}
+      {!cityData && !customizablePlans && <LocationSuggestion />}
       {cityData && (
         <section className="city-local-intro" aria-labelledby="city-local-title">
           <div className="container city-local-card">
@@ -259,7 +277,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
             <p>{cityName ? `Compare os destaques e consulte as condições comerciais disponíveis em ${cityName}.` : "Compare os destaques e consulte as condições comerciais disponíveis para o seu endereço."}</p>
           </div>
           {customizablePlans ? (
-            <PlanCustomizer />
+            <PlanCustomizer phone={resolvedWhatsappPhone} />
           ) : (
             <div className="reference-plan-grid">
               {plans.map((plan, index) => (
@@ -411,7 +429,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
                 {cityData.localFacts.map((fact) => <li key={fact}>{fact}</li>)}
               </ul>
             </div>
-          </div>configura
+          </div>
         </section>
       )}
       <section className="reference-faq" id="duvidas"><div className="container faq-layout"><div><span>DÚVIDAS FREQUENTES</span><h2>Antes de assinar</h2><p>Se precisar de ajuda, fale diretamente com nosso atendimento autorizado.</p></div><div className="faq-list">{pageFaq.map((item, index) => <details open={index === 0} key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}</div></div></section>
@@ -432,7 +450,7 @@ export default function SitePage({ cityName, citySlug, cityData, customizablePla
         eventName="click_whatsapp"
         eventData={{ placement: "footer", city: cityName || "geral" }}
       >
-        WhatsApp: {whatsappDisplay}
+        WhatsApp: {resolvedWhatsappDisplay}
       </TrackedLink><span>Atendimento para todo o Brasil</span>
       <div className="footer-social">
   <span>Siga-nos</span>

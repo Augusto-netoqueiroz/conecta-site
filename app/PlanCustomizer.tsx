@@ -6,7 +6,6 @@ import TrackedLink from "./TrackedLink";
 import { plans } from "./planData";
 import styles from "./PlanCustomizer.module.css";
 
-const phone="5561982254730";
 const alaCarteBase="/img/CANAIS%20A%20LA%20CARTE";
 
 type OptionalConfig={id:string;name:string;promoPrice:number;regularPrice:number;image:string;detail?:string};
@@ -70,7 +69,7 @@ const customPlans:CustomPlan[]=[
 const currency=new Intl.NumberFormat("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
 const formatPrice=(value:number)=>currency.format(value);
 
-function buildWhatsAppMessage(plan:CustomPlan,points:number,selected:Set<OptionalId>,promo:number,regular:number){
+function buildWhatsAppMessage(phone:string,plan:CustomPlan,points:number,selected:Set<OptionalId>,promo:number,regular:number){
   const names=optionals.filter(item=>selected.has(item.id)).map(item=>item.name);
   const lines=[
     `Olá, tenho interesse no plano SKY ${plan.name}.`,
@@ -169,7 +168,7 @@ function AlaCarte({preview,included,selected,open,toggle,toggleOpen}:AlaCartePro
   </>;
 }
 
-function CustomPlanCard({plan}:{plan:CustomPlan}){
+function CustomPlanCard({plan,phone}:{plan:CustomPlan;phone:string}){
   const [points,setPoints]=useState(plan.fixedPoints??1);
   const [selected,setSelected]=useState<Set<OptionalId>>(new Set());
   const [open,setOpen]=useState(false);
@@ -215,7 +214,7 @@ function CustomPlanCard({plan}:{plan:CustomPlan}){
     />
   );
 
-  const whatsapp=buildWhatsAppMessage(plan,points,selected,promo,regular);
+  const whatsapp=buildWhatsAppMessage(phone,plan,points,selected,promo,regular);
 
   return(
     <article className={`reference-plan ${styles.customCard} ${plan.channelKey==="connect"?styles.connectCard:""}`}>
@@ -309,10 +308,10 @@ function CustomPlanCard({plan}:{plan:CustomPlan}){
   );
 }
 
-export default function PlanCustomizer(){
+export default function PlanCustomizer({phone="5561982254730"}:{phone?:string}){
   return(
     <div className={`reference-plan-grid ${styles.customGrid}`}>
-      {customPlans.map(plan=><CustomPlanCard key={plan.name} plan={plan}/>)}
+      {customPlans.map(plan=><CustomPlanCard key={plan.name} plan={plan} phone={phone}/>)}
     </div>
   );
 }
