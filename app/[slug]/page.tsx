@@ -7,11 +7,12 @@ const siteUrl = "https://planostvsky.com.br";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return seoPages.map((page) => ({ slug: page.slug }));
 }
 
-export const dynamicParams = false;
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;

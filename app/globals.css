@@ -396,3 +396,31 @@ main{width:100%;max-width:100%;overflow-x:hidden}
 .location-suggestion-actions a:hover,.location-suggestion-actions .location-suggestion-primary:hover{background:var(--sky-red-dark)}
 .location-suggestion-actions button:not(.location-suggestion-primary):hover{background:var(--sky-red-soft)}
 @media (max-width:680px){.location-suggestion{padding:12px 0 0}.location-suggestion-card{align-items:stretch;flex-direction:column;gap:14px;padding:16px;border-radius:16px}.location-suggestion-card strong{font-size:14px}.location-suggestion-card p{font-size:10px}.location-suggestion-actions{display:grid;grid-template-columns:1fr}.location-suggestion-actions a,.location-suggestion-actions button{width:100%}}
+.reference-plans {
+  scroll-margin-top: 82px;
+}
+
+.hero-banner-plans-scroll {
+  position: absolute;
+  z-index: 10;
+  left: 8.5%;
+  top: 53%;
+  width: 20.5%;
+  height: 12%;
+  display: block;
+  cursor: pointer;
+  background: transparent;
+}
+
+@media (max-width: 680px) {
+  .hero-banner-plans-scroll {
+    left: 19%;
+    top: 31.5%;
+    width: 42%;
+    height: 9%;
+  }
+
+  .reference-plans {
+    scroll-margin-top: 68px;
+  }
+}

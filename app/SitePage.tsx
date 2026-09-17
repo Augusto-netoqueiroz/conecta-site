@@ -133,6 +133,41 @@ export default function SitePage({
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }} />
+      <style>{`
+        html {
+          scroll-behavior: smooth;
+        }
+
+        .reference-plans {
+          scroll-margin-top: 80px;
+        }
+
+        .hero-banner-plans-scroll {
+          position: absolute;
+          z-index: 10;
+          left: 6.5%;
+          top: 54%;
+          width: 21%;
+          height: 13%;
+          display: block;
+          cursor: pointer;
+          background: transparent;
+        }
+
+        @media (max-width: 680px) {
+          .hero-banner-plans-scroll {
+            left: 8%;
+            top: 35%;
+            width: 42%;
+            height: 10%;
+          }
+
+          .reference-plans {
+            scroll-margin-top: 68px;
+          }
+        }
+      `}</style>
+
       <header className="commercial-header">
   <div className="container header-row">
     <a
@@ -207,14 +242,27 @@ export default function SitePage({
   </div>
 </header>
       <section className="offer-hero" id="inicio">
-        <picture>
+       <picture>
   <source
     media="(max-width: 680px)"
-    srcSet="/img/campaign/hero-sky-mobile-v2.webp"
+    srcSet={
+      customizablePlans
+        ? "/img/campaign/hero-mobile-planos.png"
+        : "/img/campaign/hero-sky-mobile-v2.webp"
+    }
   />
+
   <img
-    src="/img/campaign/hero-sky-desktop-v2.webp"
-    alt="Oferta SKY com Amazon Prime e Premiere"
+    src={
+      customizablePlans
+        ? "/img/campaign/hero-desktop-planos.png"
+        : "/img/campaign/hero-sky-desktop-v2.webp"
+    }
+    alt={
+      customizablePlans
+        ? "Monte seu plano SKY"
+        : "Oferta SKY com Amazon Prime e Premiere"
+    }
     width="1600"
     height="533"
     loading="eager"
@@ -222,15 +270,32 @@ export default function SitePage({
     decoding="async"
   />
 </picture>
-        <TrackedLink
-          className="hero-banner-whatsapp"
-          href={wa(`Olá, quero assinar SKY${citySuffix}.`)}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Assine agora pelo WhatsApp"
-          eventName="click_whatsapp"
-          eventData={{ placement: "hero_banner", city: cityName || "geral" }}
-        />
+
+        {customizablePlans ? (
+          <TrackedLink
+            className="hero-banner-plans-scroll"
+            href="#planos"
+            aria-label="Começar a montar meu plano"
+            eventName="click_view_plans"
+            eventData={{
+              placement: "hero_banner",
+              city: cityName || "geral",
+            }}
+          />
+        ) : (
+          <TrackedLink
+            className="hero-banner-whatsapp"
+            href={wa(`Olá, quero assinar SKY${citySuffix}.`)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Assine agora pelo WhatsApp"
+            eventName="click_whatsapp"
+            eventData={{
+              placement: "hero_banner",
+              city: cityName || "geral",
+            }}
+          />
+        )}
       </section>
       {!cityData && !customizablePlans && <LocationSuggestion />}
       {cityData && (

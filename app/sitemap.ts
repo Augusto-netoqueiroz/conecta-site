@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+
 import { cities } from "./cities";
 import { seoPages } from "./seoPages";
 
@@ -12,18 +13,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${siteUrl}/`, lastModified: updated, changeFrequency: "weekly", priority: 1 },
     { url: `${siteUrl}/planos/`, lastModified: new Date("2026-09-15T00:00:00-03:00"), changeFrequency: "weekly", priority: 0.95 },
+    { url: `${siteUrl}/empresas/`, lastModified: new Date("2026-09-17T00:00:00-03:00"), changeFrequency: "weekly", priority: 0.9 },
+
     ...cities.map((city) => ({
       url: `${siteUrl}/cidade/${city.slug}/`,
       lastModified: updated,
       changeFrequency: "weekly" as const,
       priority: 0.8,
     })),
+
     ...seoPages.map((page) => ({
       url: `${siteUrl}/${page.slug}/`,
       lastModified: new Date("2026-09-11T00:00:00-03:00"),
       changeFrequency: "weekly" as const,
       priority: 0.85,
     })),
+
     { url: `${siteUrl}/politica-de-privacidade/`, lastModified: updated, changeFrequency: "yearly", priority: 0.3 },
     { url: `${siteUrl}/termos-de-uso/`, lastModified: updated, changeFrequency: "yearly", priority: 0.3 },
   ];
