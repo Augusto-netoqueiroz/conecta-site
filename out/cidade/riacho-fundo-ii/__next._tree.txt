@@ -1,3 +1,3 @@
-:HL["/_next/static/chunks/14g4v8yr_-_tr.css","style"]
+:HL["/_next/static/chunks/0cad~0xc_fv.x.css","style"]
 :HL["/_next/static/chunks/00akvsljyjcvc.css","style"]
-0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"riacho-fundo-ii","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"vrhmeExzHTACpEItqLo6U"}
+0:{"tree":{"name":"","param":null,"prefetchHints":16,"slots":{"children":{"name":"cidade","param":null,"prefetchHints":0,"slots":{"children":{"name":"slug","param":{"type":"d","key":"riacho-fundo-ii","siblings":null},"prefetchHints":0,"slots":{"children":{"name":"__PAGE__","param":null,"prefetchHints":0,"slots":null}}}}}}},"staleTime":300,"buildId":"km0DazcWG85yK7eEjEYt3"}

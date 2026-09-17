@@ -29,15 +29,8 @@ declare global {
   }
 }
 
-let initialized = false;
+let pixelInitialized = false;
 let pageViewSent = false;
-
-export function hasMetaConsent() {
-  return (
-    typeof window !== "undefined" &&
-    window.localStorage.getItem(META_CONSENT_KEY) === "accepted"
-  );
-}
 
 function createEventId() {
   if (typeof crypto !== "undefined" && "randomUUID" in crypto) {
@@ -109,7 +102,7 @@ function sendServerEvent(
   customData: MetaEventData,
   userData: MetaUserData = {}
 ) {
-  void fetch("/api/meta-conversion.php", {
+  return fetch("/api/meta-conversion.php", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     credentials: "same-origin",
@@ -124,69 +117,79 @@ function sendServerEvent(
       custom_data: customData,
       user_data: userData,
     }),
-  }).catch(() => {
-    // A falha da CAPI não pode impedir a navegação ou o formulário.
-  });
+  })
+    .then(async (response) => {
+      const result = await response.json().catch(() => null);
+      const success = response.ok && result?.ok === true && result?.events_received > 0;
+      if (!success) console.error("[META_CAPI] Evento não confirmado.", { eventName, eventId, status: response.status, result });
+      return success;
+    })
+    .catch((error) => {
+      console.error("[META_CAPI] Falha de transporte.", { eventName, eventId, error: error instanceof Error ? error.message : String(error) });
+      return false;
+    });
 }
 
 function loadPixel() {
-  if (initialized && window.fbq) return window.fbq;
+  let fbq = window.fbq;
 
-  const existing = window.fbq;
-  if (existing) {
-    initialized = true;
-    return existing;
+  if (!fbq) {
+    fbq = ((...args: unknown[]) => {
+      if (fbq?.callMethod) fbq.callMethod(...args);
+      else fbq?.queue?.push(args);
+    }) as Fbq;
+
+    window.fbq = fbq;
+    window._fbq = fbq;
+    fbq.push = fbq;
+    fbq.loaded = true;
+    fbq.version = "2.0";
+    fbq.queue = [];
+
+    const script = document.createElement("script");
+    script.async = true;
+    script.src = "https://connect.facebook.net/en_US/fbevents.js";
+    document.head.appendChild(script);
+  }
+  // Another integration (for example GTM) may have created fbq first. Always
+  // initialize this dataset explicitly instead of merely reusing that queue.
+  if (!pixelInitialized) {
+    fbq("consent", "grant");
+    fbq("init", META_PIXEL_ID);
+    pixelInitialized = true;
   }
 
-  const fbq = ((...args: unknown[]) => {
-    if (fbq.callMethod) fbq.callMethod(...args);
-    else fbq.queue?.push(args);
-  }) as Fbq;
-
-  window.fbq = fbq;
-  window._fbq = fbq;
-  fbq.push = fbq;
-  fbq.loaded = true;
-  fbq.version = "2.0";
-  fbq.queue = [];
-
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = "https://connect.facebook.net/en_US/fbevents.js";
-  document.head.appendChild(script);
-
-  fbq("consent", "grant");
-  fbq("init", META_PIXEL_ID);
-  initialized = true;
   return fbq;
 }
 
-export function initializeMetaPixel() {
-  if (!hasMetaConsent()) return;
-
+function trackBrowserEvent(
+  eventName: "PageView" | "Contact" | "Lead",
+  eventId: string,
+  customData: MetaEventData
+) {
   const fbq = loadPixel();
+  // trackSingle prevents a pre-existing Pixel on the page from receiving the
+  // event while ensuring it is sent to the same dataset used by CAPI.
+  fbq("trackSingle", META_PIXEL_ID, eventName, customData, { eventID: eventId });
+}
+
+export function initializeMetaPixel() {
+  loadPixel();
   if (pageViewSent) return;
 
   const eventId = createEventId();
-  fbq("track", "PageView", {}, { eventID: eventId });
+  trackBrowserEvent("PageView", eventId, {});
   sendServerEvent("PageView", eventId, {});
   pageViewSent = true;
 }
 
-export function revokeMetaConsent() {
-  window.fbq?.("consent", "revoke");
-}
-
 export function trackMetaContact(data: MetaEventData = {}) {
   const eventId = createEventId();
-  if (!hasMetaConsent()) return eventId;
-
-  const fbq = loadPixel();
   const customData = Object.fromEntries(
     Object.entries(data).filter(([, value]) => value !== undefined)
   );
 
-  fbq("track", "Contact", customData, { eventID: eventId });
+  trackBrowserEvent("Contact", eventId, customData);
   sendServerEvent("Contact", eventId, customData);
   return eventId;
 }
@@ -196,18 +199,18 @@ export function trackMetaLead(
   options: {
     eventId?: string;
     formConsentGranted?: boolean;
+    onServerSuccess?: () => void;
     userData?: MetaUserData;
   } = {}
 ) {
   const eventId = options.eventId || createEventId();
-  if (!hasMetaConsent() && !options.formConsentGranted) return eventId;
-
-  const fbq = loadPixel();
   const customData = Object.fromEntries(
     Object.entries(data).filter(([, value]) => value !== undefined)
   );
 
-  fbq("track", "Lead", customData, { eventID: eventId });
-  sendServerEvent("Lead", eventId, customData, options.userData);
+  trackBrowserEvent("Lead", eventId, customData);
+  void sendServerEvent("Lead", eventId, customData, options.userData).then((success) => {
+    if (success) options.onServerSuccess?.();
+  });
   return eventId;
 }

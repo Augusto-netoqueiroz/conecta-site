@@ -18,7 +18,7 @@ O projeto utiliza Next.js para gerar os arquivos estáticos da pasta `out/`. O c
 | Caminho | Responsabilidade |
 | --- | --- |
 | `app/` | Páginas, componentes, estilos e lógica do site |
-| `app/metaTracking.ts` | Pixel, CAPI, consentimento, `fbp`, `fbc` e deduplicação por `event_id` |
+| `app/metaTracking.ts` | Pixel, CAPI, `fbp`, `fbc` e deduplicação por `event_id` |
 | `app/campaignTracking.ts` | UTMs, `fbclid`, visitas de anúncio, cliques e envio para a planilha |
 | `app/tracking.ts` | Centralização dos eventos disparados pelos CTAs |
 | `app/LeadForm.tsx` | Formulário, evento `Lead` e envio do lead completo para a planilha |
@@ -37,7 +37,8 @@ O projeto utiliza Next.js para gerar os arquivos estáticos da pasta `out/`. O c
 
 O Pixel e a API de Conversões usam o conjunto de dados `1382311347429828`.
 
-- `PageView`: enviado após o consentimento de cookies.
+- `PageView`: enviado ao carregar o site.
+- `VISITA_ANUNCIO`, `CLIQUE_WHATSAPP` e `LEAD_FORMULARIO` são enviados como `Lead` independentemente da escolha do banner de cookies.
 - `Lead`: enviado quando o formulário é preenchido ou quando o visitante clica em um CTA de WhatsApp.
 - `Contact`: usado no contato por telefone.
 - Pixel e CAPI compartilham o mesmo `event_id` para deduplicação.
@@ -174,7 +175,7 @@ Arquivos como `node_modules/`, `.next/`, `.env.local`, logs e caches também nã
 
 1. Abra o site com uma UTM de teste nova.
 2. Confirme `VISITA_ANUNCIO` na planilha.
-3. Aceite os cookies e clique no WhatsApp.
+3. Clique no WhatsApp.
 4. Confirme `CLIQUE_WHATSAPP` na planilha.
 5. Verifique `PageView` e `Lead` em **Eventos de teste** da Meta.
 6. Teste o formulário e confirme `LEAD_FORMULARIO`.

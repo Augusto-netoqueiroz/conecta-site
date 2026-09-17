@@ -1,5 +1,4 @@
 import {
-  hasMetaConsent,
   META_CONSENT_KEY,
   trackMetaLead,
 } from "./metaTracking";
@@ -144,7 +143,7 @@ export function initializeCampaignTracking() {
       .catch(() => {});
   }
 
-  if (hasMetaConsent() && sessionStorage.getItem(visitMetaSentKey) !== "1") {
+  if (sessionStorage.getItem(visitMetaSentKey) !== "1") {
     trackMetaLead(
       {
         content_name: "visita_anuncio",
@@ -158,9 +157,8 @@ export function initializeCampaignTracking() {
         utm_content: attribution.utm_content,
         utm_term: attribution.utm_term,
       },
-      { eventId }
+      { eventId, onServerSuccess: () => sessionStorage.setItem(visitMetaSentKey, "1") }
     );
-    sessionStorage.setItem(visitMetaSentKey, "1");
   }
 }
 
