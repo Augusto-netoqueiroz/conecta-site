@@ -5,7 +5,8 @@ const siteUrl = "https://planostvsky.com.br";
 
 export const metadata: Metadata = {
   title: "Planos SKY Personalizáveis | Escolha Pontos e Opcionais",
-  description: "Personalize seu plano SKY escolhendo pontos de TV e opcionais a la carte. Compare SUPER, TOP e SKY CONNECT com valores atualizados na hora.",
+  description:
+    "Personalize seu plano SKY escolhendo pontos de TV e opcionais a la carte. Compare SUPER, TOP e SKY CONNECT com valores atualizados na hora.",
   alternates: { canonical: `${siteUrl}/planos/` },
   robots: { index: true, follow: true },
   openGraph: {
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
     siteName: "Planos TV SKY",
     url: `${siteUrl}/planos/`,
     title: "Planos SKY Personalizáveis",
-    description: "Escolha pontos, opcionais a la carte e veja o valor do plano atualizado na hora.",
+    description:
+      "Escolha pontos, opcionais a la carte e veja o valor do plano atualizado na hora.",
   },
   twitter: {
     card: "summary_large_image",
