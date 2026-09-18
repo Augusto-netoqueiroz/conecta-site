@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import TrackedLink from "./TrackedLink";
-import EmpresasLeadForm from "./EmpresasLeadForm";
+import HospitalityPlanBuilder from "./HospitalityPlanBuilder";
+import ChannelsModal from "./ChannelsModal";
 import "./empresas.css";
 import "./empresas-formulario.css";
 
@@ -21,7 +22,7 @@ const segments = [
   },
   {
     title: "Clínicas e Hospitais",
-    image: "/img/EMPRESAS/hospital-empresa.png",
+    image: "/img/EMPRESAS/hospital-empresa.PNG",
     text: "Programação para recepções, quartos, salas de espera e ambientes de atendimento.",
     message: "Olá, quero conhecer as opções SKY Empresas para clínica ou hospital. Gostaria de consultar valores e condições.",
   },
@@ -45,7 +46,7 @@ const segments = [
   },
   {
     title: "Órgãos Públicos",
-    image: "/img/EMPRESAS/publico-empresa.png",
+    image: "/img/EMPRESAS/publico-empresa.PNG",
     text: "Atendimento consultivo para ambientes institucionais e estruturas com múltiplos pontos.",
     message: "Olá, quero conhecer as opções SKY Empresas para órgão público. Gostaria de consultar valores e condições.",
   },
@@ -88,7 +89,7 @@ const faqItems = [
   {
     question: "Como recebo uma proposta?",
     answer:
-      "Clique em um dos botões de WhatsApp, informe o tipo de empresa, a cidade e a quantidade aproximada de pontos ou quartos.",
+      "Use o montador para informar quantidade de pontos, prazo, plano e opcionais. Depois, envie a configuração pelo WhatsApp para receber a proposta e confirmar as condições comerciais.",
   },
 ];
 
@@ -148,7 +149,7 @@ export default function EmpresasPage() {
           </Link>
 
           <nav className="desktop-nav" aria-label="Menu principal">
-            <a href="#solucoes">SOLUÇÕES</a>
+            <a href="#montar-plano">MONTAR PLANO</a>
             <a href="#segmentos">SEGMENTOS</a>
             <a href="#como-funciona">COMO FUNCIONA</a>
             <a href="#duvidas">DÚVIDAS</a>
@@ -171,7 +172,7 @@ export default function EmpresasPage() {
               <span></span><span></span><span></span>
             </summary>
             <div className="mobile-menu-panel">
-              <a href="#solucoes">SOLUÇÕES</a>
+              <a href="#montar-plano">MONTAR PLANO</a>
               <a href="#segmentos">SEGMENTOS</a>
               <a href="#como-funciona">COMO FUNCIONA</a>
               <a href="#duvidas">DÚVIDAS</a>
@@ -199,7 +200,7 @@ export default function EmpresasPage() {
         <div className="container empresas-quick-grid">
           <div><strong>Atendimento consultivo</strong><span>Uma solução pensada para o perfil do seu negócio.</span></div>
           <div><strong>Múltiplos pontos</strong><span>Configurações para diferentes ambientes e estruturas.</span></div>
-          <div><strong>Instalação sem custo*</strong><span>Consulte disponibilidade e condições da oferta vigente.</span></div>
+          <div><strong>Condições por projeto</strong><span>Valores e elegibilidade variam conforme o ambiente e a modalidade comercial.</span></div>
         </div>
       </section>
 
@@ -215,19 +216,20 @@ export default function EmpresasPage() {
               equipes e visitantes. O atendimento é personalizado de acordo com o segmento,
               estrutura e quantidade de pontos necessários.
             </p>
-            <TrackedLink href={wa("Olá, quero receber uma proposta SKY Empresas para o meu negócio.")} target="_blank" rel="noopener noreferrer" eventName="click_whatsapp" eventData={{ placement: "empresas_intro" }}>
-              RECEBER UMA PROPOSTA
+            <TrackedLink href="#segmentos" eventName="click_view_plans" eventData={{ placement: "empresas_intro" }}>
+              ESCOLHER MEU NEGÓCIO
             </TrackedLink>
           </div>
         </div>
       </section>
+
 
       <section className="empresas-segments" id="segmentos">
         <div className="container">
           <div className="empresas-heading">
             <span>SOLUÇÕES POR SEGMENTO</span>
             <h2>Escolha o tipo do seu negócio</h2>
-            <p>Clique no seu segmento para iniciar um atendimento já contextualizado pelo WhatsApp.</p>
+            <p>Escolha o seu segmento. Em cada card você pode montar o plano ou falar diretamente pelo WhatsApp.</p>
           </div>
 
           <div className="empresas-segment-grid">
@@ -248,7 +250,7 @@ export default function EmpresasPage() {
                   <h3>{segment.title}</h3>
                   <p>{segment.text}</p>
                   <div className="empresas-card-actions">
-                    <EmpresasLeadForm segment={segment.title} phone={phone} />
+                    <HospitalityPlanBuilder segment={segment.title} phone={phone} />
                     <TrackedLink href={wa(segment.message)} target="_blank" rel="noopener noreferrer" eventName="click_whatsapp" eventData={{ placement: "empresas_segment", segment: segment.title }}>
                       <Image src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
                       <span>CONSULTAR ESTE SEGMENTO</span>
@@ -281,10 +283,10 @@ export default function EmpresasPage() {
             <h2>Do primeiro contato à instalação</h2>
           </div>
           <ol>
-            <li><b>01</b><strong>Fale com um consultor</strong><p>Escolha seu segmento ou inicie o atendimento pelo WhatsApp.</p></li>
-            <li><b>02</b><strong>Informe sua necessidade</strong><p>Diga a cidade, o tipo de negócio e a quantidade aproximada de pontos.</p></li>
-            <li><b>03</b><strong>Receba a proposta</strong><p>O atendimento apresenta as opções e condições disponíveis para o projeto.</p></li>
-            <li><b>04</b><strong>Agende a instalação</strong><p>Após a contratação, a instalação é organizada conforme a disponibilidade.</p></li>
+            <li><b>01</b><strong>Monte sua configuração</strong><p>Informe ambiente, quantidade de pontos, prazo, plano e opcionais.</p></li>
+            <li><b>02</b><strong>Revise o resumo</strong><p>Confira a seleção e os valores quando houver tabela comercial aplicável.</p></li>
+            <li><b>03</b><strong>Solicite a proposta</strong><p>Envie a configuração pronta para o atendimento pelo WhatsApp.</p></li>
+            <li><b>04</b><strong>Confirme as condições</strong><p>O consultor valida elegibilidade, disponibilidade e condições comerciais do projeto.</p></li>
           </ol>
         </div>
       </section>
@@ -322,8 +324,8 @@ export default function EmpresasPage() {
       </section>
 
       <p className="container empresas-disclaimer">
-        *Condições sujeitas à disponibilidade regional, análise e oferta comercial vigente.
-        Valores, equipamentos e condições devem ser confirmados durante o atendimento.
+        Condições sujeitas à elegibilidade, disponibilidade regional, análise e oferta comercial vigente.
+        Os valores automáticos desta página se aplicam somente às condições DTH Hospitality indicadas no montador e devem ser confirmados durante o atendimento.
       </p>
 
       <footer className="commercial-footer">
@@ -357,6 +359,8 @@ export default function EmpresasPage() {
           <span>Canal de parceiro autorizado. Este não é o site oficial da SKY.</span>
         </div>
       </footer>
+
+      <ChannelsModal />
 
       <TrackedLink className="whatsapp-float" href={wa("Olá, quero conhecer as opções SKY Empresas.")} target="_blank" rel="noopener noreferrer" aria-label="Falar sobre SKY Empresas pelo WhatsApp" eventName="click_whatsapp" eventData={{ placement: "empresas_floating_button" }}>
         <Image src="/img/whatsapp-icon.webp" alt="" role="presentation" width={100} height={100} unoptimized />
