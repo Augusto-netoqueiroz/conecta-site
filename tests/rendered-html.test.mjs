@@ -13,6 +13,10 @@ test("gera o site estático com metadados e headers de segurança", async () => 
   assert.match(html, /Política de privacidade/i);
   assert.match(htaccess, /X-Content-Type-Options "nosniff"/i);
   assert.match(htaccess, /X-Frame-Options "SAMEORIGIN"/i);
+  assert.match(htaccess, /RewriteRule \^\(\.\+\\\.txt\)\/\$ \$1 \[L\]/i);
+  assert.match(htaccess, /RewriteRule \^home2\/timmas40\/public_html\/\(\.\+\)\$ \/\$1 \[L,R=308,NE\]/i);
+  assert.match(htaccess, /SetEnvIf Request_URI "\^\/" no-gzip=1/i);
+  assert.doesNotMatch(htaccess, /AddOutputFilterByType\s+DEFLATE/i);
 });
 
 test("inclui os arquivos necessários para RSC e Meta CAPI", async () => {

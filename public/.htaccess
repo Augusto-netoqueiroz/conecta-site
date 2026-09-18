@@ -5,6 +5,13 @@ RewriteEngine On
 RewriteCond %{HTTPS} !=on
 RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Corrige URLs que podem receber o caminho físico do cPanel durante um rewrite interno.
+RewriteRule ^home2/timmas40/public_html/(.+)$ /$1 [L,R=308,NE]
+
+# O Next exporta os payloads RSC como arquivos .txt, mas navegações podem pedir .txt/.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+\.txt)/$ $1 [L]
+
 RewriteCond %{REQUEST_FILENAME}.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
@@ -35,6 +42,7 @@ ErrorDocument 500 /500.html
   ExpiresByType application/javascript "access plus 1 month"
 </IfModule>
 
-<IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/plain text/css application/javascript application/json image/svg+xml
+<IfModule mod_setenvif.c>
+  # Evita Content-Encoding duplicado quando a compactação já está ativa no cPanel.
+  SetEnvIf Request_URI "^/" no-gzip=1
 </IfModule>
