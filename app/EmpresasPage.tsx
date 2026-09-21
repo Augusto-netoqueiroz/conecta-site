@@ -22,7 +22,7 @@ const segments = [
   },
   {
     title: "Clínicas e Hospitais",
-    image: "/img/EMPRESAS/hospital-empresa.PNG",
+    image: "/img/EMPRESAS/hospital-empresa.png",
     text: "Programação para recepções, quartos, salas de espera e ambientes de atendimento.",
     message: "Olá, quero conhecer as opções SKY Empresas para clínica ou hospital. Gostaria de consultar valores e condições.",
   },
@@ -46,7 +46,7 @@ const segments = [
   },
   {
     title: "Órgãos Públicos",
-    image: "/img/EMPRESAS/publico-empresa.PNG",
+    image: "/img/EMPRESAS/publico-empresa.png",
     text: "Atendimento consultivo para ambientes institucionais e estruturas com múltiplos pontos.",
     message: "Olá, quero conhecer as opções SKY Empresas para órgão público. Gostaria de consultar valores e condições.",
   },
