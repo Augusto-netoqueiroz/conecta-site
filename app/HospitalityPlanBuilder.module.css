@@ -787,6 +787,51 @@
   line-height: 1.55;
 }
 
+.needBox input {
+  width: 100%;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: 13px;
+  font-size: 13px;
+}
+
+.comboBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 18px;
+  border: 1px solid var(--sky-border);
+  border-radius: 16px;
+  background: #fff;
+  cursor: pointer;
+}
+
+.comboBox input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  margin: 2px 0 0;
+  accent-color: var(--sky-red-light);
+}
+
+.comboBox strong,
+.comboBox small {
+  display: block;
+}
+
+.comboBox strong {
+  color: var(--sky-ink);
+  font-size: 13px;
+}
+
+.comboBox small {
+  margin-top: 4px;
+  color: var(--sky-muted);
+  font-size: 11px;
+  line-height: 1.5;
+}
+
 .desktopSummary {
   position: sticky;
   top: 98px;

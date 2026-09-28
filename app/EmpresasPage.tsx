@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import TrackedLink from "./TrackedLink";
 import HospitalityPlanBuilder from "./HospitalityPlanBuilder";
+import CorporatePlanBuilder from "./CorporatePlanBuilder";
 import ChannelsModal from "./ChannelsModal";
 import "./empresas.css";
 import "./empresas-formulario.css";
@@ -250,7 +251,11 @@ export default function EmpresasPage() {
                   <h3>{segment.title}</h3>
                   <p>{segment.text}</p>
                   <div className="empresas-card-actions">
-                    <HospitalityPlanBuilder segment={segment.title} phone={phone} />
+                    {segment.title === "Hotéis e Pousadas" || segment.title === "Clínicas e Hospitais" ? (
+                      <HospitalityPlanBuilder segment={segment.title} phone={phone} />
+                    ) : (
+                      <CorporatePlanBuilder segment={segment.title} phone={phone} />
+                    )}
                     <TrackedLink href={wa(segment.message)} target="_blank" rel="noopener noreferrer" eventName="click_whatsapp" eventData={{ placement: "empresas_segment", segment: segment.title }}>
                       <Image src="/img/whatsapp-icon.webp" alt="" width={18} height={18} unoptimized />
                       <span>CONSULTAR ESTE SEGMENTO</span>
@@ -325,7 +330,8 @@ export default function EmpresasPage() {
 
       <p className="container empresas-disclaimer">
         Condições sujeitas à elegibilidade, disponibilidade regional, análise e oferta comercial vigente.
-        Os valores automáticos desta página se aplicam somente às condições DTH Hospitality indicadas no montador e devem ser confirmados durante o atendimento.
+        Hotéis, pousadas, clínicas e hospitais usam a tabela DTH Hospitality; os demais segmentos usam a tabela SKY Empresas.
+        Os valores apresentados devem ser confirmados durante o atendimento.
       </p>
 
       <footer className="commercial-footer">
