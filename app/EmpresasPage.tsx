@@ -52,22 +52,40 @@ const segments = [
     message: "Olá, quero conhecer as opções SKY Empresas para órgão público. Gostaria de consultar valores e condições.",
   },
   {
-    title: "Cruzeiros e Embarcações",
-    image: "/img/EMPRESAS/cruzeiro-empresa.png",
-    text: "Consulte soluções disponíveis para embarcações e operações que precisam de entretenimento a bordo.",
-    message: "Olá, quero conhecer as opções SKY Empresas para cruzeiro ou embarcação. Gostaria de consultar valores e condições.",
+    title: "Salões de Beleza",
+    image: "/img/EMPRESAS/salao-empresa.png",
+    text: "Entretenimento para seus clientes durante o atendimento.",
+    message: "Olá, quero conhecer as opções SKY Empresas para salão de beleza. Gostaria de consultar valores e condições.",
   },
   {
-    title: "Offshore",
-    image: "/img/EMPRESAS/offshore-empresa.png",
-    text: "Soluções para operações offshore, áreas de descanso, convivência e alojamento.",
-    message: "Olá, quero conhecer as opções SKY Empresas para operação offshore. Gostaria de consultar valores e condições.",
+    title: "Padarias e Cafeterias",
+    image: "/img/EMPRESAS/padaria-empresa.png",
+    text: "Deixe o ambiente mais agradável enquanto seus clientes consomem.",
+    message: "Olá, quero conhecer as opções SKY Empresas para padaria ou cafeteria. Gostaria de consultar valores e condições.",
   },
   {
-    title: "Mineradoras",
-    image: "/img/EMPRESAS/mineradora-empresa.png",
-    text: "Atendimento para alojamentos, áreas administrativas e espaços de convivência em operações de mineração.",
-    message: "Olá, quero conhecer as opções SKY Empresas para mineradora. Gostaria de consultar valores e condições.",
+    title: "Barbearias",
+    image: "/img/EMPRESAS/barbearia-empresa.png",
+    text: "Mais conforto e entretenimento enquanto seus clientes aguardam.",
+    message: "Olá, quero conhecer as opções SKY Empresas para barbearia. Gostaria de consultar valores e condições.",
+  },
+  {
+    title: "Mercados e Conveniências",
+    image: "/img/EMPRESAS/mercado-empresa.png",
+    text: "Conteúdo para áreas de atendimento, caixa e convivência.",
+    message: "Olá, quero conhecer as opções SKY Empresas para mercado ou conveniência. Gostaria de consultar valores e condições.",
+  },
+  {
+    title: "Pet Shops e Clínicas Veterinárias",
+    image: "/img/EMPRESAS/pet-empresa.png",
+    text: "Mais conforto para os clientes durante o atendimento e espera.",
+    message: "Olá, quero conhecer as opções SKY Empresas para pet shop ou clínica veterinária. Gostaria de consultar valores e condições.",
+  },
+  {
+    title: "Lojas e Comércios",
+    image: "/img/EMPRESAS/lojas-empresa.png",
+    text: "Mais entretenimento para clientes e colaboradores.",
+    message: "Olá, quero conhecer as opções SKY Empresas para loja ou comércio. Gostaria de consultar valores e condições.",
   },
 ] as const;
 
@@ -75,7 +93,7 @@ const faqItems = [
   {
     question: "Quais empresas podem contratar SKY Empresas?",
     answer:
-      "A solução pode atender diferentes segmentos, como hotéis, hospitais, bares, academias, escolas, órgãos públicos, operações offshore e mineradoras. A disponibilidade e as condições dependem do projeto e da região.",
+      "A solução pode atender diferentes segmentos, como hotéis, hospitais, bares, academias, escolas, órgãos públicos, salões de beleza, padarias, cafeterias, barbearias, mercados, conveniências, pet shops, clínicas veterinárias, lojas e comércios. A disponibilidade e as condições dependem do projeto e da região.",
   },
   {
     question: "O valor é o mesmo para todos os negócios?",
@@ -103,7 +121,7 @@ const structuredData = {
       url: `${siteUrl}/empresas/`,
       name: "SKY Empresas",
       description:
-        "Soluções SKY para empresas, hotéis, hospitais, bares, academias, escolas, órgãos públicos, offshore e mineradoras.",
+        "Soluções SKY para hotéis, hospitais, bares, academias, escolas, órgãos públicos, salões de beleza, padarias, cafeterias, barbearias, mercados, conveniências, pet shops, clínicas veterinárias, lojas e comércios.",
       inLanguage: "pt-BR",
     },
     {

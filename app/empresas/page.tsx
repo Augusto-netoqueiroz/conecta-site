@@ -6,7 +6,7 @@ const siteUrl = "https://planostvsky.com.br";
 export const metadata: Metadata = {
   title: "SKY Empresas | TV por Assinatura para Empresas",
   description:
-    "Soluções SKY para hotéis, hospitais, bares, academias, escolas, órgãos públicos, offshore, mineradoras e outros negócios. Consulte condições pelo WhatsApp.",
+    "SKY Empresas para hotéis, hospitais, salões de beleza, padarias, barbearias, mercados, pet shops, lojas e outros negócios. Consulte condições pelo WhatsApp.",
   alternates: { canonical: `${siteUrl}/empresas/` },
   robots: { index: true, follow: true },
   openGraph: {
