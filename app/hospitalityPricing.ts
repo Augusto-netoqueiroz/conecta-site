@@ -66,9 +66,12 @@ export type HospitalitySelectionCalculation = HospitalityPlanCalculation & {
   regularTotal: number;
 };
 
+// OUT-26: aba "Planos", colunas B/C; aba "Form de Contratação DTH",
+// células G59, J2, K73/K75 e totais F133/F136. Valores em centavos.
 export const HOSPITALITY_COMMERCIAL = {
-  version: "SET-26",
-  validUntil: "2026-09-30T23:59:59-03:00",
+  version: "OUT-26",
+  validFrom: "2026-10-01T00:00:00-03:00",
+  validUntil: "2026-10-31T23:59:59.999-03:00",
   environments: [
     {
       id: "rooms",
@@ -283,7 +286,17 @@ export function isHospitalityPlanTermAvailable(
 }
 
 export function isHospitalityPricingActive(date: Date) {
-  return date.getTime() <= new Date(HOSPITALITY_COMMERCIAL.validUntil).getTime();
+  const timestamp = date.getTime();
+  return (
+    timestamp >= new Date(HOSPITALITY_COMMERCIAL.validFrom).getTime() &&
+    timestamp <= new Date(HOSPITALITY_COMMERCIAL.validUntil).getTime()
+  );
+}
+
+export function formatHospitalityValidityDate() {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+  }).format(new Date(HOSPITALITY_COMMERCIAL.validUntil));
 }
 
 export function calculateHospitalityPlan(

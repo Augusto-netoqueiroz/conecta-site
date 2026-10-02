@@ -1,4 +1,4 @@
-// SET-26: aba "Planos", coluna E (planos COMODATO e COMBO); aba
+// OUT-26: aba "Planos", coluna E (planos COMODATO e COMBO); aba
 // "Form de Contratação DTH", linhas 65/69/73/75 e totais 154/157.
 // Os valores são armazenados em centavos para evitar arredondamentos.
 export type CorporateTerm = 12 | 24;
@@ -17,8 +17,9 @@ export type CorporateOptionalSelection = {
 };
 
 export const CORPORATE_COMMERCIAL = {
-  version: "SET-26",
-  validUntil: "2026-09-30T23:59:59-03:00",
+  version: "OUT-26",
+  validFrom: "2026-10-01T00:00:00-03:00",
+  validUntil: "2026-10-31T23:59:59.999-03:00",
   terms: [12, 24] as const,
   discountFirstThreePerPoint: 2000,
   plans: [
@@ -110,7 +111,17 @@ export function formatCorporateMoney(cents: number) {
 }
 
 export function isCorporatePricingActive(date: Date) {
-  return date.getTime() <= new Date(CORPORATE_COMMERCIAL.validUntil).getTime();
+  const timestamp = date.getTime();
+  return (
+    timestamp >= new Date(CORPORATE_COMMERCIAL.validFrom).getTime() &&
+    timestamp <= new Date(CORPORATE_COMMERCIAL.validUntil).getTime()
+  );
+}
+
+export function formatCorporateValidityDate() {
+  return new Intl.DateTimeFormat("pt-BR", {
+    timeZone: "America/Sao_Paulo",
+  }).format(new Date(CORPORATE_COMMERCIAL.validUntil));
 }
 
 export function getCorporatePlan(id: CorporatePlanId) {

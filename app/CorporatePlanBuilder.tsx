@@ -8,6 +8,7 @@ import {
   CORPORATE_COMMERCIAL,
   calculateCorporateSelection,
   formatCorporateMoney,
+  formatCorporateValidityDate,
   getCorporateOptionals,
   getCorporatePlan,
   isCorporatePricingActive,
@@ -298,7 +299,7 @@ export default function CorporatePlanBuilder({
                       </div>
                     </div>
                     {pricingStatus === "expired" && (
-                      <div className={styles.quoteNotice}>A tabela {CORPORATE_COMMERCIAL.version} tinha referência até 30/09/2026. Envie sua seleção para receber uma cotação atualizada.</div>
+                      <div className={styles.quoteNotice}>A tabela {CORPORATE_COMMERCIAL.version} tinha referência até {formatCorporateValidityDate()}. Envie sua seleção para receber uma cotação atualizada.</div>
                     )}
                   </div>
 
@@ -435,7 +436,7 @@ export default function CorporatePlanBuilder({
                         <h3>Sua configuração</h3>
                         <CorporateSummary points={points} term={term} planId={planId} combo={combo} optionalRows={optionalRows}
                           calculation={calculation} pricingStatus={pricingStatus} />
-                        <p className={styles.validity}>Tabela {CORPORATE_COMMERCIAL.version}, referência até 30/09/2026. Confirme elegibilidade, disponibilidade e condições comerciais antes de contratar.</p>
+                        <p className={styles.validity}>Tabela {CORPORATE_COMMERCIAL.version}, referência até {formatCorporateValidityDate()}. Confirme elegibilidade, disponibilidade e condições comerciais antes de contratar.</p>
                       </div>
                     </aside>
                   </div>

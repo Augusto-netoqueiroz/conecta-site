@@ -9,6 +9,7 @@ import {
   calculateHospitalityPlan,
   calculateHospitalitySelection,
   formatHospitalityMoney,
+  formatHospitalityValidityDate,
   getHospitalityPlan,
   getHospitalityRange,
   isHospitalityPlanTermAvailable,
@@ -234,10 +235,11 @@ export default function HospitalityPlanBuilder({
     useState<PricingStatus>("checking");
 
   useEffect(() => {
+    if (!open) return;
     setPricingStatus(
       isHospitalityPricingActive(new Date()) ? "active" : "expired",
     );
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     setMounted(true);
@@ -631,8 +633,8 @@ export default function HospitalityPlanBuilder({
 
           {pricingStatus === "expired" && (
             <div className={styles.quoteNotice}>
-              A tabela {HOSPITALITY_COMMERCIAL.version} tinha referência até
-              30/09/2026. As escolhas podem ser enviadas, mas os valores ficam
+              A tabela {HOSPITALITY_COMMERCIAL.version} tinha referência até{" "}
+              {formatHospitalityValidityDate()}. As escolhas podem ser enviadas, mas os valores ficam
               sob cotação até a atualização da tabela.
             </div>
           )}
@@ -1052,8 +1054,8 @@ export default function HospitalityPlanBuilder({
               />
 
               <p className={styles.validity}>
-                Tabela {HOSPITALITY_COMMERCIAL.version}. Referência interna até
-                30/09/2026. Valores sujeitos à confirmação da elegibilidade,
+                Tabela {HOSPITALITY_COMMERCIAL.version}. Referência interna até{" "}
+                {formatHospitalityValidityDate()}. Valores sujeitos à confirmação da elegibilidade,
                 disponibilidade e condições comerciais.
               </p>
             </div>
