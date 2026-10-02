@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import FooterLegal from "./FooterLegal";
 import Analytics from "./Analytics";
 import CampaignTracker from "./CampaignTracker";
 import CookieConsent from "./CookieConsent";
@@ -75,6 +76,7 @@ export default function RootLayout({
         <MetaPixel />
         <Analytics />
         {children}
+        <FooterLegal />
         <CookieConsent />
       </body>
     </html>

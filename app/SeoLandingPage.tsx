@@ -332,16 +332,7 @@ export default function SeoLandingPage({ page }: { page: SeoPage }) {
           </div>
         </div>
 
-        <div className="container footer-legal">
-          <span>© 2026 Contrate TV. Todos os direitos reservados.</span>
-          <span>
-            STARTELECOM TELECOMUNICACOES LTDA — CNPJ: 10.863.171/0001-06
-          </span>
-          <span>
-            Canal de parceiro autorizado. Este não é o site oficial da
-            SKY.
-          </span>
-        </div>
+        
       </footer>
 
       <TrackedLink
