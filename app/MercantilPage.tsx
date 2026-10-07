@@ -214,7 +214,7 @@ export default function MercantilPage() {
                                   <input type="radio" name="mercantil-plan" value={item.id + "-" + plan.name} aria-label={plan.name + " com " + item.name} checked={isPlanSelected} onChange={() => choosePlan(item, plan)} />
                                   <span className={styles.planChoiceCopy}><strong>{plan.name}</strong><small>{plan.highlight}</small></span>
                                   <span className={styles.planChoicePrice}><b>R$ {plan.price}</b><small>/mês</small></span>
-                                  <span className={styles.planFirstMonth}><span>1º mês ({cardIsInstallments ? "parcela" : "aparelho"} + plano)</span><strong>{formatMercantilPrice(planQuote.firstMonthCents)}</strong></span>
+                                  <span className={styles.planFirstMonth}><span>1º mês (somente {cardIsInstallments ? "parcela" : "aparelho"})</span><strong>{formatMercantilPrice(planQuote.firstMonthCents)}</strong></span>
                                 </label>
                                 <details className={styles.planDetails}>
                                   <summary>Ver benefícios e canais</summary>
@@ -235,7 +235,7 @@ export default function MercantilPage() {
                             );
                           })}
                         </fieldset>
-                        <p className={styles.offerNote}>Assinatura com pagamento à vista. Valores do 1º ao 4º mês; mensalidade regular a partir do 5º mês, conforme o resumo.</p>
+                        <p className={styles.offerNote}>No 1º mês, você paga somente o Mercantil. Assinatura com pagamento à vista do 2º ao 4º mês pelo valor promocional; mensalidade regular a partir do 5º mês, conforme o resumo.</p>
                       </div>
                       {!item.hasAntenna && <p className={styles.equipmentNote}>Já tem antena? Confirme a compatibilidade antes de contratar a opção sem antena.</p>}
                       <button type="button" className={styles.cardSummaryButton} disabled={!isSelected || !selectedPlan} aria-label={"Conferir resumo de " + item.name} onClick={showSummary}>CONFERIR RESUMO <span aria-hidden="true">→</span></button>
@@ -264,8 +264,8 @@ export default function MercantilPage() {
                 <div className={styles.chosenItem}><div><span>PLANO SKY</span><strong>{selectedPlan.name}</strong></div><a href={"#planos-" + equipment.id}>Trocar</a></div>
                 <dl className={styles.breakdown}>
                   <div><dt>{isInstallments ? `1ª parcela do aparelho (1/${mercantilInstallmentCount})` : "Aparelho Mercantil"}</dt><dd>{formatMercantilPrice(quote.equipmentFirstMonthCents)}</dd></div>
-                  <div><dt>1ª mensalidade do plano</dt><dd>{formatMercantilPrice(quote.monthlyCents)}</dd></div>
-                  <div className={styles.firstMonth}><dt>Total do primeiro mês<small>{isInstallments ? "1ª parcela do aparelho" : "Aparelho"} + plano</small></dt><dd>{formatMercantilPrice(quote.firstMonthCents)}</dd></div>
+                  <div><dt>Plano no 1º mês<small>Cobrança a partir do 2º mês</small></dt><dd>{formatMercantilPrice(quote.planFirstMonthCents)}</dd></div>
+                  <div className={styles.firstMonth}><dt>Total do primeiro mês<small>Somente {isInstallments ? "a 1ª parcela do aparelho" : "o aparelho"}</small></dt><dd>{formatMercantilPrice(quote.firstMonthCents)}</dd></div>
                   <div className={styles.laterMonth}><dt>Do 2º ao 4º mês<small>{isInstallments ? "Plano + parcela do aparelho" : "Somente o plano"}</small></dt><dd>{formatMercantilPrice(quote.monthsTwoToFourCents)}<small>/mês</small></dd></div>
                   {isInstallments ? <>
                     <div className={styles.laterMonth}><dt>Do 5º ao {mercantilInstallmentCount}º mês<small>Plano regular + parcela do aparelho</small></dt><dd>{formatMercantilPrice(quote.monthsFiveToTenCents)}<small>/mês</small></dd></div>

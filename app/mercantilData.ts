@@ -4,7 +4,7 @@ export const mercantilPlans = plans
   .filter((plan) => plan.name === "SUPER HD" || plan.name === "TOP HD")
   .map((plan) => ({
     ...plan,
-    promo: "Mensalidade com pagamento à vista. Valor do 1º ao 4º mês.",
+    promo: "Mensalidade com pagamento à vista do 2º ao 4º mês. No 1º mês, você paga somente o Mercantil.",
   }));
 
 export const mercantilEquipment = [
@@ -54,6 +54,8 @@ export function getMercantilQuote(
   const isInstallments = payment === "installments";
   const equipmentFirstMonthCents = isInstallments ? equipmentInstallmentCents : equipment.priceCents;
   const equipmentLaterMonthsCents = isInstallments ? equipmentInstallmentCents : 0;
+  // A primeira cobrança inclui somente o aparelho; o plano começa no 2º mês.
+  const planFirstMonthCents = 0;
 
   return {
     equipmentCents: equipment.priceCents,
@@ -62,7 +64,8 @@ export function getMercantilQuote(
     payment,
     installmentCount: isInstallments ? mercantilInstallmentCount : 1,
     monthlyCents,
-    firstMonthCents: equipmentFirstMonthCents + monthlyCents,
+    planFirstMonthCents,
+    firstMonthCents: equipmentFirstMonthCents + planFirstMonthCents,
     monthsTwoToFourCents: equipmentLaterMonthsCents + monthlyCents,
     monthsFiveToTenCents: equipmentLaterMonthsCents + regularMonthlyCents,
     regularMonthlyCents,
@@ -85,8 +88,9 @@ export function getMercantilMessage(
       : `Pagamento do aparelho: ${formatMercantilPrice(quote.equipmentCents)} à vista.`,
     `Plano: ${plan.name}.`,
     "Pagamento da assinatura: à vista.",
-    `1ª mensalidade: ${formatMercantilPrice(quote.monthlyCents)}.`,
-    `Total do 1º mês (${isInstallments ? "1ª parcela do aparelho" : "aparelho"} + plano): ${formatMercantilPrice(quote.firstMonthCents)}.`,
+    "Mensalidade do plano no 1º mês: sem cobrança.",
+    `1ª mensalidade do plano (2º mês): ${formatMercantilPrice(quote.monthlyCents)}.`,
+    `Total do 1º mês (somente ${isInstallments ? "1ª parcela do aparelho" : "aparelho"}): ${formatMercantilPrice(quote.firstMonthCents)}.`,
     `Do 2º ao 4º mês: ${formatMercantilPrice(quote.monthsTwoToFourCents)}/mês${isInstallments ? " (plano + parcela do aparelho)" : ""}.`,
     ...(isInstallments
       ? [
@@ -110,11 +114,11 @@ export const mercantilFaqs = [
   },
   {
     question: "O aparelho será cobrado todos os meses?",
-    answer: "Se pagar à vista, o aparelho entra integralmente no primeiro mês; depois, você paga somente o plano. Se escolher 10x sem juros, o resumo soma uma parcela do aparelho com o plano do 1º ao 10º mês. A partir do 11º mês, o aparelho está quitado e resta somente a mensalidade do plano, conforme a oferta.",
+    answer: "Se pagar à vista, o primeiro mês inclui somente o valor integral do aparelho; a partir do segundo mês, você paga apenas o plano. Se escolher 10x sem juros, no primeiro mês você paga somente a primeira parcela do aparelho. Do 2º ao 10º mês, o resumo soma a parcela do aparelho com a mensalidade do plano. A partir do 11º mês, o aparelho está quitado e resta somente a mensalidade do plano, conforme a oferta.",
   },
   {
     question: "Como é calculado o total do primeiro mês?",
-    answer: "À vista, o total soma o valor integral do aparelho com a primeira mensalidade do plano. Em 10x sem juros, soma somente a primeira parcela do aparelho com a primeira mensalidade do plano. O parcelamento é do aparelho; os preços e condições do plano continuam os mesmos.",
+    answer: "No primeiro mês, você paga somente o Mercantil escolhido: o valor integral do aparelho à vista ou a primeira parcela na opção de 10x sem juros. Não há cobrança do plano nesse mês. A mensalidade começa no segundo mês, conforme os valores indicados no resumo.",
   },
   {
     question: "Qual é a diferença entre as duas opções?",
@@ -122,7 +126,7 @@ export const mercantilFaqs = [
   },
   {
     question: "Os planos têm os mesmos preços do pós-pago?",
-    answer: "Sim. SUPER HD e TOP HD mantêm os valores, canais e benefícios da página principal. A assinatura Mercantil tem pagamento à vista. O resumo mostra os valores do 1º ao 4º mês e a mensalidade regular a partir do 5º mês, somando as parcelas do aparelho até o 10º mês quando essa opção é escolhida.",
+    answer: "Sim. SUPER HD e TOP HD mantêm os valores, canais e benefícios da página principal. A assinatura Mercantil tem pagamento à vista. No primeiro mês, você paga apenas o aparelho. O plano é cobrado do 2º ao 4º mês pelo valor promocional e, a partir do 5º mês, pela mensalidade regular. As parcelas do aparelho são somadas até o 10º mês quando essa opção é escolhida.",
   },
   {
     question: "Como confirmo a instalação e a disponibilidade?",
