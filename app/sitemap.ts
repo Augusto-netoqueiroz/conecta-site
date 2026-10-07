@@ -14,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/`, lastModified: updated, changeFrequency: "weekly", priority: 1 },
     { url: `${siteUrl}/planos/`, lastModified: new Date("2026-09-15T00:00:00-03:00"), changeFrequency: "weekly", priority: 0.95 },
     { url: `${siteUrl}/empresas/`, lastModified: new Date("2026-09-17T00:00:00-03:00"), changeFrequency: "weekly", priority: 0.9 },
+    { url: `${siteUrl}/mercantil/`, lastModified: new Date("2026-10-06T00:00:00-03:00"), changeFrequency: "weekly", priority: 0.9 },
 
     ...cities.map((city) => ({
       url: `${siteUrl}/cidade/${city.slug}/`,
