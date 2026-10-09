@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import MercantilPage from "../MercantilPage";
 import { mercantilFaqs } from "../mercantilData";
 
-const title = "SKY Mercantil | Escolha seu Aparelho e Plano";
-const description = "Escolha o KIT MERCANTIL HD com antena por R$ 149,90 ou o MERCANTIL HD sem antena por R$ 89,90. Compare planos SKY e veja o total do primeiro mês.";
+const title = "SKY Mercantil | Escolha seu Kit e Plano";
+const description = "Escolha o SKY KIT COMPLETO com antena por R$ 149,90 ou o SKY RECEPTOR HD por R$ 89,90. Compare planos SKY e confira o pagamento antes de receber os aparelhos.";
 const pageUrl = "https://planostvsky.com.br/mercantil/";
 
 export const metadata: Metadata = {

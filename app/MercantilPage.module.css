@@ -9,6 +9,24 @@
   outline-offset: 5px;
 }
 
+.page input[type="radio"] {
+  appearance: auto;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  outline: none;
+  accent-color: #ce0612;
+  cursor: pointer;
+}
+
+.page input[type="radio"]:focus-visible {
+  outline: 2px solid #ce0612;
+  outline-offset: 4px;
+}
+
 .hero {
   padding: 46px 0 48px;
   background: radial-gradient(ellipse at 85% 20%, #ffe3e6, transparent 55%), #fff8f8;
@@ -39,6 +57,9 @@
 .heroCopy h1 em { color: #ce0612; font-style: normal; }
 .heroCopy > p { max-width: 660px; margin: 0 auto 24px; color: #646770; font-size: 16px; line-height: 1.75; }
 .heroCopy > p strong { color: #30323a; }
+.heroCopy .heroQuestion { margin-bottom: 16px; color: #30323a; font-size: 17px; font-weight: 800; line-height: 1.5; }
+.heroChoices { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 760px; margin: 0 auto; }
+.heroChoices .heroCta { min-height: 66px; padding: 16px 20px; font-size: 13px; }
 
 .heroCta,
 .primaryButton,
@@ -84,16 +105,15 @@
 .equipmentAnchor, .equipmentGrid, .equipmentPlans, .paymentChoice { scroll-margin-top: 90px; }
 .equipmentGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; gap: 24px; max-width: 1040px; margin: 0 auto; }
 .equipmentCard { min-width: 0; padding: 24px; border: 2px solid #e5e5ea; border-radius: 24px; background: #fff; scroll-margin-top: 90px; transition: border-color 180ms ease, box-shadow 180ms ease; }
-.selectedEquipment { border-color: #ce0612; box-shadow: 0 0 0 4px #ce06120b; }
-.equipmentHeader { position: relative; display: grid; grid-template-columns: 105px minmax(0, 1fr); align-items: center; gap: 20px; cursor: pointer; }
-.equipmentHeader:focus-within { outline: 3px solid #ce0612; outline-offset: 5px; border-radius: 10px; }
+.selectedEquipment { border-color: #ce0612; }
+.equipmentHeader { position: relative; display: grid; grid-template-columns: 105px minmax(0, 1fr); align-items: center; gap: 20px; cursor: pointer; user-select: none; }
 .equipmentHeader > input { position: absolute; right: 0; top: 0; width: 18px; height: 18px; min-height: 18px; accent-color: #ce0612; }
 .equipmentVisual { display: flex; flex-direction: column; align-items: center; gap: 16px; color: #ce0612; }
-.equipmentIllustration { width: 100%; max-width: 200px; height: auto; }
+.equipmentImage { width: 100%; max-width: 200px; height: auto; aspect-ratio: 5 / 4; object-fit: contain; }
 .equipmentVisual > span { padding: 6px 9px; border-radius: 6px; background: #fff0f1; font-size: 9px; font-weight: 900; letter-spacing: .02em; }
 .equipmentCopy { min-width: 0; padding-top: 3px; }
-.equipmentRequired { display: block; margin: 0 24px 8px 0; color: #ce0612; font-size: 8px; font-weight: 900; letter-spacing: .07em; }
 .equipmentCopy h3 { margin: 0 20px 8px 0; color: #202127; font-size: 20px; font-weight: 900; letter-spacing: -.02em; line-height: 1.25; }
+.equipmentCopy h3 em { display: inline-block; margin-top: 5px; font-size: 12px; font-weight: 400; line-height: 1.5; }
 .equipmentCopy > p { margin: 0 0 14px; color: #757882; font-size: 12px; line-height: 1.6; }
 .equipmentPrice { display: block; color: #ce0612; font-size: 30px; font-weight: 900; white-space: nowrap; line-height: 1.1; }
 .equipmentPrice > small { display: block; margin-top: 6px; color: #757882; font-size: 10px; font-weight: 400; }
@@ -104,10 +124,9 @@
 .paymentFieldset, .planChoices { min-width: 0; margin: 0; padding: 0; border: 0; }
 .paymentFieldset legend, .planChoices legend { width: 100%; margin: 0 0 12px; padding: 0; color: #30323a; font-size: 14px; font-weight: 800; line-height: 1.5; }
 .paymentGrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.paymentOption { display: flex; align-items: flex-start; gap: 8px; min-width: 0; padding: 14px 12px; border: 1px solid #e2e3e8; border-radius: 12px; background: #fff; cursor: pointer; }
-.paymentOption:hover { border-color: #e3949b; }
-.paymentOption:focus-within { outline: 3px solid #ce0612; outline-offset: 3px; }
-.selectedPayment { border-color: #ce0612; background: #fff7f8; }
+.paymentOption { display: flex; align-items: flex-start; gap: 8px; min-width: 0; padding: 14px 12px; border: 1px solid #e2e3e8; border-radius: 12px; background: #fff; cursor: pointer; user-select: none; }
+.paymentOption:not(.selectedPayment):hover { border-color: #e3949b; }
+.selectedPayment { border-color: #ce0612; }
 .paymentOption input { flex: 0 0 18px; width: 18px; height: 18px; min-height: 18px; margin: 2px 0 0; accent-color: #ce0612; }
 .paymentOption > span { display: grid; min-width: 0; gap: 4px; }
 .paymentOption strong { color: #30323a; font-size: 12px; line-height: 1.5; }
@@ -115,9 +134,8 @@
 .paymentOption small { color: #757882; font-size: 10px; line-height: 1.5; }
 .equipmentPlans { margin-top: 22px; padding-top: 20px; border-top: 1px solid #ececf0; }
 .planOption { margin-top: 12px; overflow: hidden; border: 1px solid #e2e3e8; border-radius: 14px; background: #fff; }
-.planChoices .selectedPlan { border-color: #ce0612; background: #fff6f7; box-shadow: 0 0 0 2px #ce06120b; }
-.planSelect { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 8px 12px; padding: 16px; cursor: pointer; }
-.planSelect:focus-within { outline: 3px solid #ce0612; outline-offset: -3px; }
+.planChoices .selectedPlan { border-color: #ce0612; }
+.planSelect { display: grid; grid-template-columns: 18px minmax(0, 1fr) auto; align-items: center; gap: 8px 12px; padding: 16px; cursor: pointer; user-select: none; }
 .planSelect input { width: 18px; height: 18px; min-height: 18px; margin: 0; accent-color: #ce0612; }
 .planChoiceCopy, .planChoicePrice { display: grid; min-width: 0; gap: 4px; }
 .planChoiceCopy strong { color: #202127; font-size: 17px; font-weight: 900; line-height: 1.3; }
@@ -125,8 +143,9 @@
 .planChoicePrice { text-align: right; }
 .planChoicePrice b { color: #ce0612; font-size: 21px; font-weight: 900; white-space: nowrap; line-height: 1.3; }
 .planChoicePrice small { color: #757882; font-size: 10px; }
-.planFirstMonth { grid-column: 1 / -1; display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 4px; padding-top: 10px; border-top: 1px solid #eadfe1; color: #757882; font-size: 11px; line-height: 1.5; }
-.planFirstMonth strong { color: #a9020e; font-size: 14px; white-space: nowrap; }
+.planUpfrontPayment { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 4px 12px; margin-top: 4px; padding-top: 10px; border-top: 1px solid #eadfe1; color: #757882; font-size: 11px; line-height: 1.5; }
+.planUpfrontPayment strong { color: #a9020e; font-size: 14px; white-space: nowrap; }
+.planUpfrontPayment small { grid-column: 1 / -1; font-size: 10px; }
 .planDetails { border-top: 1px solid #ececf0; background: #fff; }
 .planDetails > summary { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 10px 16px; color: #61656f; font-size: 11px; font-weight: 700; list-style: none; cursor: pointer; }
 .planDetails > summary::-webkit-details-marker { display: none; }
@@ -165,9 +184,9 @@
 .breakdown dd { margin: 0; color: #30323a; font-size: 14px; font-weight: 800; white-space: nowrap; }
 .breakdown dt small { display: block; margin-top: 3px; font-size: 10px; font-weight: 400; }
 .breakdown dd small { margin-left: 3px; color: #777a83; font-size: 10px; font-weight: 400; }
-.breakdown .firstMonth { margin: 12px 0; padding: 20px 12px; border-radius: 12px; background: #fff0f2; }
-.firstMonth dt { color: #a9020e; font-size: 14px; font-weight: 800; }
-.firstMonth dd { color: #ce0612; font-size: 30px; font-weight: 900; letter-spacing: -.04em; }
+.breakdown .upfrontPayment { margin: 12px 0; padding: 20px 12px; border-radius: 12px; background: #fff0f2; }
+.upfrontPayment dt { color: #a9020e; font-size: 14px; font-weight: 800; }
+.upfrontPayment dd { color: #ce0612; font-size: 30px; font-weight: 900; letter-spacing: -.04em; }
 .breakdown .laterMonth { border-bottom: 1px solid #eeeef2; padding: 13px 0; }
 .promoNote { margin: 16px 0; color: #777a83; font-size: 11px; line-height: 1.6; }
 .whatsappCta { display: flex; align-items: center; justify-content: center; gap: 12px; width: 100%; min-height: 54px; padding: 14px; border-radius: 999px; background: #148344; color: #fff; font-size: 11px; font-weight: 900; text-align: center; }
@@ -204,7 +223,7 @@
   .equipmentGrid { grid-template-columns: 1fr; max-width: 560px; }
   .summaryLayout { gap: 28px; }
   .summaryCard { padding: 24px; }
-  .firstMonth dd { font-size: 26px; }
+  .upfrontPayment dd { font-size: 26px; }
 }
 
 @media (max-width: 680px) {
@@ -214,6 +233,9 @@
   .heroCopy h1 { font-size: 39px; }
   .heroCopy > p { margin-left: auto; margin-right: auto; font-size: 14px; }
   .heroCta { width: 100%; }
+  .heroCopy .heroQuestion { font-size: 15px; }
+  .heroChoices { grid-template-columns: 1fr; gap: 12px; max-width: 440px; }
+  .heroChoices .heroCta { min-height: 58px; border-radius: 18px; font-size: 12px; }
   .heroNote { margin-top: 13px; font-size: 10px; }
   .stepsWrap { padding-top: 12px; }
   .steps { gap: 7px; padding: 18px 0; }
@@ -238,7 +260,7 @@
   .planSelect { padding: 14px; gap: 8px 10px; }
   .planChoiceCopy strong { font-size: 16px; }
   .planChoicePrice b { font-size: 20px; }
-  .planFirstMonth { font-size: 10px; }
+  .planUpfrontPayment { font-size: 10px; }
   .planDetailsContent { padding-left: 14px; padding-right: 14px; }
   .selectionNote { font-size: 10px; }
   .summaryCopy { text-align: center; }
@@ -247,8 +269,8 @@
   .summaryCopy ul { display: inline-grid; gap: 10px; margin-top: 20px; text-align: left; }
   .summaryCopy li { font-size: 12px; }
   .summaryCard { padding: 24px 20px; }
-  .firstMonth dd { font-size: 28px; }
-  .firstMonth dt { font-size: 12px; }
+  .upfrontPayment dd { font-size: 28px; }
+  .upfrontPayment dt { font-size: 12px; }
   .whatsappCta { gap: 9px; font-size: 10px; }
   .footerRow { flex-direction: column; gap: 20px; align-items: center; text-align: center; }
   .footerRow nav { justify-content: center; }
@@ -267,10 +289,10 @@
   .planChoiceCopy strong { font-size: 14px; }
   .planChoicePrice b { font-size: 18px; }
   .summaryCard { padding: 22px 16px; }
-  .firstMonth dd { font-size: 24px; }
+  .upfrontPayment dd { font-size: 24px; }
   .breakdown dt { font-size: 11px; }
   .breakdown dd { font-size: 13px; }
-  .breakdown .firstMonth dd { font-size: 24px; }
+  .breakdown .upfrontPayment dd { font-size: 24px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
