@@ -20,10 +20,17 @@ import {
 } from "./mercantilData";
 import styles from "./MercantilPage.module.css";
 
-const phone = "5561981954746";
-const whatsappUrl = (message: string) => `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+type MercantilPageProps = {
+  pageId?: "mercantil" | "mercantil30" | "mercantil19";
+  whatsappPhone?: string;
+  whatsappDisplay?: string;
+};
 
-export default function MercantilPage() {
+export default function MercantilPage({
+  pageId = "mercantil",
+  whatsappPhone = "5511920487509",
+  whatsappDisplay = "(11) 92048-7509",
+}: MercantilPageProps = {}) {
   const [equipment, setEquipment] = useState<MercantilEquipment | null>(null);
   const [equipmentPayments, setEquipmentPayments] = useState<Record<MercantilEquipment["id"], MercantilPayment>>({
     "kit-hd": "cash",
@@ -41,9 +48,9 @@ export default function MercantilPage() {
   const message = equipment && selectedPlan
     ? getMercantilMessage(equipment, selectedPlan, equipmentPayment)
     : `Olá, quero comprar um equipamento e contratar um plano SKY.${equipment ? ` Tenho interesse no ${equipment.name} (${equipment.detail.toLowerCase()}), com pagamento ${isInstallments ? paymentDescription : "à vista"}.` : ""}`;
-  const whatsapp = whatsappUrl(message);
+  const whatsapp = `https://wa.me/${whatsappPhone}?text=${encodeURIComponent(message)}`;
   const trackingData = {
-    page: "mercantil",
+    page: pageId,
     equipment: equipment?.name,
     equipment_payment: equipment ? equipmentPayment : undefined,
     equipment_installments: equipment ? (isInstallments ? mercantilInstallmentCount : 1) : undefined,
@@ -86,7 +93,7 @@ export default function MercantilPage() {
             <a href="#duvidas">DÚVIDAS</a>
           </nav>
           <div className="header-actions">
-            <TrackedLink className="call-header-cta" href="tel:08003631234" eventName="click_phone" eventData={{ page: "mercantil", placement: "header" }}>
+            <TrackedLink className="call-header-cta" href="tel:08003631234" eventName="click_phone" eventData={{ page: pageId, placement: "header" }}>
               <span aria-hidden="true">☎</span><span>Ligue</span>
             </TrackedLink>
             <TrackedLink className="green-header-cta" href={whatsapp} target="_blank" rel="noopener noreferrer" eventName="click_whatsapp" eventData={{ ...trackingData, placement: "mercantil_header" }}>
@@ -266,7 +273,7 @@ export default function MercantilPage() {
       </main>
 
       <footer className={styles.footer}>
-        <div className={`container ${styles.footerRow}`}><div><strong>PLANOS SKY</strong><span>PARCEIRO AUTORIZADO</span></div><nav aria-label="Informações legais"><Link href="/politica-de-privacidade/">Política de privacidade</Link><Link href="/termos-de-uso/">Termos de uso</Link></nav><TrackedLink href={whatsapp} target="_blank" rel="noopener noreferrer" eventName="click_whatsapp" eventData={{ ...trackingData, placement: "mercantil_footer" }}>WhatsApp: (61) 98195-4746</TrackedLink></div>
+        <div className={`container ${styles.footerRow}`}><div><strong>PLANOS SKY</strong><span>PARCEIRO AUTORIZADO</span></div><nav aria-label="Informações legais"><Link href="/politica-de-privacidade/">Política de privacidade</Link><Link href="/termos-de-uso/">Termos de uso</Link></nav><TrackedLink href={whatsapp} target="_blank" rel="noopener noreferrer" eventName="click_whatsapp" eventData={{ ...trackingData, placement: "mercantil_footer" }}>WhatsApp: {whatsappDisplay}</TrackedLink></div>
       </footer>
       <TrackedLink className="whatsapp-float" href={whatsapp} target="_blank" rel="noopener noreferrer" aria-label="Atendimento SKY pelo WhatsApp" eventName="click_whatsapp" eventData={{ ...trackingData, placement: "mercantil_floating_button" }}><Image src="/img/whatsapp-icon.webp" alt="" width={100} height={100} unoptimized /><span>Assinar</span></TrackedLink>
     </div>

@@ -1,0 +1,7 @@
+1:"$Sreact.fragment"
+2:I[88288,["/_next/static/chunks/0o9m-mc1f_787.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0s_8n~assn4wy.js","/_next/static/chunks/0dz7ax65_4evs.js"],"default"]
+3:I[97367,["/_next/static/chunks/0o9m-mc1f_787.js","/_next/static/chunks/0d3shmwh5_nmn.js","/_next/static/chunks/0s_8n~assn4wy.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+:HL["/_next/static/chunks/102~f0mbv41cs.css","style"]
+0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"pageId":"mercantil19","whatsappPhone":"556182254819","whatsappDisplay":"(61) 8225-4819"}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/102~f0mbv41cs.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/0dz7ax65_4evs.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"vOwEin8qBYNthnYVW85Ax"}
+5:null

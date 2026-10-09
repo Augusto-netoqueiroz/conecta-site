@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import MercantilPage from "../MercantilPage";
 import { mercantilFaqs } from "../mercantilData";
 
-const title = "SKY Mercantil | Escolha seu Kit e Plano";
+const title = "Equipamentos e Planos SKY | Kit Completo ou Receptor HD";
 const description = "Escolha o SKY KIT COMPLETO com antena por R$ 149,90 ou o SKY RECEPTOR HD por R$ 89,90. Compare planos SKY e confira o pagamento antes de receber os aparelhos.";
 const pageUrl = "https://planostvsky.com.br/mercantil/";
 
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "Planos TV SKY",
-    images: [{ url: "/img/og-sky-home.jpg", alt: "SKY Mercantil" }],
+    images: [{ url: "/img/og-sky-home.jpg", alt: "Equipamentos e Planos SKY" }],
   },
   twitter: {
     card: "summary_large_image",
@@ -43,7 +43,7 @@ export default function Mercantil() {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Início", item: "https://planostvsky.com.br/" },
-          { "@type": "ListItem", position: 2, name: "SKY Mercantil", item: pageUrl },
+          { "@type": "ListItem", position: 2, name: "Equipamentos e Planos SKY", item: pageUrl },
         ],
       },
       {
@@ -63,7 +63,11 @@ export default function Mercantil() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
-      <MercantilPage />
+      <MercantilPage
+        pageId="mercantil"
+        whatsappPhone="5511920487509"
+        whatsappDisplay="(11) 92048-7509"
+      />
     </>
   );
 }
